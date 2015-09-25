@@ -13,22 +13,29 @@ public class ParseArgs {
 	public void addArgs(String userInput)
 	{
 		map.put(userInput, 0);
-	}/*
-	public void parse(int[] args)
+	}
+	public void parse(String[] args)
 	{
+		int[] Args = new int[args.length];
+		//Iterator it = map.entrySet().iterator();
 		for(int i = 0; i < args.length; i++)
 		{
-			int temp = Integer.parseInt("9");
+			/*Map.Entry pair = (Map.Entry)it.next();
+			String[] strings = map.keySet().toArray(new String[map.size()]);
+			Args[i] = Integer.parseInt(args[i]);
+			map.put(strings[i], Args[i]);
+			
+			System.out.println(pair.getKey() + " = " + pair.getValue());*/
 		}
 		
-	}
+	}/*
 	public int getArgs(String whatUserWants)
 	{
 		return 0;
-	}
-	
-	public String printArgs()
-	{
-		return "0";
 	}*/
+	
+	public int printArgs()
+	{
+		return 0;
+	}
 }

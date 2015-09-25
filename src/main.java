@@ -1,4 +1,4 @@
-import SoftwareProject.ParseArgs;
+import softwareproject.ParseArgs;
 import java.util.*;
 
 public class main {
@@ -7,10 +7,11 @@ public class main {
 	public static void main(String[] args)
 	{
 		ParseArgs p = new ParseArgs();
+		int s;
 		
-		p.addArg("Length");
-		p.addArg("Width");
-		p.addArg("Height");
-		//p.parse(args);
+		p.addArgs("Length");
+		p.addArgs("Width");
+		p.addArgs("Height");
+		p.parse(args);
 	}
 }
