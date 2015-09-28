@@ -3,12 +3,12 @@ package softwareproject;
 
 import java.util.*;
 
-public class ParseArgs {
+public class ParseArgs{
     	//need a function to see in the args
 	//separate
 	//print out error if there's not enough or to many
 	
-	Map<String, Integer> map = new HashMap<String, Integer>();
+	public Map<String, Integer> map = new HashMap<String, Integer>();
 	
 	public void addArgs(String userInput)
 	{
@@ -16,23 +16,29 @@ public class ParseArgs {
 	}
 	public void parse(String[] args)
 	{
-		int[] Args = new int[args.length];
-		//Iterator it = map.entrySet().iterator();
-		for(int i = 0; i < args.length; i++)
-		{
-			/*Map.Entry pair = (Map.Entry)it.next();
-			String[] strings = map.keySet().toArray(new String[map.size()]);
-			Args[i] = Integer.parseInt(args[i]);
-			map.put(strings[i], Args[i]);
-			
-			System.out.println(pair.getKey() + " = " + pair.getValue());*/
+		try{
+			int[] Args = new int[args.length];
+			Iterator it = map.keySet().iterator();
+			for(int i = 0; it.hasNext(); i++)
+			{
+				String key = it.next().toString();
+				int temp = Integer.parseInt(args[i]);
+				map.put(key, temp);
+			}
+			for(String name: map.keySet())
+			{
+				String key = name.toString();
+				int value = map.get(key);
+				System.out.println("\nKey: " + key + "\nValue: " + value);
+			}
 		}
-		
-	}/*
-	public int getArgs(String whatUserWants)
+		catch(IndexOutOfBoundsException ex){}		
+	}
+	public int getArgs(String key)
 	{
-		return 0;
-	}*/
+		int i = map.get(key);
+		return i;
+	}
 	
 	public int printArgs()
 	{
