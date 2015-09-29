@@ -8,16 +8,17 @@ public class argumentTests {
         ParseArgs p = new ParseArgs();
         
         @Test(expected = IllegalArgumentException.class)
-        public void exceptionForNotEnoughArguments{
+        public void exceptionForNotEnoughArguments() {
                 assertEquals(map.length, 0);
-                p.addArg("length");
+                p.addArgs("length");
                 assertEquals(map.length, 1);
-                p.addArg("width");
+                p.addArgs("width");
                 assertEquals(map.length, 2);
-                p.addArg("height");
+                p.addArgs("height");
                 assertEquals(map.length, 3);
                 p.argsGiven.add("0");
                 p.isArgsNumberCorrect();
         }
       //  @Test(expected = IllegalArgumentException.class)
       //  public void exceptionForTooManyArguments
+      }
