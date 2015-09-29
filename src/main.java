@@ -7,11 +7,12 @@ public class main {
 	public static void main(String[] args)
 	{
 		ParseArgs p = new ParseArgs();
-		int s;
+		String s;
 		
 		p.addArgs("Length");
 		p.addArgs("Width");
 		p.addArgs("Height");
-		p.parse(args);
+		s = p.parse(args);
+		System.err.println(s);
 	}
 }

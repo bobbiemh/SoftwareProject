@@ -14,25 +14,38 @@ public class ParseArgs{
 	{
 		map.put(userInput, 0);
 	}
-	public void parse(String[] args)
+	public String parse(String[] args)//need to edit to look for illegal arguements
 	{
-		try{
-			int[] Args = new int[args.length];
-			Iterator it = map.keySet().iterator();
-			for(int i = 0; it.hasNext(); i++)
-			{
-				String key = it.next().toString();
-				int temp = Integer.parseInt(args[i]);
-				map.put(key, temp);
+		String s = "";
+		if(args.length == 3)
+		{
+			try{
+				Iterator it = map.keySet().iterator();
+				for(int i = 0; it.hasNext(); i++)
+				{
+					String key = it.next().toString();
+					int temp = Integer.parseInt(args[i]);
+					map.put(key, temp);
+				}
 			}
-			for(String name: map.keySet())
-			{
-				String key = name.toString();
-				int value = map.get(key);
-				System.out.println("\nKey: " + key + "\nValue: " + value);
-			}
+			catch(IndexOutOfBoundsException ex){}	
 		}
-		catch(IndexOutOfBoundsException ex){}		
+		else if (args.length < 3)
+		{
+			if(args.length == 0)
+				s = "Error: the following arguements are required: length, width, height";
+			else if(args.length == 1)
+				s = "Error: the following arguements are required: width, height";
+			else
+				s = "Error: the following argeument are required : height";
+		}//will later make it get a key and value and return that
+		else if (args.length > 3)
+		{
+			int i = args.length - 1;
+			String temp = args[i];
+			s = "Error: unrecongnized arguements: " + temp;
+		}//will later make it return all args that we don't need
+		return s;
 	}
 	public int getArgs(String key)
 	{
@@ -40,8 +53,17 @@ public class ParseArgs{
 		return i;
 	}
 	
-	public int printArgs()
+	public String[] printArgs()
 	{
-		return 0;
+		String[] keyAndValue = new String[3];
+		int i = 0;
+		for(String name: map.keySet())
+		{
+			String key = name.toString();
+			int value = map.get(key);
+			keyAndValue[i] = "\nKey: " + key + "\nValue: " + value;
+			i++;
+		}
+		return keyAndValue;
 	}
 }
