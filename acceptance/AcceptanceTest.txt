@@ -2,12 +2,12 @@
 Library				Keywords
 
 *** Keywords ***
-Add Args [Arguments] ${key} ${value[]}
+Add Args [Arguments] ${key} ${args}
     ${p}= parse ${value}
         Should Be Equal ${value[]} 
 		
-Program Output [Arguements] ${value[]}
-	${p}= VolumeCalculator ${value[]}
+Program Output [Arguements]
+	${p}= VolumeCalculator 
 		Should Be Equal ${total}
 		
 *** Test Cases ***
