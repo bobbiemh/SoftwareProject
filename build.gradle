@@ -5,9 +5,9 @@ sourceCompatibility = 1.7
 version = '1.0'
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Tic Tac Toe', 
+        attributes 'Implementation-Title': 'Software Project', 
                    'Implementation-Version': version, 
-                   'Main-Class': 'edu.jsu.mcis.TicTacToe'
+                   'Main-Class': 'softwareproject.ParseArgs'
     }
 }
 
