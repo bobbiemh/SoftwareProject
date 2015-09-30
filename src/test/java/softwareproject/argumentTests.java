@@ -26,17 +26,26 @@ public class argumentTests {
         }
         @Test
 		public void TooFewArgs(){
+			String s = "";
 			p.addArgs("length");
 			p.addArgs("width");
-			assertEquals(p.getNumberOfKeys(), 2);
+			p.addArgs("height");
+			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0","0"};
-			p.parse(args);
-			assertEquals(p.getNumberOfArgs(args), 2);
+			s = p.parse(args);
+			assertEquals(s, "Error: the following argeument are required : height");
 		}
 		
 		@Test
 		public void TooManyArgs(){
-				assertTrue(false);
+			String s = "";
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
+			assertEquals(p.getNumberOfKeys(), 3);
+			String[] args = {"0", "0", "0", "0"};
+			s = p.parse(args);
+			assertEquals(s, "Error: unrecongnized arguements: " + "0");
 		}
 }
 
