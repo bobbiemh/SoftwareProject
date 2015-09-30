@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="softwareproject.argumentTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-09-30T15:59:23" hostname="Bobbie-PC" time="0.015">
+  <properties/>
+  <testcase name="enoughArguments" classname="softwareproject.argumentTests" time="0.015"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

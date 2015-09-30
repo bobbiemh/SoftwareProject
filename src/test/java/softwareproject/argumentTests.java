@@ -2,6 +2,7 @@ package softwareproject;
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.*;
 
 public class argumentTests {
         private ParseArgs p;
@@ -10,18 +11,18 @@ public class argumentTests {
                 p = new ParseArgs();
         }
         
-        @Test(expected = IllegalArgumentException.class)
-        public void exceptionForNotEnoughArguments() {
-                assertEquals(p.hmap.size(), 0);
+        @Test
+        public void enoughArguments() {
+                assertEquals(p.getNumberOfKeys(), 0);
                 p.addArgs("length");
-                assertEquals(p.hmap.size(), 1);
+                assertEquals(p.getNumberOfKeys(), 1);
                 p.addArgs("width");
-                assertEquals(p.hmap.size(), 2);
+                assertEquals(p.getNumberOfKeys(), 2);
                 p.addArgs("height");
-                assertEquals(p.hmap.size(), 3);
-                String[] args = {"0"};
+                assertEquals(p.getNumberOfKeys(), 3);
+                String[] args = {"0", "0", "0"};
                 p.parse(args);
-                p.isArgsNumberCorrect();
+                assertEquals(p.getNumberOfArgs(args), 3);
         }
       //  @Test(expected = IllegalArgumentException.class)
       //  public void exceptionForTooManyArguments

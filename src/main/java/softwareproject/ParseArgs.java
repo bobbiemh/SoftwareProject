@@ -9,14 +9,19 @@ public class ParseArgs{
 	//print out error if there's not enough or to many
 	
 	private Map<String, Integer> map;
+	private int numberOfArgs;
+	private int numberOfKeys;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, Integer>();
+			numberOfArgs = 0;
+			numberOfKeys = 0;
 	}
 	
 	public void addArgs(String userInput)
 	{
 		map.put(userInput, 0);
+		numberOfKeys++;
 	}
 	
 	public String parse(String[] args)//need to edit to look for illegal arguements
@@ -56,6 +61,15 @@ public class ParseArgs{
 	{
 		int i = map.get(key);
 		return i;
+	}
+	
+	public int getNumberOfArgs(String[] args){
+		numberOfArgs = args.length;
+		return numberOfArgs;
+	}
+	
+	public int getNumberOfKeys(){
+		return numberOfKeys;
 	}
 	
 	public String[] printArgs()
