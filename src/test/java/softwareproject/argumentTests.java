@@ -26,7 +26,12 @@ public class argumentTests {
         }
         @Test
 		public void TooFewArgs(){
-				assertTrue(false);
+				p.addArgs("length");
+				p.addArgs("width");
+				assertEquals(p.getNumberOfKeys(), 2);
+				String[] args = {"0","0","0"};
+				p.parse(args);
+				assertEquals(p.getNumberOfArgs(args));
 		}
 		
 		@Test
