@@ -47,5 +47,24 @@ public class argumentTests {
 			s = p.parse(args);
 			assertEquals(s, "Error: unrecongnized arguements: " + "0");
 		}
+		
+		@Test
+		public void returnMapValue(){
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
+			
+			String[] args = {"7", "5", "2"};
+			int temp = 7;
+			p.parse(args);
+			
+
+			temp = p.getArgs("length");
+			assertEquals(temp, 7);
+			temp = p.getArgs("width");
+			assertEquals(temp, 5);
+			temp = p.getArgs("height");
+			assertEquals(temp, 2);
+		}
 }
 

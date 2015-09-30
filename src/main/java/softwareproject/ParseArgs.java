@@ -31,7 +31,7 @@ public class ParseArgs{
 		{
 			try{
 				Iterator it = map.keySet().iterator();
-				for(int i = 0; it.hasNext(); i++)
+				for(int i = 2; it.hasNext(); i--)
 				{
 					String key = it.next().toString();
 					int temp = Integer.parseInt(args[i]);
@@ -64,7 +64,7 @@ public class ParseArgs{
 	}
 	
 	public int getNumberOfArgs(String[] args){
-		numberOfArgs = args.length;
+		numberOfArgs = map.size();
 		return numberOfArgs;
 	}
 	
@@ -85,4 +85,5 @@ public class ParseArgs{
 		}
 		return keyAndValue;
 	}
+
 }
