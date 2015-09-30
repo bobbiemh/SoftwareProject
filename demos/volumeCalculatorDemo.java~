@@ -26,6 +26,6 @@ public class volumeCalculatorDemo{
                 }
                 volume = length * height * width;
                 System.out.println("Volume = " + volume);
-                System.out.println("\n"+Thread.currentThread().getStackTrace()[1].getClassName());
+                System.out.println("\n"+Thread.currentThread().getStackTrace()[1]);
         }
 }
