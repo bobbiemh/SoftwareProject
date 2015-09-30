@@ -31,7 +31,7 @@ public class argumentTests {
 				assertEquals(p.getNumberOfKeys(), 2);
 				String[] args = {"0","0","0"};
 				p.parse(args);
-				assertEquals(p.getNumberOfArgs(args));
+				assertEquals(p.getNumberOfArgs(args), 3);
 		}
 		
 		@Test
