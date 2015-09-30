@@ -12,7 +12,7 @@ public class argumentTests {
         }
         
         @Test
-        public void enoughArguments() {
+		public void enoughArguments() {
 			assertEquals(p.getNumberOfKeys(), 0);
 			p.addArgs("length");
 			assertEquals(p.getNumberOfKeys(), 1);
@@ -29,9 +29,9 @@ public class argumentTests {
 			p.addArgs("length");
 			p.addArgs("width");
 			assertEquals(p.getNumberOfKeys(), 2);
-			String[] args = {"0","0","0"};
+			String[] args = {"0","0"};
 			p.parse(args);
-			assertEquals(p.getNumberOfArgs(args), 3);
+			assertEquals(p.getNumberOfArgs(args), 2);
 		}
 		
 		@Test
