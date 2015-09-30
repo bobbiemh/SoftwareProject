@@ -1,10 +1,10 @@
 import softwareproject.*;
 
 public class Keywords {
-	private ParseArgs p = new ParseArgs();
+	private ParseArgs p;
 	
-	public void AddArgs(String key, String[] args){
-		p.addArgs(key);
-		p.parse(args);
+	public void StartVolumeCalculatorWithArgs(String[] Args){
+		p = new ParseArgs();
+		p.addArgs("length");
 	}
 }

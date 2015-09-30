@@ -1,21 +1,10 @@
 *** Settings ***
 Library				Keywords
 
-*** Keywords ***
-Add Args [Arguments] ${key} ${args}
-    ${p}= parse ${value}
-        Should Be Equal ${value[]} 
-		
-Program Output [Arguements]
-	${p}= VolumeCalculator 
-		Should Be Equal ${total}
-		
-*** Test Cases ***
-Set Args In Map
-	Create New Object
-	Add Args	length	width	height	7	5	2
-	Program Output 7	5	2
-	
+
+
+| *Variable*  | *Value*                                                                                                   |
+| ${expected} | usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: 43 |
 
 | *Test Case*                            | *Action*                              | *Argument*         | *Argument*   | *Argument* | *Argument* |
 | Test Volume Calculator Normal Function | Start Volume Cacluator With Arguments | 7                  | 5            | 2          |            |
