@@ -24,7 +24,14 @@ public class argumentTests {
                 p.parse(args);
                 assertEquals(p.getNumberOfArgs(args), 3);
         }
-      //  @Test(expected = IllegalArgumentException.class)
-      //  public void exceptionForTooManyArguments
+        @Test
+		public void TooFewArgs(){
+				assertTrue(false);
+		}
+		
+		@Test
+		public void TooManyArgs(){
+				assertTrue(false);
+		}
 }
 
