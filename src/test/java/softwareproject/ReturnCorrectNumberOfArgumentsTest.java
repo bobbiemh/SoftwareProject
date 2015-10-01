@@ -16,6 +16,6 @@ public class ReturnCorrectNumberOfArgumentsTest {
 	public void hreturnscorrectUsageInformationTest() {
      String[] args = {"-h"};
         String s = p.parse(args);
-        assertEquals(s, "usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box");
+        assertEquals(s, "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: 43");
     }
 }

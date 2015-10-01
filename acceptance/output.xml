@@ -1,69 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 2.9 (Jython 2.7.0 on java1.8.0_60)" generated="20151001 00:44:21.788">
-<suite source="C:\Users\Shay\Desktop\SoftwareProject\acceptance\AcceptanceTest.txt" name="AcceptanceTest" id="s1">
-<test name="Test Volume Calculator Normal Function" id="s1-t1">
-<kw name="Start Volume Cacluator With Arguments">
+<robot generator="Robot 2.9 (Jython 2.7.0 on java1.8.0_60)" generated="20151001 14:15:14.808">
+<suite name="AcceptanceTest &amp; HKeywords" id="s1">
+<suite source="C:\Users\Shay\Desktop\SoftwareProject\acceptance\AcceptanceTest.txt" name="AcceptanceTest" id="s1-s1">
+<test name="Test Volume Calculator Normal Function" id="s1-s1-t1">
+<kw library="Keywords" name="Start Volume Calculator With Arguments">
 <arguments>
 <arg>7</arg>
 <arg>5</arg>
 <arg>2</arg>
 </arguments>
-<msg level="FAIL" timestamp="20151001 00:44:23.553">No keyword with name 'Start Volume Cacluator With Arguments' found.</msg>
-<status endtime="20151001 00:44:23.556" starttime="20151001 00:44:23.546" status="FAIL"></status>
+<status endtime="20151001 14:15:19.309" starttime="20151001 14:15:19.290" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151001 00:44:23.564" starttime="20151001 00:44:23.437" status="FAIL">No keyword with name 'Start Volume Cacluator With Arguments' found.</status>
+<kw library="Keywords" name="Get Length">
+<assign>
+<var>${length}</var>
+</assign>
+<msg level="INFO" timestamp="20151001 14:15:19.333">${length} = 7</msg>
+<status endtime="20151001 14:15:19.335" starttime="20151001 14:15:19.316" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>7</arg>
+<arg>${length}</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 14:15:19.391">7 (string) != 7 (integer)</msg>
+<status endtime="20151001 14:15:19.395" starttime="20151001 14:15:19.344" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 14:15:19.405" starttime="20151001 14:15:19.272" status="FAIL">7 (string) != 7 (integer)</status>
 </test>
-<test name="Test Unrecognized Argument" id="s1-t2">
-<kw name="Start Volume Cacluator With Arguments">
+<test name="Test Unrecognized Argument" id="s1-s1-t2">
+<kw library="Keywords" name="Start Volume Calculator With Arguments">
 <arguments>
 <arg>7</arg>
 <arg>5</arg>
 <arg>2</arg>
 <arg>43</arg>
 </arguments>
-<msg level="FAIL" timestamp="20151001 00:44:23.651">No keyword with name 'Start Volume Cacluator With Arguments' found.</msg>
-<status endtime="20151001 00:44:23.653" starttime="20151001 00:44:23.647" status="FAIL"></status>
+<status endtime="20151001 14:15:19.588" starttime="20151001 14:15:19.575" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151001 00:44:23.667" starttime="20151001 00:44:23.583" status="FAIL">No keyword with name 'Start Volume Cacluator With Arguments' found.</status>
+<kw library="Keywords" name="Get Program Output">
+<assign>
+<var>${output}</var>
+</assign>
+<msg level="INFO" timestamp="20151001 14:15:19.629">${output} = 70</msg>
+<status endtime="20151001 14:15:19.633" starttime="20151001 14:15:19.616" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>70</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 14:15:19.665">70 (integer) != 70 (string)</msg>
+<status endtime="20151001 14:15:19.678" starttime="20151001 14:15:19.644" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 14:15:19.691" starttime="20151001 14:15:19.530" status="FAIL">70 (integer) != 70 (string)</status>
 </test>
-<test name="Test Absurd Program Normal Function" id="s1-t3">
-<kw name="Start Absurd Program With Arguments">
+<test name="Test Absurd Program Normal Function" id="s1-s1-t3">
+<kw library="Keywords" name="Start Absurd Program With Arguments">
 <arguments>
 <arg>dog</arg>
 <arg>2</arg>
 <arg>true</arg>
 <arg>3.5</arg>
 </arguments>
-<msg level="FAIL" timestamp="20151001 00:44:23.775">No keyword with name 'Start Absurd Program With Arguments' found.</msg>
-<status endtime="20151001 00:44:23.777" starttime="20151001 00:44:23.771" status="FAIL"></status>
+<status endtime="20151001 14:15:19.768" starttime="20151001 14:15:19.743" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151001 00:44:23.783" starttime="20151001 00:44:23.706" status="FAIL">No keyword with name 'Start Absurd Program With Arguments' found.</status>
+<kw library="Keywords" name="Get Pet">
+<assign>
+<var>${pet}</var>
+</assign>
+<msg level="INFO" timestamp="20151001 14:15:19.783">${pet} = 0</msg>
+<status endtime="20151001 14:15:19.789" starttime="20151001 14:15:19.775" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>dog</arg>
+<arg>${pet}</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 14:15:19.843">dog != 0</msg>
+<status endtime="20151001 14:15:19.846" starttime="20151001 14:15:19.829" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 14:15:19.853" starttime="20151001 14:15:19.711" status="FAIL">dog != 0</status>
 </test>
-<status endtime="20151001 00:44:23.799" starttime="20151001 00:44:21.825" status="FAIL"></status>
+<status endtime="20151001 14:15:19.905" starttime="20151001 14:15:19.052" status="FAIL"></status>
+</suite>
+<suite source="C:\Users\Shay\Desktop\SoftwareProject\acceptance\HKeywords.txt" name="HKeywords" id="s1-s2">
+<test name="Test Usage Message" id="s1-s2-t1">
+<kw library="HKeywords" name="Start Program With Arguments">
+<arguments>
+<arg>-h</arg>
+</arguments>
+<status endtime="20151001 14:15:20.378" starttime="20151001 14:15:20.324" status="PASS"></status>
+</kw>
+<kw library="HKeywords" name="Get Program Output">
+<assign>
+<var>${output}</var>
+</assign>
+<msg level="INFO" timestamp="20151001 14:15:20.422">${output} = 0</msg>
+<status endtime="20151001 14:15:20.424" starttime="20151001 14:15:20.395" status="PASS"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${expected}</arg>
+<arg>${output}</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 14:15:20.504">usage: java VolumeCalculator length width height
+Calcuate the volume of a box.
+positional arguments:
+length the length of the box (float)
+width the width of the box(float)
+height the height of the box(float) != 0</msg>
+<status endtime="20151001 14:15:20.512" starttime="20151001 14:15:20.446" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 14:15:20.529" starttime="20151001 14:15:20.302" status="FAIL">usage: java VolumeCalculator length width height
+Calcuate the volume of a box.
+positional arguments:
+length the length of the box (float)
+width the width of the box(float)
+height the height of the box(float) != 0</status>
+</test>
+<status endtime="20151001 14:15:20.549" starttime="20151001 14:15:19.935" status="FAIL"></status>
+</suite>
+<status endtime="20151001 14:15:20.586" starttime="20151001 14:15:14.855" status="FAIL"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="3">Critical Tests</stat>
-<stat pass="0" fail="3">All Tests</stat>
+<stat pass="0" fail="4">Critical Tests</stat>
+<stat pass="0" fail="4">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="0" fail="3" name="AcceptanceTest" id="s1">AcceptanceTest</stat>
+<stat pass="0" fail="4" name="AcceptanceTest &amp; HKeywords" id="s1">AcceptanceTest &amp; HKeywords</stat>
+<stat pass="0" fail="3" name="AcceptanceTest" id="s1-s1">AcceptanceTest &amp; HKeywords.AcceptanceTest</stat>
+<stat pass="0" fail="1" name="HKeywords" id="s1-s2">AcceptanceTest &amp; HKeywords.HKeywords</stat>
 </suite>
 </statistics>
 <errors>
-<msg level="ERROR" timestamp="20151001 00:44:23.400">Error in file 'C:\Users\Shay\Desktop\SoftwareProject\acceptance\AcceptanceTest.txt': Importing test library 'C:\Users\Shay\Desktop\SoftwareProject\acceptance\Keywords.java' failed: ImportError: No module named Keywords
-Traceback (most recent call last):
-  None
-PYTHONPATH:
-  C:\Users\Shay\Documents\RobotFramework\Lib
-  C:\Users\Shay\Documents\RobotFramework\robotframework-2.9.jar\Lib
-  __classpath__
-  __pyclasspath__/
-CLASSPATH:
-  .
-  ..\build\classes\main
-  C:\Users\Shay\Documents\RobotFramework\robotframework-2.9.jar</msg>
 </errors>
 </robot>

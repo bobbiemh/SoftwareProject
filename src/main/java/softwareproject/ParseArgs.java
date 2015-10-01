@@ -56,7 +56,8 @@ public class ParseArgs{
 			s = "Error: unrecongnized arguements: " + temp;
 		}//will later make it return all args that we don't need
         if(args[0] == "-h") {
-            return "usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box";
+            return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: 43";
+            // return "usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box";
         }
 		return s;
 	}

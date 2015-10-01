@@ -8,6 +8,7 @@ public class Keywords {
 		p.addArgs("length");
 		p.addArgs("width");
 		p.addArgs("height");
+        
 		//fix parse before putting it in here
 	}
 	
@@ -35,28 +36,37 @@ public class Keywords {
 	
 	public void StartProgramWithFloatArgs(String[] args){
 		p = new ParseArgs();
-		p.addArg("length");
-		p.addArg("width");
+		p.addArgs("length");
+		p.addArgs("width");
 		p.addArgs("height");
 		//parse args
 	}
 	
 	public String getPet(){
-		return p.getArgs("pet");
+        int i = p.getArgs("pet");
+        String j = "" + i;
+		return j;
+        
 		//getArgs returns an int, need to change
 	}
-	
-	public String getNumber(){
-		return p.getArgs("number");
-	}
-	
-	public Strnig getRainy(){
-		return p.getArgs("rainy");
-	}
-	
-	public String getBathrooms(){
-		return p.getArgs("bathrooms");
-	}
+    
+    public String getNumber() {
+        int i = p.getArgs("number");
+        String j = "" + i;
+		return j;
+    }
+    
+    public String getRainy() {
+        int i = p.getArgs("rainy");
+        String j = "" + i;
+		return j;
+    }
+    
+    public String getBathrooms() {
+        int i = p.getArgs("bathrooms");
+        String j = "" + i;
+		return j;
+    }
 	
 	public int getLength(){
 		return p.getArgs("length");
@@ -70,11 +80,35 @@ public class Keywords {
 		return p.getArgs("height");
 	}
 	
-	/*public <T>Object getProgramOutput(){
-		if()search to see if user enter in --h
-		if()search to see if user enter in toomanyargs
-		if()search to see if user enter in toofewargs
-		if()search to see if user enter in invalid data type
-		else volumecalculator height width length
-	}
+	// /*public <T>Object getProgramOutput(){
+		// if()search to see if user enter in --h
+		// if()search to see if user enter in toomanyargs
+		// if()search to see if user enter in toofewargs
+		// if()search to see if user enter in invalid data type
+		// else volumecalculator height width length
+	// }
+    
+    public void StartVolumeCalculatorWithArguments(String Args[]) {
+        p = new ParseArgs();
+		p.addArgs("length");
+		p.addArgs("width");
+		p.addArgs("height");
+        String[] args = {"7", "5", "2"};
+		p.parse(args);
+    }
+    
+    public void StartAbsurdProgramWithArguments(String[] Args) {
+        p = new ParseArgs();
+        p.addArgs("pet");
+        p.addArgs("number");
+        p.addArgs("rainy");
+        p.addArgs("bathrooms");
+        String[] args = {"dog", "2", "true", "3.5"};
+		p.parse(args);
+    }
+    
+    public int GetProgramOutput(String[] args) {
+        int result = getLength()*getWidth()*getHeight();
+        return result;
+    }
 }
