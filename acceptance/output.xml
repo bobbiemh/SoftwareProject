@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 2.9 (Jython 2.7.0 on java1.8.0_60)" generated="20151001 00:44:21.788">
+<suite source="C:\Users\Shay\Desktop\SoftwareProject\acceptance\AcceptanceTest.txt" name="AcceptanceTest" id="s1">
+<test name="Test Volume Calculator Normal Function" id="s1-t1">
+<kw name="Start Volume Cacluator With Arguments">
+<arguments>
+<arg>7</arg>
+<arg>5</arg>
+<arg>2</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 00:44:23.553">No keyword with name 'Start Volume Cacluator With Arguments' found.</msg>
+<status endtime="20151001 00:44:23.556" starttime="20151001 00:44:23.546" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 00:44:23.564" starttime="20151001 00:44:23.437" status="FAIL">No keyword with name 'Start Volume Cacluator With Arguments' found.</status>
+</test>
+<test name="Test Unrecognized Argument" id="s1-t2">
+<kw name="Start Volume Cacluator With Arguments">
+<arguments>
+<arg>7</arg>
+<arg>5</arg>
+<arg>2</arg>
+<arg>43</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 00:44:23.651">No keyword with name 'Start Volume Cacluator With Arguments' found.</msg>
+<status endtime="20151001 00:44:23.653" starttime="20151001 00:44:23.647" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 00:44:23.667" starttime="20151001 00:44:23.583" status="FAIL">No keyword with name 'Start Volume Cacluator With Arguments' found.</status>
+</test>
+<test name="Test Absurd Program Normal Function" id="s1-t3">
+<kw name="Start Absurd Program With Arguments">
+<arguments>
+<arg>dog</arg>
+<arg>2</arg>
+<arg>true</arg>
+<arg>3.5</arg>
+</arguments>
+<msg level="FAIL" timestamp="20151001 00:44:23.775">No keyword with name 'Start Absurd Program With Arguments' found.</msg>
+<status endtime="20151001 00:44:23.777" starttime="20151001 00:44:23.771" status="FAIL"></status>
+</kw>
+<status critical="yes" endtime="20151001 00:44:23.783" starttime="20151001 00:44:23.706" status="FAIL">No keyword with name 'Start Absurd Program With Arguments' found.</status>
+</test>
+<status endtime="20151001 00:44:23.799" starttime="20151001 00:44:21.825" status="FAIL"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="3">Critical Tests</stat>
+<stat pass="0" fail="3">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="3" name="AcceptanceTest" id="s1">AcceptanceTest</stat>
+</suite>
+</statistics>
+<errors>
+<msg level="ERROR" timestamp="20151001 00:44:23.400">Error in file 'C:\Users\Shay\Desktop\SoftwareProject\acceptance\AcceptanceTest.txt': Importing test library 'C:\Users\Shay\Desktop\SoftwareProject\acceptance\Keywords.java' failed: ImportError: No module named Keywords
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\Shay\Documents\RobotFramework\Lib
+  C:\Users\Shay\Documents\RobotFramework\robotframework-2.9.jar\Lib
+  __classpath__
+  __pyclasspath__/
+CLASSPATH:
+  .
+  ..\build\classes\main
+  C:\Users\Shay\Documents\RobotFramework\robotframework-2.9.jar</msg>
+</errors>
+</robot>

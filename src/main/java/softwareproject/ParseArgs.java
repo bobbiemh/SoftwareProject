@@ -55,6 +55,9 @@ public class ParseArgs{
 			String temp = args[i];
 			s = "Error: unrecongnized arguements: " + temp;
 		}//will later make it return all args that we don't need
+        if(args[0] == "-h") {
+            return "usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box";
+        }
 		return s;
 	}
 	public int getArgs(String key)
@@ -85,4 +88,16 @@ public class ParseArgs{
 		}
 		return keyAndValue;
 	}
+    
+    public Integer returnValue(String key) {
+         if (key == null) {
+             throw new IllegalArgumentException ("The key is null.");
+         }
+       int a = map.get(key);
+        return a;
+    }
+    
+    // public String callH() {
+        
+    // }
 }

@@ -3,7 +3,7 @@ package softwareproject;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ParseArgsTest {
+public class ReturnMapValueTest {
 	
 	private ParseArgs p;
 	
