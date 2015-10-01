@@ -24,7 +24,7 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.getNumberOfArgs(args), 3);
         }
-        @Test
+                @Test(expected = argumentsException.class)
 		public void TooFewArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -32,11 +32,10 @@ public class argumentTests {
 			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0","0"};
-			s = p.parse(args);
-			assertEquals(s, "Error: the following argeument are required : height");
+			p.parse(args);
 		}
 		
-		@Test
+		@Test(expected = argumentsException.class)
 		public void TooManyArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -44,8 +43,25 @@ public class argumentTests {
 			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0", "0"};
-			s = p.parse(args);
-			assertEquals(s, "Error: unrecongnized arguements: " + "0");
+			p.parse(args);
+		
+		@Test
+		public void returnMapValue(){
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
+			
+			String[] args = {"7", "5", "2"};
+			int temp = 7;
+			p.parse(args);
+			
+
+			temp = p.getArgs("length");
+			assertEquals(temp, 7);
+			temp = p.getArgs("width");
+			assertEquals(temp, 5);
+			temp = p.getArgs("height");
+			assertEquals(temp, 2);
 		}
 }
 

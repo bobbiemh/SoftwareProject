@@ -1,11 +1,10 @@
-
 package softwareproject;
-
+import parseArgs.java
 import java.util.*;
 
 public class argumentsException extends RuntimeException {
-        public argumentsException(){
-                super("the following arguments are required: "+ParseArgs.printMissingArgs());
+        public argumentsException(String msg){
+                super(msg);
                //usage: java "+Thread.currentThread().getStackTrace()[1].getClassName()+" "+ParseArgs.printNeededArgs()
         }
 }

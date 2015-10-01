@@ -24,9 +24,9 @@ public class ParseArgs{
 		numberOfKeys++;
 	}
 	
-	public String parse(String[] args)//need to edit to look for illegal arguements
+	public String parse(String[] args) throws argumentsException//need to edit to look for illegal arguements
 	{
-		String s = "";
+	        String s = "";
 		if(args.length == 3)
 		{
 			try{
@@ -43,17 +43,17 @@ public class ParseArgs{
 		else if (args.length < 3)
 		{
 			if(args.length == 0)
-				s = "Error: the following arguements are required: length, width, height";
+				throw new argumentsException("Error: the following arguements are required: length, width, height");
 			else if(args.length == 1)
-				s = "Error: the following arguements are required: width, height";
+				throw new argumentsException("Error: the following arguements are required: width, height");
 			else
-				s = "Error: the following argeument are required : height";
+				throw new argumentsException("Error: the following argeument are required : height");
 		}//will later make it get a key and value and return that
 		else if (args.length > 3)
 		{
 			int i = args.length - 1;
 			String temp = args[i];
-			s = "Error: unrecongnized arguements: " + temp;
+			throw new argumentsException("Error: unrecongnized arguements: " + temp);
 		}//will later make it return all args that we don't need
 		return s;
 	}
