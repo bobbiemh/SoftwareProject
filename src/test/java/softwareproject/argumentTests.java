@@ -11,7 +11,7 @@ public class argumentTests {
                 p = new ParseArgs();
         }
         
-        @Test
+		@Test
 		public void enoughArguments() {
 			assertEquals(p.getNumberOfKeys(), 0);
 			p.addArgs("length");
@@ -24,7 +24,8 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.getNumberOfArgs(args), 3);
         }
-        @Test(expected = argumentsException.class)
+		
+		@Test(expected = argumentsException.class)
 		public void TooFewArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -35,7 +36,7 @@ public class argumentTests {
 			p.parse(args);
 		}
 		
-	@Test(expected = argumentsException.class)
+		@Test(expected = argumentsException.class)
 		public void TooManyArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -46,14 +47,14 @@ public class argumentTests {
 			p.parse(args);
 		}
 		
-	@Test
+		@Test
 		public void returnMapValue(){
 			p.addArgs("length");
 			p.addArgs("width");
 			p.addArgs("height");
 			
 			String[] args = {"7", "5", "2"};
-			int temp = 7;
+			int temp = 0;
 			p.parse(args);
 			
 
@@ -63,5 +64,12 @@ public class argumentTests {
 			assertEquals(temp, 5);
 			temp = p.getArgs("height");
 			assertEquals(temp, 2);
+		}
+		
+		@Test
+		public void helpMessage(){
+			String[] args = {"-h"};
+			p.parse(args);
+			assertEquals(p.getHelp(), 1);
 		}
 }

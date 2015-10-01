@@ -11,11 +11,15 @@ public class ParseArgs{
 	private Map<String, Integer> map;
 	private int numberOfArgs;
 	private int numberOfKeys;
+	private int tooManyArguments;
+	private int helpMessageWorks;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, Integer>();
 			numberOfArgs = 0;
 			numberOfKeys = 0;
+			tooManyArguments = 0;
+			helpMessageWorks = 0;
 	}
 	
 	public void addArgs(String userInput)
@@ -24,6 +28,10 @@ public class ParseArgs{
 		numberOfKeys++;
 	}
 	
+<<<<<<< HEAD
+	public void checkSize(String[] args) throws argumentsException
+	{
+=======
 	public String parse(String[] args)//need to edit to look for illegal arguements
 	{
 		String s = "";
@@ -42,9 +50,52 @@ public class ParseArgs{
 		}
 		else if (args.length < 3)
 		{
+>>>>>>> origin/master
 			if(args.length == 0)
 				s = "Error: the following arguements are required: length, width, height";
 			else if(args.length == 1)
+<<<<<<< HEAD
+				throw new argumentsException("Error: the following arguements are required: width, height");
+			else if(args.length == 2)
+				throw new argumentsException("Error: the following argeument are required : height");
+			
+			if (args.length > 3)
+			{
+				int i = args.length - 1;
+				String temp = args[i];
+				throw new argumentsException("Error: unrecongnized arguements: " + temp);
+			}//will later make it return all args that we don't need
+	}
+	
+	public int getHelp(){
+		return helpMessageWorks;
+	}
+	
+	public void parse(String[] args) //need to edit to look for illegal arguements
+	{
+			if(args.length == 1 && args[0].equals("-h")){
+				helpMessageWorks++;
+				System.out.println(getHelpMessage());
+			}
+			else {
+				checkSize(args);
+				try{
+					Iterator it = map.keySet().iterator();
+					for(int i = 2; it.hasNext(); i--)
+					{
+						String key = it.next().toString();
+						int temp = Integer.parseInt(args[i]);
+						map.put(key, temp);
+					}
+				}
+				catch(IndexOutOfBoundsException ex){}
+			}
+
+	}
+	
+	public String getHelpMessage(){
+		return "usage: java VolumeCalculator length width height \nCalculate the volume of a box \npositional arguments: \n\tlength the length of the box \n\twidth the width of the box \n\theight the height of the box";
+=======
 				s = "Error: the following arguements are required: width, height";
 			else
 				s = "Error: the following argeument are required : height";
@@ -60,7 +111,9 @@ public class ParseArgs{
             // return "usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box";
         }
 		return s;
+>>>>>>> origin/master
 	}
+	
 	public int getArgs(String key)
 	{
 		int i = map.get(key);
