@@ -1,6 +1,6 @@
 package softwareproject;
 public class volumeCalculatorDemo{
-/********************not done**********************/
+
         public static void main (String[] args){
                 p = new parseArgs();
                 p.addArgs("length");
