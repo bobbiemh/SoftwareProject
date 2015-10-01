@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ParseArgs.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">SoftwareProject</a> &gt; <a href="index.source.html" class="el_package">softwareproject</a> &gt; <span class="el_source">ParseArgs.java</span></div><h1>ParseArgs.java</h1><pre class="source lang-java linenums">
+package softwareproject;
+
+import java.util.*;
+
+public class ParseArgs{
+    	//need a function to see in the args
+	//separate
+	//print out error if there's not enough or to many
+	
+	private Map&lt;String, Integer&gt; map;
+	private int numberOfArgs;
+	private int numberOfKeys;
+	
+<span class="fc" id="L15">	public ParseArgs() {</span>
+<span class="fc" id="L16">	        map = new HashMap&lt;String, Integer&gt;();</span>
+<span class="fc" id="L17">			numberOfArgs = 0;</span>
+<span class="fc" id="L18">			numberOfKeys = 0;</span>
+<span class="fc" id="L19">	}</span>
+	
+	public void addArgs(String userInput)
+	{
+<span class="fc" id="L23">		map.put(userInput, 0);</span>
+<span class="fc" id="L24">		numberOfKeys++;</span>
+<span class="fc" id="L25">	}</span>
+	
+	public String parse(String[] args)//need to edit to look for illegal arguements
+	{
+<span class="fc" id="L29">		String s = &quot;&quot;;</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if(args.length == 3)</span>
+		{
+			try{
+<span class="fc" id="L33">				Iterator it = map.keySet().iterator();</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">				for(int i = 0; it.hasNext(); i++)</span>
+				{
+<span class="fc" id="L36">					String key = it.next().toString();</span>
+<span class="fc" id="L37">					int temp = Integer.parseInt(args[i]);</span>
+<span class="fc" id="L38">					map.put(key, temp);</span>
+				}
+			}
+<span class="pc" id="L41">			catch(IndexOutOfBoundsException ex){}	</span>
+		}
+<span class="fc bfc" id="L43" title="All 2 branches covered.">		else if (args.length &lt; 3)</span>
+		{
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">			if(args.length == 0)</span>
+<span class="nc" id="L46">				s = &quot;Error: the following arguements are required: length, width, height&quot;;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">			else if(args.length == 1)</span>
+<span class="fc" id="L48">				s = &quot;Error: the following arguements are required: width, height&quot;;</span>
+			else
+<span class="fc" id="L50">				s = &quot;Error: the following argeument are required : height&quot;;</span>
+		}//will later make it get a key and value and return that
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">		else if (args.length &gt; 3)</span>
+		{
+<span class="fc" id="L54">			int i = args.length - 1;</span>
+<span class="fc" id="L55">			String temp = args[i];</span>
+<span class="fc" id="L56">			s = &quot;Error: unrecongnized arguements: &quot; + temp;</span>
+		}//will later make it return all args that we don't need
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if(args[0] == &quot;-h&quot;) {</span>
+<span class="fc" id="L59">            System.out.println(&quot;usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box&quot;);</span>
+<span class="fc" id="L60">            return &quot;usage: java VolumeCalculator length width height \n Calculate the volume of a box. \n positional arguments: \n length the length of the box \n width the width of the box \n height the height of the box&quot;;</span>
+        }
+<span class="fc" id="L62">		return s;</span>
+	}
+	public int getArgs(String key)
+	{
+<span class="nc" id="L66">		int i = map.get(key);</span>
+<span class="nc" id="L67">		return i;</span>
+	}
+	
+	public int getNumberOfArgs(String[] args){
+<span class="fc" id="L71">		numberOfArgs = args.length;</span>
+<span class="fc" id="L72">		return numberOfArgs;</span>
+	}
+	
+	public int getNumberOfKeys(){
+<span class="fc" id="L76">		return numberOfKeys;</span>
+	}
+	
+	public String[] printArgs()
+	{
+<span class="nc" id="L81">		String[] keyAndValue = new String[3];</span>
+<span class="nc" id="L82">		int i = 0;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">		for(String name: map.keySet())</span>
+		{
+<span class="nc" id="L85">			String key = name.toString();</span>
+<span class="nc" id="L86">			int value = map.get(key);</span>
+<span class="nc" id="L87">			keyAndValue[i] = &quot;\nKey: &quot; + key + &quot;\nValue: &quot; + value;</span>
+<span class="nc" id="L88">			i++;</span>
+<span class="nc" id="L89">		}</span>
+<span class="nc" id="L90">		return keyAndValue;</span>
+	}
+    
+    public Integer returnValue(String key) {
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">         if (key == null) {</span>
+<span class="nc" id="L95">             throw new IllegalArgumentException (&quot;The key is null.&quot;);</span>
+         }
+<span class="fc" id="L97">       int a = map.get(key);</span>
+<span class="fc" id="L98">        return a;</span>
+    }
+    
+    // public String callH() {
+        
+    // }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

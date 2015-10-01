@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="softwareproject.argumentTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2015-10-01T07:15:50" hostname="Bobbie-PC" time="0.016">
   <properties/>
   <testcase name="enoughArguments" classname="softwareproject.argumentTests" time="0.0"/>
@@ -13,5 +14,13 @@ positional arguments:
 	width the width of the box 
 	height the height of the box
 ]]></system-out>
+=======
+<testsuite name="softwareproject.argumentTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2015-10-01T05:43:34" hostname="Shay" time="0.032">
+  <properties/>
+  <testcase name="enoughArguments" classname="softwareproject.argumentTests" time="0.021"/>
+  <testcase name="TooFewArgs" classname="softwareproject.argumentTests" time="0.001"/>
+  <testcase name="TooManyArgs" classname="softwareproject.argumentTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+>>>>>>> origin/master
   <system-err><![CDATA[]]></system-err>
 </testsuite>

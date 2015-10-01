@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 Ãusage: java VolumeCalculator length width height 
 Calculate the volume of a box 
 positional arguments: 
 	length the length of the box 
 	width the width of the box 
 	height the height of the box
+=======
+Æusage: java VolumeCalculator length width height 
+ Calculate the volume of a box. 
+ positional arguments: 
+ length the length of the box 
+ width the width of the box 
+ height the height of the box
+>>>>>>> origin/master
