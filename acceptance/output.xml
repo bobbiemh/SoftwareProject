@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 2.9 (Jython 2.7.0 on java1.7.0_65)" generated="20151001 23:12:04.609">
+<suite source="C:\softwareproject\acceptance\AcceptanceTest.txt" id="s1" name="AcceptanceTest">
+<test id="s1-t1" name="Test Volume Calculator Normal Function">
+<kw library="Keywords" name="Start Volume Calculator With Arguments">
+<arguments>
+<arg>7</arg>
+<arg>5</arg>
+<arg>2</arg>
+</arguments>
+<status status="PASS" starttime="20151001 23:12:05.078" endtime="20151001 23:12:05.078"></status>
+</kw>
+<kw library="Keywords" name="Get Length">
+<assign>
+<var>${length}</var>
+</assign>
+<msg timestamp="20151001 23:12:05.093" level="INFO">${length} = 7</msg>
+<status status="PASS" starttime="20151001 23:12:05.078" endtime="20151001 23:12:05.093"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>7</arg>
+<arg>${length}</arg>
+</arguments>
+<status status="PASS" starttime="20151001 23:12:05.093" endtime="20151001 23:12:05.093"></status>
+</kw>
+<kw library="Keywords" name="Get Width">
+<assign>
+<var>${width}</var>
+</assign>
+<msg timestamp="20151001 23:12:05.093" level="INFO">${width} = 5</msg>
+<status status="PASS" starttime="20151001 23:12:05.093" endtime="20151001 23:12:05.109"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>5</arg>
+<arg>${width}</arg>
+</arguments>
+<status status="PASS" starttime="20151001 23:12:05.109" endtime="20151001 23:12:05.109"></status>
+</kw>
+<kw library="Keywords" name="Get Height">
+<assign>
+<var>${height}</var>
+</assign>
+<msg timestamp="20151001 23:12:05.109" level="INFO">${height} = 2</msg>
+<status status="PASS" starttime="20151001 23:12:05.109" endtime="20151001 23:12:05.109"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>2</arg>
+<arg>${height}</arg>
+</arguments>
+<status status="PASS" starttime="20151001 23:12:05.125" endtime="20151001 23:12:05.125"></status>
+</kw>
+<kw library="Keywords" name="Get Program Output">
+<assign>
+<var>${output}</var>
+</assign>
+<msg timestamp="20151001 23:12:05.125" level="INFO">${output} = 70</msg>
+<status status="PASS" starttime="20151001 23:12:05.125" endtime="20151001 23:12:05.125"></status>
+</kw>
+<kw library="BuiltIn" name="Should Be Equal">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>70</arg>
+</arguments>
+<status status="PASS" starttime="20151001 23:12:05.125" endtime="20151001 23:12:05.140"></status>
+</kw>
+<status status="PASS" starttime="20151001 23:12:05.062" endtime="20151001 23:12:05.140" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Test Unrecognized Argument">
+<kw library="Keywords" name="Start Volume Calculator With Arguments">
+<arguments>
+<arg>7</arg>
+<arg>5</arg>
+<arg>2</arg>
+<arg>43</arg>
+</arguments>
+<msg timestamp="20151001 23:12:05.156" level="FAIL">IllegalArgumentException: Error: unrecongnized arguements: 43</msg>
+<status status="FAIL" starttime="20151001 23:12:05.140" endtime="20151001 23:12:05.156"></status>
+</kw>
+<status status="FAIL" starttime="20151001 23:12:05.140" endtime="20151001 23:12:05.156" critical="yes">IllegalArgumentException: Error: unrecongnized arguements: 43</status>
+</test>
+<test id="s1-t3" name="Test Absurd Program Normal Function">
+<kw library="Keywords" name="Start Absurd Program With Arguments">
+<arguments>
+<arg>dog</arg>
+<arg>2</arg>
+<arg>true</arg>
+<arg>3.5</arg>
+</arguments>
+<msg timestamp="20151001 23:12:05.187" level="FAIL">IllegalArgumentException: Error: unrecongnized arguements: 3.5</msg>
+<status status="FAIL" starttime="20151001 23:12:05.171" endtime="20151001 23:12:05.187"></status>
+</kw>
+<status status="FAIL" starttime="20151001 23:12:05.156" endtime="20151001 23:12:05.187" critical="yes">IllegalArgumentException: Error: unrecongnized arguements: 3.5</status>
+</test>
+<status status="FAIL" starttime="20151001 23:12:04.624" endtime="20151001 23:12:05.187"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="2">Critical Tests</stat>
+<stat pass="1" fail="2">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" id="s1" fail="2" name="AcceptanceTest">AcceptanceTest</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

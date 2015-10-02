@@ -24,7 +24,7 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.getNumberOfArgs(args), 3);
         }
-        @Test(expected = argumentsException.class)
+        @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -35,7 +35,7 @@ public class argumentTests {
 			p.parse(args);
 		}
 		
-	@Test(expected = argumentsException.class)
+	@Test(expected = IllegalArgumentException.class)
 		public void TooManyArgs(){
 			String s = "";
 			p.addArgs("length");
@@ -63,5 +63,12 @@ public class argumentTests {
 			assertEquals(temp, 5);
 			temp = p.getArgs("height");
 			assertEquals(temp, 2);
+		}
+		
+	@Test
+		public void helpMessageWorking(){
+			String[] args = {"-h"};
+			p.parse(args);
+			assertEquals(p.doesHelpWork(), 1);
 		}
 }

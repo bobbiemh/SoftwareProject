@@ -11,11 +11,13 @@ public class ParseArgs{
 	private Map<String, Integer> map;
 	private int numberOfArgs;
 	private int numberOfKeys;
+	private int helpmessage;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, Integer>();
 			numberOfArgs = 0;
 			numberOfKeys = 0;
+			helpmessage = 0;
 	}
 	
 	public void addArgs(String userInput)
@@ -24,11 +26,34 @@ public class ParseArgs{
 		numberOfKeys++;
 	}
 	
-	public String parse(String[] args) throws argumentsException//need to edit to look for illegal arguements
-	{
-	        String s = "";
-		if(args.length == 3)
+	public String checkSizeofArgs(String[] args){
+		if(args.length == 0)
+			throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
+		else if(args.length == 1)
+			throw new IllegalArgumentException("Error: the following arguements are required: width, height");
+		else if(args.length == 2)
+			throw new IllegalArgumentException("Error: the following argeument are required : height");
+		//will later make it get a key and value and return that
+		else if (args.length > 3)
 		{
+			int i = args.length - 1;
+			String temp = args[i];
+			"usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
+		}//will later make it return all args that we don't need
+	}
+	
+	public void parse(String[] args) //need to edit to look for illegal arguements
+	{
+		if(args.length == 1 && args[0] == "-h")
+		{
+			System.out.println("\nusage: java VolumeCalculator length width height \nCalculate the volume of a box. \npositional arguments: \n\tlength the length of the box\n\twidth the width of the box\n\theight the height of the box");
+			helpmessage++;
+		}
+		else if(args.length < 3 || args.length > 3)
+		{
+			checkSizeofArgs(args);
+		}
+		else{
 			try{
 				Iterator it = map.keySet().iterator();
 				for(int i = 2; it.hasNext(); i--)
@@ -38,25 +63,14 @@ public class ParseArgs{
 					map.put(key, temp);
 				}
 			}
-			catch(IndexOutOfBoundsException ex){}	
+			catch(NumberFormatException e){}
 		}
-		else if (args.length < 3)
-		{
-			if(args.length == 0)
-				throw new argumentsException("Error: the following arguements are required: length, width, height");
-			else if(args.length == 1)
-				throw new argumentsException("Error: the following arguements are required: width, height");
-			else
-				throw new argumentsException("Error: the following argeument are required : height");
-		}//will later make it get a key and value and return that
-		else if (args.length > 3)
-		{
-			int i = args.length - 1;
-			String temp = args[i];
-			throw new argumentsException("Error: unrecongnized arguements: " + temp);
-		}//will later make it return all args that we don't need
-		return s;
 	}
+	
+	public int doesHelpWork(){
+		return helpmessage;
+	}
+	
 	public int getArgs(String key)
 	{
 		int i = map.get(key);
