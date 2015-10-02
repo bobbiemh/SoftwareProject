@@ -26,7 +26,7 @@ public class ParseArgs{
 		numberOfKeys++;
 	}
 	
-	public String checkSizeofArgs(String[] args){
+	public void checkSizeofArgs(String[] args){
 		if(args.length == 0)
 			throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
 		else if(args.length == 1)
@@ -38,7 +38,7 @@ public class ParseArgs{
 		{
 			int i = args.length - 1;
 			String temp = args[i];
-			"usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
+			System.out.println("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
 		}//will later make it return all args that we don't need
 	}
 	
