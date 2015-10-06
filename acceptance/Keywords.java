@@ -27,7 +27,7 @@ public class Keywords {
 	}
 	
 	public String getPet(){
-		return Integer.toString(p.getArgs("pet"));
+		return p.getArgs("pet");
 		//getArgs returns an int, need to change
 	}
 	
@@ -44,18 +44,15 @@ public class Keywords {
 	}*/
 	
 	public String getLength(){
-		int i = p.getArgs("length");
-		return Integer.toString(i);
+		return p.getArgs("length");
 	}
 	
 	public String getWidth(){
-		int i = p.getArgs("width");
-		return Integer.toString(i);
+		return p.getArgs("width");
 	}
 	
 	public String getHeight(){
-		int i = p.getArgs("height");
-		return Integer.toString(i);
+		return p.getArgs("height");
 	}
 	
 	public String getProgramOutput(String[] args)

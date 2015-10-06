@@ -4,26 +4,18 @@ package softwareproject;
 import java.util.*;
 
 public class ParseArgs{
-    	//need a function to see in the args
-	//separate
-	//print out error if there's not enough or to many
 	
-	private Map<String, Integer> map;
-	private int numberOfArgs;
-	private int numberOfKeys;
-	private int helpmessage;
+	private Map<String, String> map;
+	private boolean helpmessage;
 	
 	public ParseArgs() {
-	        map = new HashMap<String, Integer>();
-			numberOfArgs = 0;
-			numberOfKeys = 0;
-			helpmessage = 0;
+	        map = new HashMap<String, String>();
+			helpmessage = false;
 	}
 	
 	public void addArgs(String userInput)
 	{
-		map.put(userInput, 0);
-		numberOfKeys++;
+		map.put(userInput, "");
 	}
 	
 	public void checkSizeofArgs(String[] args){
@@ -33,7 +25,6 @@ public class ParseArgs{
 			throw new IllegalArgumentException("Error: the following arguements are required: width, height");
 		else if(args.length == 2)
 			throw new IllegalArgumentException("Error: the following argeument are required : height");
-		//will later make it get a key and value and return that
 		else if (args.length > 3)
 		{
 			int i = args.length - 1;
@@ -42,12 +33,12 @@ public class ParseArgs{
 		}//will later make it return all args that we don't need
 	}
 	
-	public void parse(String[] args) //need to edit to look for illegal arguements
+	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
 	{
 		if(args.length == 1 && args[0] == "-h")
 		{
 			System.out.println("\nusage: java VolumeCalculator length width height \nCalculate the volume of a box. \npositional arguments: \n\tlength the length of the box\n\twidth the width of the box\n\theight the height of the box");
-			helpmessage++;
+			helpmessage = true;
 		}
 		else if(args.length < 3 || args.length > 3)
 		{
@@ -59,7 +50,7 @@ public class ParseArgs{
 				for(int i = 2; it.hasNext(); i--)
 				{
 					String key = it.next().toString();
-					int temp = Integer.parseInt(args[i]);
+					String temp = args[i];
 					map.put(key, temp);
 				}
 			}
@@ -67,23 +58,26 @@ public class ParseArgs{
 		}
 	}
 	
-	public int doesHelpWork(){
-		return helpmessage;
+	public boolean doesHelpWork(){
+		if(helpmessage == true){
+			return helpmessage;
+		}
+		else
+			return false;
 	}
 	
-	public int getArgs(String key)
+	public String getArgs(String key)
 	{
-		int i = map.get(key);
-		return i;
+		String s = map.get(key);
+		return s;
 	}
 	
-	public int getNumberOfArgs(String[] args){
-		numberOfArgs = map.size();
-		return numberOfArgs;
+	public int getNumberOfArgs(){
+		return map.size();
 	}
 	
 	public int getNumberOfKeys(){
-		return numberOfKeys;
+		return map.size();
 	}
 	
 	public String[] printArgs()
@@ -93,7 +87,7 @@ public class ParseArgs{
 		for(String name: map.keySet())
 		{
 			String key = name.toString();
-			int value = map.get(key);
+			String value = map.get(key);
 			keyAndValue[i] = "\nKey: " + key + "\nValue: " + value;
 			i++;
 		}
