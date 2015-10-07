@@ -3,19 +3,39 @@ package softwareproject;
 
 import java.util.*;
 
+public class Argument{
+        private String value;
+        private String dataType;
+        
+        public void setValue(String value){
+                this.value = value;
+        }
+        public String getValue(){
+                return value;
+        }
+        public void setDataType(String dataType){
+                this.dataType = dataType;
+        }
+        public String getDataType(){
+                return dataType;
+        }
+}
+
 public class ParseArgs{
 	
-	private Map<String, String> map;
+	private Map<String, Argument> map;
 	private boolean helpmessage;
 	
 	public ParseArgs() {
-	        map = new HashMap<String, String>();
+	        map = new HashMap<String, Argument>();
 			helpmessage = false;
 	}
 	
-	public void addArgs(String userInput)
+	public void addArgs(String argName, String type)
 	{
-		map.put(userInput, "");
+	        arg = new Argument<value, type>();
+	        arg.setType(type);
+		map.put(argName, arg);
 	}
 	
 	public void checkSizeofArgs(String[] args){
@@ -50,6 +70,7 @@ public class ParseArgs{
 				for(int i = 2; it.hasNext(); i--)
 				{
 					String key = it.next().toString();
+					/***********************if thens****************************/
 					String temp = args[i];
 					map.put(key, temp);
 				}

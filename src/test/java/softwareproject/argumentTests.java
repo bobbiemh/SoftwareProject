@@ -26,7 +26,6 @@ public class argumentTests {
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
-			String s = "";
 			p.addArgs("length", int);
 			p.addArgs("width", int);
 			p.addArgs("height", int);
@@ -37,7 +36,6 @@ public class argumentTests {
 		
 	@Test
 		public void TooManyArgs(){
-			String s = "";
 			p.addArgs("length", int);
 			p.addArgs("width", int);
 			p.addArgs("height", int);
