@@ -14,11 +14,11 @@ public class argumentTests {
         @Test
 		public void enoughArguments() {
 			assertEquals(p.getNumberOfKeys(), 0);
-			p.addArgs("length");
+			p.addArgs("length", int);
 			assertEquals(p.getNumberOfKeys(), 1);
-			p.addArgs("width");
+			p.addArgs("width", int);
 			assertEquals(p.getNumberOfKeys(), 2);
-			p.addArgs("height");
+			p.addArgs("height", int);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
@@ -27,9 +27,9 @@ public class argumentTests {
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
 			String s = "";
-			p.addArgs("length");
-			p.addArgs("width");
-			p.addArgs("height");
+			p.addArgs("length", int);
+			p.addArgs("width", int);
+			p.addArgs("height", int);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0","0"};
 			p.parse(args);
@@ -38,9 +38,9 @@ public class argumentTests {
 	@Test
 		public void TooManyArgs(){
 			String s = "";
-			p.addArgs("length");
-			p.addArgs("width");
-			p.addArgs("height");
+			p.addArgs("length", int);
+			p.addArgs("width", int);
+			p.addArgs("height", int);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0", "0"};
 			p.parse(args);
@@ -48,9 +48,9 @@ public class argumentTests {
 		
 	@Test
 		public void returnMapValue(){
-			p.addArgs("length");
-			p.addArgs("width");
-			p.addArgs("height");
+			p.addArgs("length", int);
+			p.addArgs("width", int);
+			p.addArgs("height", int);
 			
 			String[] args = {"7", "5", "2"};
 			String temp = "0";
@@ -71,4 +71,13 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
+        @Test(expected = IllegalArgumentException.class)
+                public void incorrectArgType(){
+                        p.addArgs("length", float);
+                        p.addArgs("width", float);
+                        p.addArgs("height", float);
+                        
+                        String[] args = {"0", "something", "0"};
+                        p.parse(args);
+                }
 }
