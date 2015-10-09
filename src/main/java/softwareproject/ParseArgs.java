@@ -3,7 +3,7 @@ package softwareproject;
 
 import java.util.*;
 
-public class Argument{
+/*public class Argument{
         private String value;
         private String dataType;
         
@@ -19,7 +19,7 @@ public class Argument{
         public String getDataType(){
                 return dataType;
         }
-}
+}*/
 
 public class ParseArgs{
 	
@@ -30,36 +30,17 @@ public class ParseArgs{
 	public ParseArgs() {
 	        map = new HashMap<String, String>();
 			keys = new ArrayList<String>();
-	private Map<String, Argument> map;
-	private boolean helpmessage;
-	
-	public ParseArgs() {
-	        map = new HashMap<String, Argument>();
+			//Map<String, Argument> map;
 			helpmessage = false;
 	}
 	
-	public void addArgs(String argName, String type)
+	public void addArgs(String userInput)
 	{
 		map.put(userInput, "");
 		keys.add(userInput);
-	        arg = new Argument<value, type>();
+	     /*   arg = new Argument<value, type>();
 	        arg.setType(type);
-		map.put(argName, arg);
-	}
-	
-	public void checkSizeofArgs(String[] args){
-		if(args.length == 0)
-			throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
-		else if(args.length == 1)
-			throw new IllegalArgumentException("Error: the following arguements are required: width, height");
-		else if(args.length == 2)
-			throw new IllegalArgumentException("Error: the following argeument are required : height");
-		else if (args.length > 3)
-		{
-			int i = args.length - 1;
-			String temp = args[i];
-			System.out.println("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
-		}
+		map.put(argName, arg);*/
 	}
 	
 	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
@@ -83,18 +64,6 @@ public class ParseArgs{
 				int i = args.length - 1;
 				String temp = args[i];
 				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
-			checkSizeofArgs(args);
-		}
-		else{
-			try{
-				Iterator it = map.keySet().iterator();
-				for(int i = 2; it.hasNext(); i--)
-				{
-					String key = it.next().toString();
-					/***********************if thens****************************/
-					String temp = args[i];
-					map.put(key, temp);
-				}
 			}
 		}
 		int i = 0;

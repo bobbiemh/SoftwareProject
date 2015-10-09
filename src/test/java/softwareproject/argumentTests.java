@@ -14,11 +14,11 @@ public class argumentTests {
         @Test
 		public void enoughArguments() {
 			assertEquals(p.getNumberOfKeys(), 0);
-			p.addArgs("length", int);
+			p.addArgs("length");
 			assertEquals(p.getNumberOfKeys(), 1);
-			p.addArgs("width", int);
+			p.addArgs("width");
 			assertEquals(p.getNumberOfKeys(), 2);
-			p.addArgs("height", int);
+			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
@@ -26,9 +26,9 @@ public class argumentTests {
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
-			p.addArgs("length", int);
-			p.addArgs("width", int);
-			p.addArgs("height", int);
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0","0"};
 			p.parse(args);
@@ -36,9 +36,9 @@ public class argumentTests {
 		
 	@Test (expected = IllegalArgumentException.class)
 		public void TooManyArgs(){
-			p.addArgs("length", int);
-			p.addArgs("width", int);
-			p.addArgs("height", int);
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"7", "5", "2", "3"};
 			p.parse(args);
@@ -46,9 +46,9 @@ public class argumentTests {
 		
 	@Test
 		public void returnMapValue(){
-			p.addArgs("length", int);
-			p.addArgs("width", int);
-			p.addArgs("height", int);
+			p.addArgs("length");
+			p.addArgs("width");
+			p.addArgs("height");
 			
 			String[] args = {"7", "5", "2"};
 			String temp = "0";
@@ -68,13 +68,13 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
-        @Test(expected = IllegalArgumentException.class)
+        /*@Test(expected = IllegalArgumentException.class)
                 public void incorrectArgType(){
-                        p.addArgs("length", float);
-                        p.addArgs("width", float);
-                        p.addArgs("height", float);
+                        p.addArgs("length");
+                        p.addArgs("width");
+                        p.addArgs("height");
                         
                         String[] args = {"0", "something", "0"};
                         p.parse(args);
-                }
+                }*/
 }
