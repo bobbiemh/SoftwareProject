@@ -3,8 +3,27 @@ package softwareproject;
 
 import java.util.*;
 
+public class Argument{
+        private String value;
+        private String dataType;
+        
+        public void setValue(String value){
+                this.value = value;
+        }
+        public String getValue(){
+                return value;
+        }
+        public void setDataType(String dataType){
+                this.dataType = dataType;
+        }
+        public String getDataType(){
+                return dataType;
+        }
+}
+
 public class ParseArgs{
 	
+<<<<<<< HEAD
 	private Map<String, String> map;
 	private List<String> keys;
 	private boolean helpmessage;
@@ -12,13 +31,41 @@ public class ParseArgs{
 	public ParseArgs() {
 	        map = new HashMap<String, String>();
 			keys = new ArrayList<String>();
+=======
+	private Map<String, Argument> map;
+	private boolean helpmessage;
+	
+	public ParseArgs() {
+	        map = new HashMap<String, Argument>();
+>>>>>>> origin/master
 			helpmessage = false;
 	}
 	
-	public void addArgs(String userInput)
+	public void addArgs(String argName, String type)
 	{
+<<<<<<< HEAD
 		map.put(userInput, "");
 		keys.add(userInput);
+=======
+	        arg = new Argument<value, type>();
+	        arg.setType(type);
+		map.put(argName, arg);
+	}
+	
+	public void checkSizeofArgs(String[] args){
+		if(args.length == 0)
+			throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
+		else if(args.length == 1)
+			throw new IllegalArgumentException("Error: the following arguements are required: width, height");
+		else if(args.length == 2)
+			throw new IllegalArgumentException("Error: the following argeument are required : height");
+		else if (args.length > 3)
+		{
+			int i = args.length - 1;
+			String temp = args[i];
+			System.out.println("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
+		}//will later make it return all args that we don't need
+>>>>>>> origin/master
 	}
 	
 	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
@@ -31,6 +78,7 @@ public class ParseArgs{
 		}
 		else if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
 		{
+<<<<<<< HEAD
 			if(args.length == 0)
 				throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
 			else if(args.length == 1)
@@ -42,6 +90,20 @@ public class ParseArgs{
 				int i = args.length - 1;
 				String temp = args[i];
 				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
+=======
+			checkSizeofArgs(args);
+		}
+		else{
+			try{
+				Iterator it = map.keySet().iterator();
+				for(int i = 2; it.hasNext(); i--)
+				{
+					String key = it.next().toString();
+					/***********************if thens****************************/
+					String temp = args[i];
+					map.put(key, temp);
+				}
+>>>>>>> origin/master
 			}
 		}
 		int i = 0;
