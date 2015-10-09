@@ -28,11 +28,10 @@ public class Keywords {
 	
 	public String getPet(){
 		return p.getArgs("pet");
-		//getArgs returns an int, need to change
 	}
 	
-	/*public String getNumber(){
-		return Integer.toString(p.getArgs("number"));
+	public String getNumber(){
+		return p.getArgs("number");
 	}
 	
 	public String getRainy(){
@@ -41,7 +40,7 @@ public class Keywords {
 	
 	public String getBathrooms(){
 		return p.getArgs("bathrooms");
-	}*/
+	}
 	
 	public String getLength(){
 		return p.getArgs("length");

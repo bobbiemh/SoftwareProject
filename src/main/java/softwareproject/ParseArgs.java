@@ -6,64 +6,61 @@ import java.util.*;
 public class ParseArgs{
 	
 	private Map<String, String> map;
+	private List<String> keys;
 	private boolean helpmessage;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, String>();
+			keys = new ArrayList<String>();
 			helpmessage = false;
 	}
 	
 	public void addArgs(String userInput)
 	{
 		map.put(userInput, "");
-	}
-	
-	public void checkSizeofArgs(String[] args){
-		if(args.length == 0)
-			throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
-		else if(args.length == 1)
-			throw new IllegalArgumentException("Error: the following arguements are required: width, height");
-		else if(args.length == 2)
-			throw new IllegalArgumentException("Error: the following argeument are required : height");
-		else if (args.length > 3)
-		{
-			int i = args.length - 1;
-			String temp = args[i];
-			System.out.println("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: unrecognized arguments: " + temp);
-		}//will later make it return all args that we don't need
+		keys.add(userInput);
 	}
 	
 	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
 	{
+		
 		if(args.length == 1 && args[0] == "-h")
 		{
 			System.out.println("\nusage: java VolumeCalculator length width height \nCalculate the volume of a box. \npositional arguments: \n\tlength the length of the box\n\twidth the width of the box\n\theight the height of the box");
 			helpmessage = true;
 		}
-		else if(args.length < 3 || args.length > 3)
+		else if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
 		{
-			checkSizeofArgs(args);
-		}
-		else{
-			try{
-				Iterator it = map.keySet().iterator();
-				for(int i = 2; it.hasNext(); i--)
-				{
-					String key = it.next().toString();
-					String temp = args[i];
-					map.put(key, temp);
-				}
+			if(args.length == 0)
+				throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
+			else if(args.length == 1)
+				throw new IllegalArgumentException("Error: the following arguements are required: width, height");
+			else if(args.length == 2)
+				throw new IllegalArgumentException("Error: the following argeument are required : height");
+			else if (args.length > 3)
+			{
+				int i = args.length - 1;
+				String temp = args[i];
+				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
 			}
-			catch(NumberFormatException e){}
+		}
+		int i = 0;
+				
+		while(i <= getNumberOfKeys() - 1)
+		{
+			String key = keys.get(i);
+			String value = args[i];
+			map.put(key, value);
+			i++;
+		}
+		if(args.length > getNumberOfKeys())
+		{
+			String temp = args[args.length - 1];
 		}
 	}
 	
 	public boolean doesHelpWork(){
-		if(helpmessage == true){
-			return helpmessage;
-		}
-		else
-			return false;
+		return helpmessage;
 	}
 	
 	public String getArgs(String key)

@@ -35,14 +35,14 @@ public class argumentTests {
 			p.parse(args);
 		}
 		
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 		public void TooManyArgs(){
 			String s = "";
 			p.addArgs("length");
 			p.addArgs("width");
 			p.addArgs("height");
 			assertEquals(p.getNumberOfKeys(), 3);
-			String[] args = {"0", "0", "0", "0"};
+			String[] args = {"7", "5", "2", "3"};
 			p.parse(args);
 		}
 		
@@ -54,8 +54,7 @@ public class argumentTests {
 			
 			String[] args = {"7", "5", "2"};
 			String temp = "0";
-			p.parse(args);
-			
+			p.parse(args);			
 
 			temp = p.getArgs("length");
 			assertEquals(temp, "7");
