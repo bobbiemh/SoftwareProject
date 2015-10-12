@@ -68,6 +68,7 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
+		
         /*@Test(expected = IllegalArgumentException.class)
                 public void incorrectArgType(){
                         p.addArgs("length");

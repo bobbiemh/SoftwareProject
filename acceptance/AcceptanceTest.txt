@@ -3,9 +3,9 @@ Library				Keywords
 
 
 
-| *Variable*  | *Value*                                                                                                   |
+| *Variable*  | *Value*                                                                                                  																								 |
 | ${expected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43 |
-
+| ${isexpected} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\npositional arguments:\nlength the length of the box\nwidth the width of the box\nheight the height of the box |
 
 
 | *Test Case*                            | *Action*                              | *Argument*         | *Argument*   | *Argument* | *Argument* |
@@ -30,3 +30,6 @@ Library				Keywords
 |                                        | Should Be Equal                       | true               | ${rainy}     |            |            |
 |                                        | ${bathrooms}=                         | Get Bathrooms      |              |            |            |
 |                                        | Should Be Equal                       | 3.5                | ${bathrooms} |            |            |
+| Test Usage Message 					 | Start Program With Arguments 		 | -h                 |              |			  |			   |
+|                    					 | ${output}=		                     | Get Program Output |              |			  |			   |
+|                    					 | Should Be Equal             			 | ${isexpected}        | ${output}    |
