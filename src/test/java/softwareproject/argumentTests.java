@@ -82,15 +82,16 @@ public class argumentTests {
 		}
 	@Test
 	        public void helpMessageCorrect(){
-	                p.programInfo("Volume Calculator","A Simple Volume Calculator for a 3D Space.");
-	                p.addArgs("height","The Height of What You Want to Measure");
-	                p.addArgs("length","The Length of What You Want to Measure");
-	                String[] args = {"-h"};
+	                p.programInfo("Volume Calculator","Calculate the volume of a box.");
+	                p.addArgs("length","the length of the box");
+	                p.addArgs("height","the height of the box");
+	          `      String[] args = {"-h"};
 	                p.parse(args);
-	                assertEquals(p.helpMessage, "Volume Calculator\n"+
-	                                            "A Simple Volume Calculator for a 3D Space.\n"+
-	                                            "height - The Height of What You Want to Measure\n"+
-	                                            "length - The Length of What You Want to Measure");
+	                assertEquals(p.helpMessage, "usage: java VolumeCalculator length width height\n"+
+	                                            "Calculate the volume of a box.\n"+
+	                                            "Positional arguments:\n"+
+	                                            "length the length of the box\n"+
+	                                            "height the height of the box");
 	        }
         /*@Test(expected = IllegalArgumentException.class)
                 public void incorrectArgType(){
