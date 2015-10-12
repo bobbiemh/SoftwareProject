@@ -6,6 +6,7 @@ import java.util.*;
 /*public class Argument{
         private String value;
         private String dataType;
+        private String description; 
         
         public void setValue(String value){
                 this.value = value;
@@ -18,6 +19,12 @@ import java.util.*;
         }
         public String getDataType(){
                 return dataType;
+        }
+        public void setDescription(String description){
+                this.description = description;
+        }
+        public String getDescription(){
+                return description;
         }
 }*/
 
