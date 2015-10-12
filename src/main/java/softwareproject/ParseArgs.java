@@ -63,12 +63,12 @@ public class ParseArgs{
 				throw new IllegalArgumentException("Error: the following arguments are required: width, height");
 			else if(args.length == 2 && illegalArgs)
 				throw new IllegalArgumentException("Error: the following argument are required : height");
-			/*else if (args.length > getNumberOfKeys())
+			else if (args.length > getNumberOfKeys())
 			{
 				int i = args.length - 1;
 				String temp = args[i];
 				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
-			}*/
+			}
 			
 			int i = 0;
 					
