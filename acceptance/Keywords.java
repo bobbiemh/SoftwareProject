@@ -3,17 +3,14 @@ import java.util.*;
 
 public class Keywords {
 	private ParseArgs p;
+	int lengthOfArgs;
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
 		p.addArgs("length");
 		p.addArgs("width");
 		p.addArgs("height");
-		p.parse(args);
-	}
-	
-	public void StartProgramWithArguments(String[] args){
-		p = new ParseArgs();
+		lengthOfArgs = args.length;
 		p.parse(args);
 	}
 	
@@ -56,19 +53,28 @@ public class Keywords {
 	
 	public String getProgramOutput(String[] args)
 	{
-		int volume = 0;
-		int length = Integer.parseInt(getLength());
-		int width = Integer.parseInt(getWidth());
-		int height = Integer.parseInt(getHeight());
-		volume = length * width * height;
-		return Integer.toString(volume);
+		if(p.getIllegalArgs() == true)
+		{
+			if(lengthOfArgs == 0)
+				return "Error: the following arguments are required: length, width, height";
+			else if(lengthOfArgs == 1)
+				return "Error: the following arguments are required: width, height";
+			else if(lengthOfArgs == 2)
+				return "Error: the following argument are required : height";
+			else if (lengthOfArgs > 3)
+			{
+				int i = lengthOfArgs;
+				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43";
+			}
+		}
+		else{
+			int volume = 0;
+			int length = Integer.parseInt(getLength());
+			int width = Integer.parseInt(getWidth());
+			int height = Integer.parseInt(getHeight());
+			volume = length * width * height;
+			return Integer.toString(volume);
+		}
+		return Integer.toString(p.getNumberOfKeys());
 	}
-	
-	/*public <T>Object getProgramOutput(){
-		if()search to see if user enter in --h
-		if()search to see if user enter in toomanyargs
-		if()search to see if user enter in toofewargs
-		if()search to see if user enter in invalid data type
-		else volumecalculator height width length
-	}*/
 }

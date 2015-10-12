@@ -22,7 +22,7 @@ public class argumentTests {
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
-			assertEquals(p.getNumberOfArgs(), 3);
+			assertEquals(p.getNumberOfArgs(args), 3);
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){

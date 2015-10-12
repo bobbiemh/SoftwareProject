@@ -26,12 +26,14 @@ public class ParseArgs{
 	private Map<String, String> map;
 	private List<String> keys;
 	private boolean helpmessage;
+	private boolean illegalArgs;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, String>();
 			keys = new ArrayList<String>();
 			//Map<String, Argument> map;
 			helpmessage = false;
+			illegalArgs = false;
 	}
 	
 	public void addArgs(String userInput)
@@ -51,38 +53,46 @@ public class ParseArgs{
 			System.out.println("\nusage: java VolumeCalculator length width height \nCalculate the volume of a box. \npositional arguments: \n\tlength the length of the box\n\twidth the width of the box\n\theight the height of the box");
 			helpmessage = true;
 		}
-		else if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
+		else
 		{
-			if(args.length == 0)
-				throw new IllegalArgumentException("Error: the following arguements are required: length, width, height");
-			else if(args.length == 1)
-				throw new IllegalArgumentException("Error: the following arguements are required: width, height");
-			else if(args.length == 2)
-				throw new IllegalArgumentException("Error: the following argeument are required : height");
-			else if (args.length > 3)
+			if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
+				illegalArgs = true;
+			if(args.length == 0 && illegalArgs)
+				throw new IllegalArgumentException("Error: the following arguments are required: length, width, height");
+			else if(args.length == 1 && illegalArgs)
+				throw new IllegalArgumentException("Error: the following arguments are required: width, height");
+			else if(args.length == 2 && illegalArgs)
+				throw new IllegalArgumentException("Error: the following argument are required : height");
+			else if (args.length > getNumberOfKeys())
 			{
 				int i = args.length - 1;
 				String temp = args[i];
 				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
 			}
-		}
-		int i = 0;
-				
-		while(i <= getNumberOfKeys() - 1)
-		{
-			String key = keys.get(i);
-			String value = args[i];
-			map.put(key, value);
-			i++;
-		}
-		if(args.length > getNumberOfKeys())
-		{
-			String temp = args[args.length - 1];
+			
+			int i = 0;
+					
+			while(i <= getNumberOfKeys() - 1)
+			{
+				String key = keys.get(i);
+				String value = args[i];
+				map.put(key, value);
+				i++;
+			}
+			while(i <= args.length && i > getNumberOfKeys())
+			{
+				String temp = args[args.length - 1];
+			}
 		}
 	}
 	
 	public boolean doesHelpWork(){
 		return helpmessage;
+	}
+	
+	public boolean getIllegalArgs()
+	{
+		return illegalArgs;
 	}
 	
 	public String getArgs(String key)
@@ -91,12 +101,12 @@ public class ParseArgs{
 		return s;
 	}
 	
-	public int getNumberOfArgs(){
-		return map.size();
+	public int getNumberOfArgs(String[] args){
+		return args.length;
 	}
 	
 	public int getNumberOfKeys(){
-		return map.size();
+		return keys.size();
 	}
 	
 	public String[] printArgs()
