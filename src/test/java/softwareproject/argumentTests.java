@@ -6,9 +6,11 @@ import java.util.*;
 
 public class argumentTests {
         private ParseArgs p;
+		private Arguments a;
         @Before
         public final void setup() {
                 p = new ParseArgs();
+				a = new Arguments();
         }
         
         @Test
@@ -51,15 +53,14 @@ public class argumentTests {
 			p.addArgs("height","");
 			
 			String[] args = {"7", "5", "2"};
-			String temp = "0";
 			p.parse(args);			
 
-			temp = p.getArgs("length","");
-			assertEquals(temp, "7");
-			temp = p.getArgs("width","");
-			assertEquals(temp, "5");
-			temp = p.getArgs("height","");
-			assertEquals(temp, "2","");
+			a = p.getArgs("length");
+			assertEquals(a.getValue(), "7");
+			a = p.getArgs("width");
+			assertEquals(a.getValue(), "5");
+			a = p.getArgs("height");
+			assertEquals(a.getValue(), "2");
 		}
 		
 	/*@Test
@@ -71,7 +72,8 @@ public class argumentTests {
 	@Test
 	        public void testArgumentDescription(){
 	                p.addArgs("height","height the height of the box");
-	                assertEquals(p.getDescription("height"), "height the height of the box");
+					a = p.getArgs("height");
+	                assertEquals(a.getDescription(), "height the height of the box");
 	        }
 	
 	@Test
@@ -81,17 +83,17 @@ public class argumentTests {
 			assertEquals(p.doesHelpWork(), true);
 		}
 	@Test
-	        public void helpMessageCorrect(){
-	                p.programInfo("Volume Calculator","Calculate the volume of a box.");
-	                p.addArgs("length","the length of the box");
-	                p.addArgs("height","the height of the box");
-	          `      String[] args = {"-h"};
-	                p.parse(args);
-	                assertEquals(p.helpMessage, "usage: java VolumeCalculator length width height\n"+
-	                                            "Calculate the volume of a box.\n"+
-	                                            "Positional arguments:\n"+
-	                                            "length the length of the box\n"+
-	                                            "height the height of the box");
+	    public void helpMessageCorrect(){
+	        p.programInfo("Volume Calculator","Calculate the volume of a box.");
+	        p.addArgs("length","the length of the box");
+	        p.addArgs("height","the height of the box");
+	        String[] args = {"-h"};
+	        p.parse(args);
+	        assertEquals(p.helpMessage, "usage: java VolumeCalculator length width height\n"+
+	                                    "Calculate the volume of a box.\n"+
+	                                    "Positional arguments:\n"+
+	                                    "length the length of the box\n"+
+	                                    "height the height of the box");
 	        }
         /*@Test(expected = IllegalArgumentException.class)
                 public void incorrectArgType(){

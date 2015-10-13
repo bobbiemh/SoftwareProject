@@ -53,6 +53,10 @@ public class Keywords {
 	
 	public String getProgramOutput(String[] args)
 	{
+		if(p.doesHelpWork() == true)
+		{
+			return "message";
+		}
 		if(p.getIllegalArgs() == true)
 		{
 			if(lengthOfArgs == 0)
