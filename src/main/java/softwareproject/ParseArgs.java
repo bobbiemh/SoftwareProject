@@ -12,23 +12,25 @@ public class ParseArgs{
 	private List<String> keys;
 	private boolean messageTrue;
 	private boolean illegalArgs;
-	private String helpMessage;
+	private String programName;
+	private String programDescription;
+	public String helpMessage;
 	
 	public ParseArgs() {
 			a = new Arguments();
-	        map = new HashMap<String, Arguments>();
+	                map = new HashMap<String, Arguments>();
 			keys = new ArrayList<String>();
 			
 			messageTrue = false;
 			illegalArgs = false;
-			helpMessage = "usage: java VolumeCalculator length width height\nCalculate the volume of a box.\n";
+			helpMessage = "usage: java "+programName+"\n"+programDescription;
 	}
 	
 	public void addArgs(String userInput, String Description)
 	{
 		keys.add(userInput);
 		a.setDescription(Description);
-		helpMessage = helpMessage + Description;
+		helpMessage = helpMessage +"\n"+userInput+" "+Description;
 		map.put(userInput, a);
 	}
 	
@@ -103,5 +105,9 @@ public class ParseArgs{
 	
 	public int getNumberOfKeys(){
 		return keys.size();
+	}
+	public void programInfo(String name, String description){
+	        this.programName = name;
+	        this.programDescription = description;
 	}
 }

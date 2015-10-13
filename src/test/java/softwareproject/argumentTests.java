@@ -76,13 +76,13 @@ public class argumentTests {
 	                assertEquals(a.getDescription(), "height the height of the box");
 	        }
 	
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 		public void helpMessageWorking(){
 			String[] args = {"-h"};
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	    public void helpMessageCorrect(){
 	        p.programInfo("Volume Calculator","Calculate the volume of a box.");
 	        p.addArgs("length","the length of the box");
