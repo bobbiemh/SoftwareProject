@@ -70,8 +70,8 @@ public class argumentTests {
 		*/
 	@Test
 	        public void testArgumentDescription(){
-	                p.addArgs("height","The Height of What You Want to Measure");
-	                assertEquals(p.getDescription("height"), "The Height of What You Want to Measure");
+	                p.addArgs("height","height the height of the box");
+	                assertEquals(p.getDescription("height"), "height the height of the box");
 	        }
 	
 	@Test
