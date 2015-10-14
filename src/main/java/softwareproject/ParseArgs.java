@@ -4,16 +4,14 @@ package softwareproject;
 import java.util.*;
 
 
-
 public class ParseArgs{
-	
 	private Map<String, Arguments> map;
 	private List<String> keys;
 	private boolean messageTrue;
 	private boolean illegalArgs;
 	private String programName;
 	private String programDescription;
-	public String helpMessage;
+	private String helpMessage;
 	
 	public ParseArgs() {
 	        map = new HashMap<String, Arguments>();
@@ -21,7 +19,7 @@ public class ParseArgs{
 			
 			messageTrue = false;
 			illegalArgs = false;
-			helpMessage = "usage: java "+programName+"\n"+programDescription;
+			helpMessage = "usage: java ";
 	}
 	
 	public void addArgs(String userInput, String Description)
@@ -29,14 +27,12 @@ public class ParseArgs{
 		Arguments temp = new Arguments();
 		keys.add(userInput);
 		temp.setDescription(Description);
-		helpMessage = helpMessage +"\n"+userInput+" "+Description;
 		map.put(userInput, temp);
 	}
 	
 	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
 	{
-		
-		if(args.length == 1 && args[0] == "-h")
+		if(args[0].equals("-h"))
 		{
 			messageTrue = true;
 			throw new IllegalArgumentException(helpMessage);
@@ -77,6 +73,10 @@ public class ParseArgs{
 		}
 	}
 	
+	public String getHelpMessage() {
+		return helpMessage;
+	}
+	
 	public boolean doesHelpWork(){
 		return messageTrue;
 	}
@@ -107,7 +107,24 @@ public class ParseArgs{
 		return keys.size();
 	}
 	public void programInfo(String name, String description){
+			String key = "";
+			Arguments temp = new Arguments();
+			String[] keyDescription = new String[getNumberOfKeys()];
+			for(int i = 0; i < getNumberOfKeys(); i++)
+			{
+				key = key + " " + getKey(i);
+				temp = getArgs(getKey(i));
+				keyDescription[i] = temp.getDescription();
+			}
 	        this.programName = name;
-	        this.programDescription = description;
+	        this.programDescription = description;			
+			helpMessage = helpMessage + name + key + description;
+			
+			helpMessage = helpMessage + "\nPositional arguments:";
+			
+			for(int i = 0; i < getNumberOfKeys(); i++)
+			{
+				helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
+			}
 	}
 }

@@ -82,17 +82,19 @@ public class argumentTests {
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	    public void helpMessageCorrect(){
-	        p.programInfo("Volume Calculator","Calculate the volume of a box.");
 	        p.addArgs("length","the length of the box");
-	        p.addArgs("height","the height of the box");
+			p.addArgs("width", "the width of the box");
+	        p.addArgs("height","the height of the box");			
+	        p.programInfo("VolumeCalculator","\nCalculate the volume of a box.");
 	        String[] args = {"-h"};
 	        p.parse(args);
-	        assertEquals(p.helpMessage, "usage: java VolumeCalculator length width height\n"+
+	        assertEquals(p.getHelpMessage(), "usage: java VolumeCalculator length width height\n"+
 	                                    "Calculate the volume of a box.\n"+
 	                                    "Positional arguments:\n"+
 	                                    "length the length of the box\n"+
+										"width the width of the box\n" +
 	                                    "height the height of the box");
 	        }
         /*@Test(expected = IllegalArgumentException.class)

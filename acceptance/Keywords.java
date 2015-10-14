@@ -7,55 +7,85 @@ public class Keywords {
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length");
-		p.addArgs("width");
-		p.addArgs("height");
+		p.addArgs("length", "");
+		p.addArgs("width", "");
+		p.addArgs("height", "");
 		lengthOfArgs = args.length;
+		p.parse(args);
+	}
+	
+	public void StartProgramWithArguments(String[] args){
+		p = new ParseArgs();
+		p.addArgs("length", "\nthe length of the box");
+		p.addArgs("width", "\nthe width of the box");
+	    p.addArgs("height","\nthe height of the box");		
+		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
 		p.parse(args);
 	}
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("pet");
-		p.addArgs("number");
-		p.addArgs("rainy");
-		p.addArgs("bathrooms");
+		p.addArgs("pet", "");
+		p.addArgs("number", "");
+		p.addArgs("rainy", "");
+		p.addArgs("bathrooms", "");
 		p.parse(args);
 	}
 	
 	public String getPet(){
-		return p.getArgs("pet");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("pet");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getNumber(){
-		return p.getArgs("number");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("number");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getRainy(){
-		return p.getArgs("rainy");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("rainy");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getBathrooms(){
-		return p.getArgs("bathrooms");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("bathrooms");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getLength(){
-		return p.getArgs("length");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("length");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getWidth(){
-		return p.getArgs("width");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("width");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getHeight(){
-		return p.getArgs("height");
+		Arguments temp = new Arguments();
+		temp = p.getArgs("height");
+		String value = temp.getValue();
+		return value;
 	}
 	
 	public String getProgramOutput(String[] args)
 	{
 		if(p.doesHelpWork() == true)
 		{
-			return "message";
+			return p.getHelpMessage();
 		}
 		if(p.getIllegalArgs() == true)
 		{
