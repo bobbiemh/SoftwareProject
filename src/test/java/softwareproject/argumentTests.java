@@ -3,15 +3,19 @@ package softwareproject;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
+import org.junit.rules.ExpectedException;
 
 public class argumentTests {
         private ParseArgs p;
-		private Arguments a;
+	private Arguments a;
         @Before
         public final void setup() {
                 p = new ParseArgs();
 				a = new Arguments();
         }
+        
+        @Rule
+                public ExpectedException expectedEx = ExpectedException.none();
         
         @Test
 		public void enoughArguments() {
@@ -84,18 +88,20 @@ public class argumentTests {
 		}
 	@Test
 	    public void helpMessageCorrect(){
+	        expectedEx.expect(IllegalArgumentException.class);
+                expectedEx.expectMessage("usage: java VolumeCalculator length width height\n"+
+	                                    "Calculate the volume of a box.\n"+
+	                                    "Positional arguments:\n"+
+	                                    "length the length of the box\n"+
+										"width the width of the box\n" +
+	                                    "height the height of the box");
+	        p.programInfo("Volume Calculator","Calculate the volume of a box.");
 	        p.addArgs("length","the length of the box");
 			p.addArgs("width", "the width of the box");
 	        p.addArgs("height","the height of the box");			
 	        p.programInfo("VolumeCalculator","\nCalculate the volume of a box.");
 	        String[] args = {"-h"};
 	        p.parse(args);
-	        assertEquals(p.getHelpMessage(), "usage: java VolumeCalculator length width height\n"+
-	                                    "Calculate the volume of a box.\n"+
-	                                    "Positional arguments:\n"+
-	                                    "length the length of the box\n"+
-										"width the width of the box\n" +
-	                                    "height the height of the box");
 	        }
         /*@Test(expected = IllegalArgumentException.class)
                 public void incorrectArgType(){
