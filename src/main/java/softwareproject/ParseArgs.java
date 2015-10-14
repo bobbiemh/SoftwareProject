@@ -7,7 +7,6 @@ import java.util.*;
 
 public class ParseArgs{
 	
-	private Arguments a;
 	private Map<String, Arguments> map;
 	private List<String> keys;
 	private boolean messageTrue;
@@ -17,8 +16,7 @@ public class ParseArgs{
 	public String helpMessage;
 	
 	public ParseArgs() {
-			a = new Arguments();
-	                map = new HashMap<String, Arguments>();
+	        map = new HashMap<String, Arguments>();
 			keys = new ArrayList<String>();
 			
 			messageTrue = false;
@@ -28,10 +26,11 @@ public class ParseArgs{
 	
 	public void addArgs(String userInput, String Description)
 	{
+		Arguments temp = new Arguments();
 		keys.add(userInput);
-		a.setDescription(Description);
+		temp.setDescription(Description);
 		helpMessage = helpMessage +"\n"+userInput+" "+Description;
-		map.put(userInput, a);
+		map.put(userInput, temp);
 	}
 	
 	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
@@ -89,8 +88,9 @@ public class ParseArgs{
 	
 	public Arguments getArgs(String key)
 	{
-		a = map.get(key);
-		return a;
+		Arguments temp = new Arguments();
+		temp = map.get(key);
+		return temp;
 	}
 	
 	public String getKey(int where)

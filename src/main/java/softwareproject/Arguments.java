@@ -3,7 +3,7 @@ package softwareproject;
 import java.util.*;
 
 public class Arguments {
-	
+		
         private String value;
         private String dataType;
         private String description; 
