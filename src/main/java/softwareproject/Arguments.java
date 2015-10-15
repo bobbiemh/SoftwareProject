@@ -13,7 +13,6 @@ public class Arguments {
 			value = "0";
 			dataType = "String";
 			description = "There isn't one";
-			obj = new Object();
 		}
         
         public void setValue(Object value){

@@ -92,7 +92,7 @@ public class argumentTests {
             String[] args = {"7.5"};
             p.parse(args);	
 			a = p.getArgs("height");
-            assertEquals(a.getValue(), 7.5);
+            assertEquals(a.getValue(), 7.5f);
         }  
 
     @Test

@@ -7,77 +7,77 @@ public class Keywords {
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "");
-		p.addArgs("width", "");
-		p.addArgs("height", "");
+		p.addArgs("length", "", "");
+		p.addArgs("width", "", "");
+		p.addArgs("height", "", "");
 		lengthOfArgs = args.length;
 		p.parse(args);
 	}
 	
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "\nthe length of the box");
-		p.addArgs("width", "\nthe width of the box");
-	    p.addArgs("height","\nthe height of the box");		
+		p.addArgs("length", "\nthe length of the box", "");
+		p.addArgs("width", "\nthe width of the box", "");
+	    p.addArgs("height","\nthe height of the box", "");		
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
 		p.parse(args);
 	}
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("pet", "");
-		p.addArgs("number", "");
-		p.addArgs("rainy", "");
-		p.addArgs("bathrooms", "");
+		p.addArgs("pet", "", "");
+		p.addArgs("number", "", "");
+		p.addArgs("rainy", "", "");
+		p.addArgs("bathrooms", "", "");
 		p.parse(args);
 	}
 	
-	public String getPet(){
+	public Object getPet(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("pet");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	
-	public String getNumber(){
+	public Object getNumber(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("number");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	
-	public String getRainy(){
+	public Object getRainy(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("rainy");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	
-	public String getBathrooms(){
+	public Object getBathrooms(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("bathrooms");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	
-	public String getLength(){
+	public Object getLength(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("length");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	
-	public String getWidth(){
+	public Object getWidth(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("width");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
-	
-	public String getHeight(){
+
+	public Object getHeight(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("height");
-		String value = temp.getValue();
+		Object value = temp.getValue();
 		return value;
 	}
 	

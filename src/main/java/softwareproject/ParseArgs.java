@@ -61,25 +61,36 @@ public class ParseArgs{
 	}
 	
 	public void putToMap(String[] args){
-		Arguments temp = new Arguments();
 		int i = 0;
 		for(i = 0; i < getNumberOfKeys(); i++){
-			String key = keys.get(i);
+			
+			String key = keys.get(i);			
+			Arguments temp = new Arguments();
+			
 			temp = getArgs(key);
 			String datatype = temp.getDataType();
+			
+			int x;
+			boolean b;
+			float f;
+			String s;
+			
 			if(datatype == "int"){
-				convertToInt(args[i]);
+				x = convertToInt(args[i]);
+				temp.setValue(x);
 			}
 			else if(datatype == "boolean"){
-				convertToBoolean(args[i]);
+				b = convertToBoolean(args[i]);
+				temp.setValue(b);
 			}
 			else if(datatype == "float"){
-				convertToFloat(args[i]);
+				f = convertToFloat(args[i]);
+				temp.setValue(f);
 			}
 			else{
-				convertToString(args[i]);
+				s = convertToString(args[i]);
+				temp.setValue(s);
 			}
-			temp.setValue(args[i]);
 			map.put(key, temp);
 		}
 		
