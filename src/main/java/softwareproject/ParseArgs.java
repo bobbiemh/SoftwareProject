@@ -41,19 +41,37 @@ public class ParseArgs{
 		}
 		else
 		{
+		        String exceptionMessage = "Error: the following arguments are required: ";
 			if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
 				illegalArgs = true;
-			if(args.length == 0 && illegalArgs)
-				throw new IllegalArgumentException("Error: the following arguments are required: length, width, height");
-			else if(args.length == 1 && illegalArgs)
-				throw new IllegalArgumentException("Error: the following arguments are required: width, height");
-			else if(args.length == 2 && illegalArgs)
-				throw new IllegalArgumentException("Error: the following argument are required : height");
+			if(args.length == 0 && illegalArgs){
+			        for(int i = 0; i < getNumberOfKeys(); i++)
+			        {
+				        exceptionMessage = exceptionMessage +" "+ getKey(i);
+			        }
+			        throw new IllegalArgumentException(exceptionMessage);
+		        }
+			else if(args.length < getNumberOfKeys() && illegalArgs)
+			{
+			        {
+			                for(int i = args.length-1; i < getNumberOfKeys(); i++)
+			                {
+				                exceptionMessage = exceptionMessage +" "+ getKey(i);
+			                }
+		                        throw new IllegalArgumentException(exceptionMessage);
+			        }
+		        }
 			else if (args.length > getNumberOfKeys())
 			{
-				int i = args.length - 1;
-				String temp = args[i];
-				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
+				int a = args.length - 1;
+				String temp = args[a];
+				exceptionMessage = "usage: java "+programName;
+				for(int i = 0; i < getNumberOfKeys(); i++)
+			        {
+				        exceptionMessage = exceptionMessage +" "+ getKey(i);
+			        }
+			        exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized arguments: "+temp;
+				throw new IllegalArgumentException(exceptionMessage);
 			}
 			
 			putToMap(args);
