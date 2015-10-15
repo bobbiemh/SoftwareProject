@@ -2,6 +2,7 @@
 package softwareproject;
 
 import java.util.*;
+import java.lang.*;
 
 
 public class ParseArgs{
@@ -22,15 +23,16 @@ public class ParseArgs{
 			helpMessage = "usage: java ";
 	}
 	
-	public void addArgs(String userInput, String Description)
+	public void addArgs(String userInput, String Description, String datatype)
 	{
 		Arguments temp = new Arguments();
 		keys.add(userInput);
 		temp.setDescription(Description);
+		temp.setDataType(datatype);
 		map.put(userInput, temp);
 	}
 	
-	public void parse(String[] args) //edit so we call a function to convert to what we need (starts string) convert to int, float, etc
+	public void parse(String[] args)
 	{
 		if(args[0].equals("-h"))
 		{
@@ -54,23 +56,56 @@ public class ParseArgs{
 				throw new IllegalArgumentException("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments:" + temp);
 			}
 			
-			int i = 0;
-					
-			while(i <= getNumberOfKeys() - 1)
-			{
-				String key = keys.get(i);
-				String value = args[i];
-				Arguments temp = new Arguments();
-				temp = getArgs(key);
-				temp.setValue(args[i]);
-				map.put(key, temp);
-				i++;
-			}
-			while(i <= args.length && i > getNumberOfKeys())
-			{
-				String temp = args[args.length - 1];
-			}
+			putToMap(args);
 		}
+	}
+	
+	public void putToMap(String[] args){
+		Arguments temp = new Arguments();
+		int i = 0;
+		for(i = 0; i < getNumberOfKeys(); i++){
+			String key = keys.get(i);
+			temp = getArgs(key);
+			String datatype = temp.getDataType();
+			if(datatype == "int"){
+				convertToInt(args[i]);
+			}
+			else if(datatype == "boolean"){
+				convertToBoolean(args[i]);
+			}
+			else if(datatype == "float"){
+				convertToFloat(args[i]);
+			}
+			else{
+				convertToString(args[i]);
+			}
+			temp.setValue(args[i]);
+			map.put(key, temp);
+		}
+		
+		while(i <= args.length && i > getNumberOfKeys())
+		{
+			String str = args[args.length - 1];
+		}
+	}
+	
+	public String convertToString(String args){
+		return args;
+	}
+	
+	public int convertToInt(String args){
+		int num = Integer.parseInt(args);
+		return num;
+	}
+	
+	public boolean convertToBoolean(String args){
+		boolean b = Boolean.parseBoolean(args);
+		return b;
+	}
+	
+	public float convertToFloat(String args){
+		float f = Float.valueOf(args);
+		return f;
 	}
 	
 	public String getHelpMessage() {

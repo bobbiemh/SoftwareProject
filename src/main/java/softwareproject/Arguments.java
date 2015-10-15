@@ -1,23 +1,26 @@
 package softwareproject;
 
 import java.util.*;
+import java.lang.*;
 
 public class Arguments {
 		
-        private String value;
+        private Object value;
         private String dataType;
         private String description; 
+		private Object obj;
 		
 		public void Arguments() {
 			value = "0";
 			dataType = "String";
 			description = "There isn't one";
+			obj = new Object();
 		}
         
-        public void setValue(String value){
+        public void setValue(Object value){
                 this.value = value;
         }
-        public String getValue(){
+        public Object getValue(){
                 return value;
         }
         public void setDataType(String dataType){
