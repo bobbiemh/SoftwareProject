@@ -1,5 +1,6 @@
 import softwareproject.*;
 import java.util.*;
+import java.lang.*;
 
 public class Keywords {
 	private ParseArgs p;
@@ -32,53 +33,53 @@ public class Keywords {
 		p.parse(args);
 	}
 	
-	public Object getPet(){
+	public String getPet(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("pet");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
-	public Object getNumber(){
+	public String getNumber(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("number");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
-	public Object getRainy(){
+	public String getRainy(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("rainy");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
-	public Object getBathrooms(){
+	public String getBathrooms(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("bathrooms");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
-	public Object getLength(){
+	public String getLength(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("length");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
-	public Object getWidth(){
+	public String getWidth(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("width");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 
-	public Object getHeight(){
+	public String getHeight(){
 		Arguments temp = new Arguments();
 		temp = p.getArgs("height");
-		Object value = temp.getValue();
-		return value;
+		Object o = temp.getValue();
+		return (String)o;
 	}
 	
 	public String getProgramOutput(String[] args)
