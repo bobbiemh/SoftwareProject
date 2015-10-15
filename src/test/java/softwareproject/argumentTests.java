@@ -73,6 +73,39 @@ public class argumentTests {
 	                assertEquals(p.getDataType("height"), "int");
 	        }
 		*/
+    
+    // @Test
+        // public void testArgumentInt() {
+            // p.addArgs("length", "", int.class);
+            // String[] args = {"7"};
+            // p.parse(args);		
+            // assertThat(p.getDataType("length"), instanceOf(int.class));
+        // }
+    
+    // @Test
+        // public void testArgumentFloat() {
+            // p.addArgs("height", "", float.class);
+            // String[] args = {"7.5"};
+            // p.parse(args);		
+            // assertThat(p.getDataType("height"), instanceOf(float.class));
+        // }  
+
+    // @Test
+        // public void testArgumentBoolean() {
+            // p.addArgs("TodayIsWednesday", "", boolean.class);
+            // String[] args = {"true"};
+            // p.parse(args);		
+            // assertThat(p.getDataType("TodayIsWednesday"), instanceOf(boolean.class));
+        // }
+
+    // @Test
+        // public void testArgumentDefaultString() {
+            // p.addArgs("message", "", String.class);
+            // String[] args = {"hello"};
+            // p.parse(args);		
+            // assertThat(p.getDataType("message"), instanceOf(String.class));
+        // }        
+    
 	@Test
 	        public void testArgumentDescription(){
 	                p.addArgs("height","height the height of the box");
