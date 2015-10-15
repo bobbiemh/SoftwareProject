@@ -164,7 +164,7 @@ public class ParseArgs{
 			}
 	        this.programName = name;
 	        this.programDescription = description;			
-			helpMessage = helpMessage + name + key + description;
+			helpMessage = helpMessage + name + key + "\n"+description;
 			
 			helpMessage = helpMessage + "\nPositional arguments:";
 			
