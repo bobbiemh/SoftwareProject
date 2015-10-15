@@ -7,8 +7,7 @@ public class Arguments {
 		
         private Object value;
         private String dataType;
-        private String description; 
-		private Object obj;
+        private String description;
 		
 		public void Arguments() {
 			value = "0";
