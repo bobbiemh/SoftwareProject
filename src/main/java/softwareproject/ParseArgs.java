@@ -73,14 +73,13 @@ public class ParseArgs{
 			        exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized arguments: "+temp;
 				throw new IllegalArgumentException(exceptionMessage);
 			}
-			
 			putToMap(args);
 		}
 	}
 	
 	public void putToMap(String[] args){
 		int i = 0;
-		for(i = 0; i < getNumberOfKeys(); i++){
+		for(i = 0; i < getNumberOfKeys() && !args[0].equals("-h"); i++){
 			
 			String key = keys.get(i);			
 			Arguments temp = new Arguments();
@@ -94,16 +93,28 @@ public class ParseArgs{
 			String s;
 			
 			if(datatype == "int"){
-				x = convertToInt(args[i]);
-				temp.setValue(x);
+				try{
+					x = convertToInt(args[i]);
+					temp.setValue(x);
+				} catch(NumberFormatException e){
+					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + args[i]);
+				}
 			}
 			else if(datatype == "boolean"){
-				b = convertToBoolean(args[i]);
-				temp.setValue(b);
+				try{
+					b = convertToBoolean(args[i]);
+					temp.setValue(b);
+				} catch(NumberFormatException e){
+					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid boolean value: " + args[i]);
+				}
 			}
 			else if(datatype == "float"){
-				f = convertToFloat(args[i]);
-				temp.setValue(f);
+				try{
+					f = convertToFloat(args[i]);
+					temp.setValue(f);
+				} catch(NumberFormatException e){
+					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid float value: " + args[i]);
+				}
 			}
 			else{
 				s = convertToString(args[i]);

@@ -104,9 +104,22 @@ public class Keywords {
 		}
 		else{
 			int volume = 0;
-			int length = Integer.parseInt(getLength());
-			int width = Integer.parseInt(getWidth());
-			int height = Integer.parseInt(getHeight());
+			int length = 0, width = 0, height = 0;
+			try{
+				length = Integer.parseInt(getLength());
+			}catch(NumberFormatException e){
+				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getLength();
+			}
+			try{
+				width = Integer.parseInt(getWidth());
+			}catch(NumberFormatException e){
+				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getWidth();
+			}
+			try{
+				height = Integer.parseInt(getHeight());
+			}catch(NumberFormatException e){
+				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getHeight();
+			}
 			volume = length * width * height;
 			return Integer.toString(volume);
 		}

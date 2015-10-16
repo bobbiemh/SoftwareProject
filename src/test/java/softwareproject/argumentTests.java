@@ -133,22 +133,24 @@ public class argumentTests {
 	                                 "Calculate the volume of a box.\n"+
 	                                 "Positional arguments:\n"+
 	                                 "length the length of the box\n"+
-					 "width the width of the box\n" +
+									 "width the width of the box\n" +
 	                                 "height the height of the box");
 	        p.addArgs("length","the length of the box", "");
-		p.addArgs("width", "the width of the box", "");
+			p.addArgs("width", "the width of the box", "");
 	        p.addArgs("height","the height of the box", "");
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"-h"};
 	        p.parse(args);
 	        }
-    /*@Test(expected = IllegalArgumentException.class)
-                public void incorrectArgType(){
-                        p.addArgs("length", "", "int");
-                        p.addArgs("width");
-                        p.addArgs("height");
-                        
-                        String[] args = {"0", "something", "0"};
-                        p.parse(args);
-                }*/
+    @Test
+        public void incorrectArgType(){
+			expectedEx.expect(NumberFormatException.class);
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: something");
+            p.addArgs("length", "", "int");
+            p.addArgs("width", "", "int");
+            p.addArgs("height", "", "int");
+                       
+            String[] args = {"0", "something", "0"};
+            p.parse(args);
+        }
 }

@@ -5,8 +5,8 @@ Library				Keywords
 
 | *Variable*  | *Value*                                                                                                  																								 |
 | ${expected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43 |
-| ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\npositional arguments:\nlength the length of the box\nwidth the width of the box\nheight the height of the box |
-| ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid float value: something |
+| ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\nPositional arguments:\nlength\n the length of the box\nwidth\n the width of the box\nheight\n the height of the box |
+| ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: something |
 
 
 | *Test Case*                            | *Action*                              | *Argument*         | *Argument*   | *Argument* | *Argument* |
@@ -21,7 +21,7 @@ Library				Keywords
 |                                        | Should Be Equal                       | ${output}          | 70           |            |            |
 | Test Unrecognized Argument             | Start Volume Calculator With Arguments | 7                  | 5            | 2          | 43         |
 |                                        | ${output}=                            | Get Program Output |              |            |            |
-|                                        | Should Be Equal                       | ${helpmessage}          | ${output}           |            |            |
+|                                        | Should Be Equal                       | ${expected}          | ${output}           |            |            |
 | Test Absurd Program Normal Function    | Start Absurd Program With Arguments   | dog                | 2            | true       | 3.5        |
 |                                        | ${pet}=                               | Get Pet            |              |            |            |
 |                                        | Should Be Equal                       | dog                | ${pet}       |            |            |
@@ -33,7 +33,7 @@ Library				Keywords
 |                                        | Should Be Equal                       | 3.5                | ${bathrooms} |            |            |
 | Test Usage Message 					 | Start Program With Arguments 		 | -h                 |              |			  |			   |
 |                    					 | ${output}=		                     | Get Program Output |              |			  |			   |
-|                    					 | Should Be Equal             			 | ${isexpected}        | ${output}    |
+|                    					 | Should Be Equal             			 | ${helpmessage}        | ${output}    |
 | Test Incorrect Datatype Message 		 | Start Program With Arguments 		 | 7                  | something    | 2           |
 |                                		 | ${output}=		                     | Get Program Output |              |             |
-|                               	     | Should Be Equal      		         | ${output}          | ${expected}  |             |
+|                               	     | Should Be Equal      		         | ${output}          | ${isexpected}  |             |
