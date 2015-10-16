@@ -6,7 +6,7 @@ import java.lang.*;
 
 
 public class ParseArgs{
-	private Map<String, Arguments> map;
+	private Map<String, Argument> map;
 	private List<String> keys;
 	private boolean messageTrue;
 	private boolean illegalArgs;
@@ -15,7 +15,7 @@ public class ParseArgs{
 	private String helpMessage;
 	
 	public ParseArgs() {
-	        map = new HashMap<String, Arguments>();
+	        map = new HashMap<String, Argument>();
 			keys = new ArrayList<String>();
 			
 			messageTrue = false;
@@ -25,7 +25,7 @@ public class ParseArgs{
 	
 	public void addArgs(String userInput, String Description, String datatype)
 	{
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		keys.add(userInput);
 		temp.setDescription(Description);
 		temp.setDataType(datatype);
@@ -41,7 +41,7 @@ public class ParseArgs{
 		}
 		else
 		{
-		        String exceptionMessage = "Error: the following arguments are required: ";
+		        String exceptionMessage = "Error: the following Argument are required: ";
 			if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
 				illegalArgs = true;
 			if(args.length == 0 && illegalArgs){
@@ -53,13 +53,13 @@ public class ParseArgs{
 		        }
 			else if(args.length < getNumberOfKeys() && illegalArgs)
 			{
-			        {
+			        
 			                for(int i = args.length-1; i < getNumberOfKeys(); i++)
 			                {
 				                exceptionMessage = exceptionMessage +" "+ getKey(i);
 			                }
 		                        throw new IllegalArgumentException(exceptionMessage);
-			        }
+			        
 		        }
 			else if (args.length > getNumberOfKeys())
 			{
@@ -70,19 +70,19 @@ public class ParseArgs{
 			        {
 				        exceptionMessage = exceptionMessage +" "+ getKey(i);
 			        }
-			        exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized arguments: "+temp;
+			        exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: "+temp;
 				throw new IllegalArgumentException(exceptionMessage);
 			}
 			putToMap(args);
 		}
 	}
 	
-	public void putToMap(String[] args){
+	private void putToMap(String[] args){
 		int i = 0;
 		for(i = 0; i < getNumberOfKeys() && !args[0].equals("-h"); i++){
 			
 			String key = keys.get(i);			
-			Arguments temp = new Arguments();
+			Argument temp = new Argument();
 			
 			temp = getArgs(key);
 			String datatype = temp.getDataType();
@@ -129,21 +129,21 @@ public class ParseArgs{
 		}
 	}
 	
-	public String convertToString(String args){
+	private String convertToString(String args){
 		return args;
 	}
 	
-	public int convertToInt(String args){
+	private int convertToInt(String args){
 		int num = Integer.parseInt(args);
 		return num;
 	}
 	
-	public boolean convertToBoolean(String args){
+	private boolean convertToBoolean(String args){
 		boolean b = Boolean.parseBoolean(args);
 		return b;
 	}
 	
-	public float convertToFloat(String args){
+	private float convertToFloat(String args){
 		float f = Float.valueOf(args);
 		return f;
 	}
@@ -161,9 +161,9 @@ public class ParseArgs{
 		return illegalArgs;
 	}
 	
-	public Arguments getArgs(String key)
+	public Argument getArgs(String key)
 	{
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = map.get(key);
 		return temp;
 	}
@@ -183,7 +183,7 @@ public class ParseArgs{
 	}
 	public void programInfo(String name, String description){
 			String key = "";
-			Arguments temp = new Arguments();
+			Argument temp = new Argument();
 			String[] keyDescription = new String[getNumberOfKeys()];
 			for(int i = 0; i < getNumberOfKeys(); i++)
 			{

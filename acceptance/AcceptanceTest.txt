@@ -5,7 +5,7 @@ Library				Keywords
 
 | *Variable*  | *Value*                                                                                                  																								 |
 | ${expected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43 |
-| ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\nPositional arguments:\nlength\n the length of the box\nwidth\n the width of the box\nheight\n the height of the box |
+| ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\nPositional arguments:\nlength the length of the box\nwidth the width of the box\nheight the height of the box |
 | ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: something |
 
 

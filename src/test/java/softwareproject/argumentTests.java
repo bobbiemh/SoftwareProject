@@ -6,20 +6,20 @@ import java.util.*;
 import org.junit.rules.ExpectedException;
 import java.lang.*;
 
-public class argumentTests {
+public class ArgumentTests {
         private ParseArgs p;
-	private Arguments a;
+        private Argument a;
         @Before
         public final void setup() {
                 p = new ParseArgs();
-				a = new Arguments();
+				a = new Argument();
         }
         
         @Rule
                 public ExpectedException expectedEx = ExpectedException.none();
         
         @Test
-		public void enoughArguments() {
+		public void enoughArgument() {
 			assertEquals(p.getNumberOfKeys(), 0);
 			p.addArgs("length","", "");
 			assertEquals(p.getNumberOfKeys(), 1);

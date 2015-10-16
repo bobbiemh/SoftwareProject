@@ -12,16 +12,20 @@ public class Keywords {
 		p.addArgs("width", "", "");
 		p.addArgs("height", "", "");
 		lengthOfArgs = args.length;
-		p.parse(args);
+        try{
+            p.parse(args);
+        }catch(IllegalArgumentException e){}
 	}
 	
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "\nthe length of the box", "");
-		p.addArgs("width", "\nthe width of the box", "");
-	    p.addArgs("height","\nthe height of the box", "");		
+		p.addArgs("length", "the length of the box", "");
+		p.addArgs("width", "the width of the box", "");
+	    p.addArgs("height","the height of the box", "");		
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
-		p.parse(args);
+        try{
+            p.parse(args);
+        }catch(IllegalArgumentException e){}
 	}
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
@@ -34,49 +38,49 @@ public class Keywords {
 	}
 	
 	public String getPet(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("pet");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getNumber(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("number");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getRainy(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("rainy");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getBathrooms(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("bathrooms");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getLength(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("length");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getWidth(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("width");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 
 	public String getHeight(){
-		Arguments temp = new Arguments();
+		Argument temp = new Argument();
 		temp = p.getArgs("height");
 		Object o = temp.getValue();
 		return (String)o;
@@ -91,11 +95,11 @@ public class Keywords {
 		if(p.getIllegalArgs() == true)
 		{
 			if(lengthOfArgs == 0)
-				return "Error: the following arguments are required: length, width, height";
+				return "Error: the following Arguments are required: length, width, height";
 			else if(lengthOfArgs == 1)
-				return "Error: the following arguments are required: width, height";
+				return "Error: the following Arguments are required: width, height";
 			else if(lengthOfArgs == 2)
-				return "Error: the following argument are required : height";
+				return "Error: the following Arguments are required : height";
 			else if (lengthOfArgs > 3)
 			{
 				int i = lengthOfArgs;
