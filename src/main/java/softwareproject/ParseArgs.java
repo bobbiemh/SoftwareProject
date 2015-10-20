@@ -92,13 +92,20 @@ public class ParseArgs{
 			boolean b;
 			float f;
 			String s;
+			String exceptionMessage = "usage: java "+programName;
+			for(int a = 0; a < getNumberOfKeys(); a++)
+			        {
+				        exceptionMessage = exceptionMessage +" "+ getKey(a);
+			        }
+		        exceptionMessage = exceptionMessage + "\n"+programName+".java: error: argument "+getKey(i)+": invalid ";
 			
 			if(datatype == Datatype.INT){
 				try{
 					x = convertToInt(args[i]);
 					temp.setValue(x);
 				} catch(NumberFormatException e){
-					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + args[i]);
+				        exceptionMessage = exceptionMessage+"int value: "+args[i];
+					throw new NumberFormatException(exceptionMessage);
 				}
 			}
 			else if(datatype == Datatype.BOOLEAN){
@@ -106,7 +113,8 @@ public class ParseArgs{
 					b = convertToBoolean(args[i]);
 					temp.setValue(b);
 				} catch(NumberFormatException e){
-					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid boolean value: " + args[i]);
+				        exceptionMessage = exceptionMessage+"boolean value: "+args[i];
+					throw new NumberFormatException(exceptionMessage);
 				}
 			}
 			else if(datatype == Datatype.FLOAT){
@@ -114,7 +122,8 @@ public class ParseArgs{
 					f = convertToFloat(args[i]);
 					temp.setValue(f);
 				} catch(NumberFormatException e){
-					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid float value: " + args[i]);
+				        exceptionMessage = exceptionMessage+"float value: "+args[i];
+					throw new NumberFormatException(exceptionMessage);
 				}
 			}
 			else{
