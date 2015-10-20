@@ -13,6 +13,7 @@ public class ParseArgs{
 	private String programName;
 	private String programDescription;
 	private String helpMessage;
+	public enum Datatype {STRING, INT, BOOLEAN, FLOAT, NONE};
 	
 	public ParseArgs() {
 	        map = new HashMap<String, Argument>();
@@ -23,7 +24,7 @@ public class ParseArgs{
 			helpMessage = "usage: java ";
 	}
 	
-	public void addArgs(String userInput, String Description, String datatype)
+	public void addArgs(String userInput, String Description, Datatype datatype)
 	{
 		Argument temp = new Argument();
 		keys.add(userInput);
@@ -85,14 +86,14 @@ public class ParseArgs{
 			Argument temp = new Argument();
 			
 			temp = getArgs(key);
-			String datatype = temp.getDataType();
+			Datatype datatype = temp.getDataType();
 			
 			int x;
 			boolean b;
 			float f;
 			String s;
 			
-			if(datatype == "int"){
+			if(datatype == Datatype.INT){
 				try{
 					x = convertToInt(args[i]);
 					temp.setValue(x);
@@ -100,7 +101,7 @@ public class ParseArgs{
 					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + args[i]);
 				}
 			}
-			else if(datatype == "boolean"){
+			else if(datatype == Datatype.BOOLEAN){
 				try{
 					b = convertToBoolean(args[i]);
 					temp.setValue(b);
@@ -108,7 +109,7 @@ public class ParseArgs{
 					throw new NumberFormatException("usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid boolean value: " + args[i]);
 				}
 			}
-			else if(datatype == "float"){
+			else if(datatype == Datatype.FLOAT){
 				try{
 					f = convertToFloat(args[i]);
 					temp.setValue(f);
