@@ -13,9 +13,9 @@ public class Keywords {
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "", ParseArgs.Datatype.NONE);
-		p.addArgs("width", "", ParseArgs.Datatype.NONE);
-		p.addArgs("height", "", ParseArgs.Datatype.NONE);
+		p.addArgs("length", "", Argument.Datatype.STRING);
+		p.addArgs("width", "", Argument.Datatype.STRING);
+		p.addArgs("height", "", Argument.Datatype.STRING);
 		lengthOfArgs = args.length;
         try{
             p.parse(args);
@@ -24,9 +24,9 @@ public class Keywords {
 	
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "the length of the box", ParseArgs.Datatype.NONE);
-		p.addArgs("width", "the width of the box", ParseArgs.Datatype.NONE);
-	    p.addArgs("height","the height of the box", ParseArgs.Datatype.NONE);		
+		p.addArgs("length", "the length of the box", Argument.Datatype.STRING);
+		p.addArgs("width", "the width of the box", Argument.Datatype.STRING);
+	    p.addArgs("height","the height of the box", Argument.Datatype.STRING);		
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         try{
             p.parse(args);
@@ -35,10 +35,10 @@ public class Keywords {
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("pet", "", ParseArgs.Datatype.NONE);
-		p.addArgs("number", "", ParseArgs.Datatype.NONE);
-		p.addArgs("rainy", "", ParseArgs.Datatype.NONE);
-		p.addArgs("bathrooms", "", ParseArgs.Datatype.NONE);
+		p.addArgs("pet", "", Argument.Datatype.STRING);
+		p.addArgs("number", "", Argument.Datatype.STRING);
+		p.addArgs("rainy", "", Argument.Datatype.STRING);
+		p.addArgs("bathrooms", "", Argument.Datatype.STRING);
 		p.parse(args);
 	}
 	
