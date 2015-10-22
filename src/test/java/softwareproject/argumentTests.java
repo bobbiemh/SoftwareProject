@@ -13,7 +13,6 @@ public class ArgumentTests {
         public final void setup() {
                 p = new ParseArgs();
 				a = new Argument();
-                //commit line
         }
         
         @Rule
@@ -22,11 +21,11 @@ public class ArgumentTests {
         @Test
 		public void enoughArgument() {
 			assertEquals(p.getNumberOfKeys(), 0);
-			p.addArgs("length","", Argument.Datatype.STRING);
+			p.addArgs("length","", ParseArgs.Datatype.NONE);
 			assertEquals(p.getNumberOfKeys(), 1);
-			p.addArgs("width","", Argument.Datatype.STRING);
+			p.addArgs("width","", ParseArgs.Datatype.NONE);
 			assertEquals(p.getNumberOfKeys(), 2);
-			p.addArgs("height","", Argument.Datatype.STRING);
+			p.addArgs("height","", ParseArgs.Datatype.NONE);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
@@ -34,9 +33,9 @@ public class ArgumentTests {
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
-			p.addArgs("length", "", Argument.Datatype.STRING);
-			p.addArgs("width", "", Argument.Datatype.STRING);
-			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("length", "", ParseArgs.Datatype.NONE);
+			p.addArgs("width", "", ParseArgs.Datatype.NONE);
+			p.addArgs("height", "", ParseArgs.Datatype.NONE);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0","0"};
 			p.parse(args);
@@ -44,9 +43,9 @@ public class ArgumentTests {
 		
 	@Test (expected = IllegalArgumentException.class)
 		public void TooManyArgs(){
-			p.addArgs("length", "", Argument.Datatype.STRING);
-			p.addArgs("width", "", Argument.Datatype.STRING);
-			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("length", "", ParseArgs.Datatype.NONE);
+			p.addArgs("width", "", ParseArgs.Datatype.NONE);
+			p.addArgs("height", "", ParseArgs.Datatype.NONE);
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"7", "5", "2", "3"};
 			p.parse(args);
@@ -54,9 +53,9 @@ public class ArgumentTests {
 		
 	@Test
 		public void returnArgumentValue(){
-			p.addArgs("length", "", Argument.Datatype.STRING);
-			p.addArgs("width", "", Argument.Datatype.STRING);
-			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("length", "", ParseArgs.Datatype.NONE);
+			p.addArgs("width", "", ParseArgs.Datatype.NONE);
+			p.addArgs("height", "", ParseArgs.Datatype.NONE);
 			
 			String[] args = {"7", "5", "2"};
 			p.parse(args);			
@@ -71,26 +70,25 @@ public class ArgumentTests {
 		
 	@Test
 	    public void testArgumentDataType(){
-	        p.addArgs("height","", Argument.Datatype.INT);
+	        p.addArgs("height","", ParseArgs.Datatype.INT);
 			String [] args = {"0"};
 			p.parse(args);
 			a = p.getArgs("height");
-	        assertEquals(a.getDataType(), Argument.Datatype.INT);
+	        assertEquals(a.getDataType(), ParseArgs.Datatype.INT);
 	    }
     
     @Test
 		public void testArgumentInt() {
-			p.addArgs("length", "", Argument.Datatype.INT);
+			p.addArgs("length", "", ParseArgs.Datatype.INT);
             String[] args = {"7"};
             p.parse(args);		
 			a = p.getArgs("length");
-            int v = a.getValue();
-            assertEquals(v, 7);
+            assertEquals(a.getValue(), 7);
         }
     
     @Test
         public void testArgumentFloat() {
-            p.addArgs("height", "", Argument.Datatype.FLOAT);
+            p.addArgs("height", "", ParseArgs.Datatype.FLOAT);
             String[] args = {"7.5"};
             p.parse(args);	
 			a = p.getArgs("height");
@@ -99,7 +97,7 @@ public class ArgumentTests {
 
     @Test
         public void testArgumentBoolean() {
-            p.addArgs("TodayIsWednesday", "", Argument.Datatype.BOOLEAN);
+            p.addArgs("TodayIsWednesday", "", ParseArgs.Datatype.BOOLEAN);
             String[] args = {"true"};
             p.parse(args);
 			a = p.getArgs("TodayIsWednesday");
@@ -108,7 +106,7 @@ public class ArgumentTests {
 
     @Test
         public void testArgumentDefaultString() {
-            p.addArgs("message", "", Argument.Datatype.STRING);
+            p.addArgs("message", "", ParseArgs.Datatype.STRING);
             String[] args = {"hello"};
             p.parse(args);
 			a = p.getArgs("message");
@@ -117,7 +115,7 @@ public class ArgumentTests {
     
 	@Test
 	        public void testArgumentDescription(){
-	                p.addArgs("height","height the height of the box", Argument.Datatype.STRING);
+	                p.addArgs("height","height the height of the box", ParseArgs.Datatype.NONE);
 					a = p.getArgs("height");
 	                assertEquals(a.getDescription(), "height the height of the box");
 	        }
@@ -137,9 +135,9 @@ public class ArgumentTests {
 	                                 "length the length of the box\n"+
 									 "width the width of the box\n" +
 	                                 "height the height of the box");
-	        p.addArgs("length","the length of the box", Argument.Datatype.STRING);
-			p.addArgs("width", "the width of the box", Argument.Datatype.STRING);
-	        p.addArgs("height","the height of the box", Argument.Datatype.STRING);
+	        p.addArgs("length","the length of the box", ParseArgs.Datatype.NONE);
+			p.addArgs("width", "the width of the box", ParseArgs.Datatype.NONE);
+	        p.addArgs("height","the height of the box", ParseArgs.Datatype.NONE);
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"-h"};
 	        p.parse(args);
@@ -149,9 +147,9 @@ public class ArgumentTests {
 			expectedEx.expect(NumberFormatException.class);
 				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something");
 	    p.programInfo("VolumeCalculator","");
-            p.addArgs("length", "", Argument.Datatype.INT);
-            p.addArgs("width", "", Argument.Datatype.INT);
-            p.addArgs("height", "", Argument.Datatype.INT);
+            p.addArgs("length", "", ParseArgs.Datatype.INT);
+            p.addArgs("width", "", ParseArgs.Datatype.INT);
+            p.addArgs("height", "", ParseArgs.Datatype.INT);
                        
             String[] args = {"0", "something", "0"};
             p.parse(args);
