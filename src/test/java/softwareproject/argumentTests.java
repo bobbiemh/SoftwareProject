@@ -21,7 +21,7 @@ public class ArgumentTests {
         @Test
 		public void enoughArgument() {
 			assertEquals(p.getNumberOfKeys(), 0);
-			p.addArgs("length","", ParseArgs.Datatype.STRING);
+			p.addArgs("length","", Argument.Datatype.STRING);
 			assertEquals(p.getNumberOfKeys(), 1);
 			p.addArgs("width","", Argument.Datatype.STRING);
 			assertEquals(p.getNumberOfKeys(), 2);
