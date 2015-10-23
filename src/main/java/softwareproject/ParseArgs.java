@@ -90,7 +90,7 @@ public class ParseArgs{
         for(i = 0; i < getNumberOfKeys() && !args[0].equals("-h"); i++){
             
             String key = keys.get(i);           
-            Argument temp = getArgs(key);
+            Argument temp = getArg(key);
             Argument.Datatype datatype = temp.getDataType();
             
             String exceptionMessage = "usage: java "+programName;
@@ -171,7 +171,7 @@ public class ParseArgs{
         return illegalArgs;
     }
     
-    public Argument getArgs(String key)
+    public Argument getArg(String key)
     {
         Argument temp = new Argument();
         temp = map.get(key);
@@ -198,7 +198,7 @@ public class ParseArgs{
             for(int i = 0; i < getNumberOfKeys(); i++)
             {
                 key = key + " " + getKey(i);
-                temp = getArgs(getKey(i));
+                temp = getArg(getKey(i));
                 keyDescription[i] = temp.getDescription();
             }
             this.programName = name;

@@ -44,49 +44,49 @@ public class Keywords {
 	
 	public String getPet(){
 		Argument temp = new Argument();
-		temp = p.getArgs("pet");
+		temp = p.getArg("pet");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getNumber(){
 		Argument temp = new Argument();
-		temp = p.getArgs("number");
+		temp = p.getArg("number");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getRainy(){
 		Argument temp = new Argument();
-		temp = p.getArgs("rainy");
+		temp = p.getArg("rainy");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getBathrooms(){
 		Argument temp = new Argument();
-		temp = p.getArgs("bathrooms");
+		temp = p.getArg("bathrooms");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getLength(){
 		Argument temp = new Argument();
-		temp = p.getArgs("length");
+		temp = p.getArg("length");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 	
 	public String getWidth(){
 		Argument temp = new Argument();
-		temp = p.getArgs("width");
+		temp = p.getArg("width");
 		Object o = temp.getValue();
 		return (String)o;
 	}
 
 	public String getHeight(){
 		Argument temp = new Argument();
-		temp = p.getArgs("height");
+		temp = p.getArg("height");
 		Object o = temp.getValue();
 		return (String)o;
 	}

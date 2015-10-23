@@ -60,11 +60,11 @@ public class ArgumentTests {
 			String[] args = {"7", "5", "2"};
 			p.parse(args);			
 
-			a = p.getArgs("length");
+			a = p.getArg("length");
 			assertEquals(a.getValue(), "7");
-			a = p.getArgs("width");
+			a = p.getArg("width");
 			assertEquals(a.getValue(), "5");
-			a = p.getArgs("height");
+			a = p.getArg("height");
 			assertEquals(a.getValue(), "2");
 		}
 		
@@ -73,7 +73,7 @@ public class ArgumentTests {
 	        p.addArgs("height","", Argument.Datatype.INT);
 			String [] args = {"0"};
 			p.parse(args);
-			a = p.getArgs("height");
+			a = p.getArg("height");
 	        assertEquals(a.getDataType(), Argument.Datatype.INT);
 	    }
     
@@ -82,7 +82,7 @@ public class ArgumentTests {
 			p.addArgs("length", "", Argument.Datatype.INT);
             String[] args = {"7"};
             p.parse(args);		
-			a = p.getArgs("length");
+			a = p.getArg("length");
             int v = a.getValue();
             assertEquals(v, 7);
         }
@@ -92,7 +92,7 @@ public class ArgumentTests {
             p.addArgs("height", "", Argument.Datatype.FLOAT);
             String[] args = {"7.5"};
             p.parse(args);	
-			a = p.getArgs("height");
+			a = p.getArg("height");
             assertEquals(a.getValue(), 7.5f);
         }  
 
@@ -101,7 +101,7 @@ public class ArgumentTests {
             p.addArgs("TodayIsWednesday", "", Argument.Datatype.BOOLEAN);
             String[] args = {"true"};
             p.parse(args);
-			a = p.getArgs("TodayIsWednesday");
+			a = p.getArg("TodayIsWednesday");
             assertEquals(a.getValue(), true);
         }
 
@@ -110,14 +110,14 @@ public class ArgumentTests {
             p.addArgs("message", "", Argument.Datatype.STRING);
             String[] args = {"hello"};
             p.parse(args);
-			a = p.getArgs("message");
+			a = p.getArg("message");
             assertEquals(a.getValue(), "hello");
         }        
     
 	@Test
 	        public void testArgumentDescription(){
 	                p.addArgs("height","height the height of the box", Argument.Datatype.STRING);
-					a = p.getArgs("height");
+					a = p.getArg("height");
 	                assertEquals(a.getDescription(), "height the height of the box");
 	        }
 	
