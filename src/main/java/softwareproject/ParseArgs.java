@@ -34,7 +34,7 @@ public class ParseArgs{
     
     public void parse(String[] args)
     {
-        if(args[0].equals("-h"))
+        if(args[0].equals("--help"))
         {
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
@@ -87,7 +87,7 @@ public class ParseArgs{
     
     private void putToMap(String[] args){
         int i = 0;
-        for(i = 0; i < getNumberOfKeys() && !args[0].equals("-h"); i++){
+        for(i = 0; i < getNumberOfKeys() && !args[0].equals("--help"); i++){
             
             String key = keys.get(i);           
             Argument temp = getArg(key);

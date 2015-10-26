@@ -31,7 +31,7 @@ Library				Keywords
 |                                        | Should Be Equal                       | true               | ${rainy}     |            |            |
 |                                        | ${bathrooms}=                         | Get Bathrooms      |              |            |            |
 |                                        | Should Be Equal                       | 3.5                | ${bathrooms} |            |            |
-| Test Usage Message 					 | Start Program With Arguments 		 | -h                 |              |			  |			   |
+| Test Usage Message 					 | Start Program With Arguments 		 | --help                 |              |			  |			   |
 |                    					 | ${output}=		                     | Get Program Output |              |			  |			   |
 |                    					 | Should Be Equal             			 | ${helpmessage}        | ${output}    |
 | Test Incorrect Datatype Message 		 | Start Program With Arguments 		 | 7                  | something    | 2           |

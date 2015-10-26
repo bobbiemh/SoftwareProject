@@ -123,7 +123,7 @@ public class ArgumentTests {
 	
 	@Test (expected = IllegalArgumentException.class)
 		public void helpMessageWorking(){
-			String[] args = {"-h"};
+			String[] args = {"--help"};
 			p.parse(args);
 			assertEquals(p.doesHelpWork(), true);
 		}
@@ -140,7 +140,7 @@ public class ArgumentTests {
 			p.addArgs("width", "the width of the box", Argument.Datatype.STRING);
 	        p.addArgs("height","the height of the box", Argument.Datatype.STRING);
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
-	        String[] args = {"-h"};
+	        String[] args = {"--help"};
 	        p.parse(args);
 	        }
     @Test
@@ -154,5 +154,18 @@ public class ArgumentTests {
                        
             String[] args = {"0", "something", "0"};
             p.parse(args);
+        }
+        
+    @Test
+        public void checkForMultipleDashDashArguments() {
+            p.addArgs("length", "", Argument.Datatype.STRING);
+			p.addArgs("width", "", Argument.Datatype.STRING);
+			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digits", "4"};
+			p.parse(args);	
+            assertEquals(p.getType(), "ellipsoid");
+            assertEquals(p.getDigit(), "4");
         }
 }
