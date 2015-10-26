@@ -42,8 +42,9 @@ public class ParseArgs{
         for(int i = 0; i < args.length; i++) {
             this.args.add(args[i]);
         }
-        if(args[0].equals("--help"))
+        if(argRequired)
         {
+            checkDashes();
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
         }
@@ -82,6 +83,19 @@ public class ParseArgs{
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
+        }
+    }
+    
+    private void checkDashes(){
+        if(args.contains("--help")) {
+            messageTrue = true;
+            throw new IllegalArgumentException(helpMessage);
+        }
+        if(args.contains("--digit")) {
+            args.remove("--digit");
+        }
+        if(args.contains("--type")) {
+            args.remove("--type");
         }
     }
     
