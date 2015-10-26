@@ -8,11 +8,14 @@ import java.lang.*;
 public class ParseArgs{
     private Map<String, Argument> map;
     private List<String> keys;
+    private ArrayList<String> args;
     private boolean messageTrue;
     private boolean illegalArgs;
     private String programName;
     private String programDescription;
     private String helpMessage;
+    
+    
     
     public ParseArgs() {
             map = new HashMap<String, Argument>();
@@ -21,6 +24,8 @@ public class ParseArgs{
             messageTrue = false;
             illegalArgs = false;
             helpMessage = "usage: java ";
+            
+            args = new ArrayList<String>();
     }
     
     public void addArgs(String userInput, String Description, Argument.Datatype datatype)
@@ -34,6 +39,9 @@ public class ParseArgs{
     
     public void parse(String[] args)
     {
+        for(int i = 0; i < args.length; i++) {
+            this.args.add(args[i]);
+        }
         if(args[0].equals("--help"))
         {
             messageTrue = true;
@@ -73,7 +81,7 @@ public class ParseArgs{
                     exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: "+temp;
                 throw new IllegalArgumentException(exceptionMessage);
             }
-            putToMap(args);
+            putToMap();
         }
     }
     
@@ -85,9 +93,9 @@ public class ParseArgs{
         return message;
     }
     
-    private void putToMap(String[] args){
+    private void putToMap(){
         int i = 0;
-        for(i = 0; i < getNumberOfKeys() && !args[0].equals("--help"); i++){
+        for(i = 0; i < getNumberOfKeys(); i++){
             
             String key = keys.get(i);           
             Argument temp = getArg(key);
@@ -101,23 +109,23 @@ public class ParseArgs{
             
             
             if(datatype == Argument.Datatype.INT){
-                temp.setValue(convertToInt(args[i], getKey(i)));
+                temp.setValue(convertToInt(args.get(i), getKey(i)));
             }
             else if(datatype == Argument.Datatype.BOOLEAN){
-                temp.setValue(convertToBoolean(args[i], getKey(i)));
+                temp.setValue(convertToBoolean(args.get(i), getKey(i)));
             }
             else if(datatype == Argument.Datatype.FLOAT){
-                temp.setValue(convertToFloat(args[i], getKey(i)));
+                temp.setValue(convertToFloat(args.get(i), getKey(i)));
             }
             else{
-                temp.setValue(convertToString(args[i]));
+                temp.setValue(convertToString(args.get(i)));
             }
             map.put(key, temp);
         }
         
-        while(i <= args.length && i > getNumberOfKeys())
+        while(i <= this.args.size() && i > getNumberOfKeys())
         {
-            String str = args[args.length - 1];
+            String str = this.args.get(args.size() - 1);
         }
     }
     
@@ -184,8 +192,8 @@ public class ParseArgs{
         return s;
     }
     
-    public int getNumberOfArgs(String[] args){
-        return args.length;
+    public int getNumberOfArgs(){
+        return args.size();
     }
     
     public int getNumberOfKeys(){
