@@ -29,7 +29,7 @@ public class ArgumentTests {
 			assertEquals(p.getNumberOfKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
-			assertEquals(p.getNumberOfArgs(args), 3);
+			assertEquals(p.getNumberOfArgs(), 3);
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
@@ -157,6 +157,20 @@ public class ArgumentTests {
         }
         
     @Test
+        public void DefaultDashArguments(){
+            p.addArgs("length", "", Argument.Datatype.INT);
+            p.addArgs("width", "", Argument.Datatype.INT);
+            p.addArgs("height", "", Argument.Datatype.INT);
+            p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+            
+            String[] args = {"7", "5", "2"};
+            p.parse(args);
+            assertEquals(p.getType(), "box");
+            assertEquals(p.getDigit(), 4);
+        }
+        
+    @Test
         public void checkForMultipleDashDashArguments() {
             p.addArgs("length", "", Argument.Datatype.STRING);
 			p.addArgs("width", "", Argument.Datatype.STRING);
@@ -166,6 +180,22 @@ public class ArgumentTests {
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digits", "4"};
 			p.parse(args);	
             assertEquals(p.getType(), "ellipsoid");
-            assertEquals(p.getDigit(), "4");
+            assertEquals(p.getDigit(), 4);
+        }
+        
+    @Test
+        public void IgnoreDashArguments() {
+            p.addArgs("length", "", Argument.Datatype.INT);
+            p.addArgs("width", "", Argument.Datatype.INT);
+            p.addArgs("height", "", Argument.Datatype.INT);
+            p.addArgs("type", "", Argument.Datatype.STRING, false);
+            p.addArgs("digit", "", Argument.Datatype.INT, false);
+            
+            String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "7"};
+            
+            p.parse(args);
+            
+            assertEquals(p.getType(), "box");
+            assertEquals(p.getDigit(), 4);
         }
 }

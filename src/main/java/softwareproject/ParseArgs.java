@@ -14,6 +14,9 @@ public class ParseArgs{
     private String programName;
     private String programDescription;
     private String helpMessage;
+    private boolean argRequired;
+    private String dashType;
+    private String digit;
     
     
     
@@ -23,6 +26,11 @@ public class ParseArgs{
             
             messageTrue = false;
             illegalArgs = false;
+            argRequired = true;
+            
+            dashType = "box";
+            digit = "4";
+            
             helpMessage = "usage: java ";
             
             args = new ArrayList<String>();
@@ -37,6 +45,15 @@ public class ParseArgs{
         map.put(userInput, temp);
     }
     
+    public void addArgs(String userInput, String Description, Argument.Datatype datatype, boolean required){
+        Argument temp = new Argument();
+        keys.add(userInput);
+        temp.setDescription(Description);
+        temp.setDataType(datatype);
+        map.put(userInput, temp);
+        argRequired = required;
+    }
+    
     public void parse(String[] args)
     {
         for(int i = 0; i < args.length; i++) {
@@ -45,41 +62,39 @@ public class ParseArgs{
         if(argRequired)
         {
             checkDashes();
-            messageTrue = true;
-            throw new IllegalArgumentException(helpMessage);
         }
-        else
+        if(!messageTrue)
         {
-                String exceptionMessage = "Error: the following Argument are required: ";
-            if(args.length < getNumberOfKeys() || args.length > getNumberOfKeys())
+            String exceptionMessage = "Error: the following Argument are required: ";
+            if(this.args.size() < getNumberOfKeys() || this.args.size() > getNumberOfKeys())
                 illegalArgs = true;
-            if(args.length == 0 && illegalArgs){
+            if(this.args.size() == 0 && illegalArgs){
                     for(int i = 0; i < getNumberOfKeys(); i++)
                     {
-                        exceptionMessage = exceptionMessage +" "+ getKey(i);
+                        exceptionMessage = exceptionMessage + " " + getKey(i);
                     }
                     throw new IllegalArgumentException(exceptionMessage);
                 }
-            else if(args.length < getNumberOfKeys() && illegalArgs)
+            else if(this.args.size() < getNumberOfKeys() && illegalArgs)
             {
                     
                             for(int i = args.length-1; i < getNumberOfKeys(); i++)
                             {
-                                exceptionMessage = exceptionMessage +" "+ getKey(i);
+                                exceptionMessage = exceptionMessage + " " + getKey(i);
                             }
                                 throw new IllegalArgumentException(exceptionMessage);
                     
                 }
-            else if (args.length > getNumberOfKeys())
+            else if (getNumberOfArgs() > getNumberOfKeys())
             {
-                int a = args.length - 1;
+                int a = this.args.size() - 1;
                 String temp = args[a];
-                exceptionMessage = "usage: java "+programName;
+                exceptionMessage = "usage: java " + programName;
                 for(int i = 0; i < getNumberOfKeys(); i++)
                     {
-                        exceptionMessage = exceptionMessage +" "+ getKey(i);
+                        exceptionMessage = exceptionMessage + " " + getKey(i);
                     }
-                    exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: "+temp;
+                    exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + getNumberOfKeys();
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
@@ -91,12 +106,25 @@ public class ParseArgs{
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
         }
-        if(args.contains("--digit")) {
-            args.remove("--digit");
+        if(keys.contains("type"))
+        {
+            if(args.contains("--type")) {
+                args.remove("--type");
+            }
+            else {
+                args.add(getType());
+            }
         }
-        if(args.contains("--type")) {
-            args.remove("--type");
+        if(keys.contains("digit"))
+        {
+            if(args.contains("--digit")) {
+                args.remove("--digit");
+            }
+            else {
+                args.add(digit);
+            }
         }
+        args.removeAll(Collections.singleton(null));
     }
     
     public String getUsage() {
@@ -115,11 +143,11 @@ public class ParseArgs{
             Argument temp = getArg(key);
             Argument.Datatype datatype = temp.getDataType();
             
-            String exceptionMessage = "usage: java "+programName;
+            String exceptionMessage = "usage: java " + programName;
             for(int a = 0; a < getNumberOfKeys(); a++) {
-                exceptionMessage = exceptionMessage +" "+ getKey(a);
+                exceptionMessage = exceptionMessage + " " + getKey(a);
             }
-            exceptionMessage = exceptionMessage + "\n"+programName+".java: error: argument "+getKey(i)+": invalid ";
+            exceptionMessage = exceptionMessage + "\n" + programName + ".java: error: argument " + getKey(i) + ": invalid ";
             
             
             if(datatype == Argument.Datatype.INT){
@@ -141,6 +169,14 @@ public class ParseArgs{
         {
             String str = this.args.get(args.size() - 1);
         }
+    }
+    
+    public String getType(){
+        return dashType;
+    }
+    
+    public int getDigit(){
+        return Integer.parseInt(digit);
     }
     
     private String convertToString(String arg){
@@ -225,7 +261,7 @@ public class ParseArgs{
             }
             this.programName = name;
             this.programDescription = description;          
-            helpMessage = helpMessage + name + key + "\n"+description;
+            helpMessage = helpMessage + name + key + "\n" + description;
             
             helpMessage = helpMessage + "\nPositional arguments:";
             
