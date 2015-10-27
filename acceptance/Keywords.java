@@ -16,6 +16,8 @@ public class Keywords {
 		p.addArgs("length", "", Argument.Datatype.STRING);
 		p.addArgs("width", "", Argument.Datatype.STRING);
 		p.addArgs("height", "", Argument.Datatype.STRING);
+        p.addArgs("type", "", Argument.Datatype.STRING);
+        p.addArgs("digits", "", Argument.Datatype.STRING);
 		lengthOfArgs = args.length;
         try{
             p.parse(args);
@@ -42,6 +44,17 @@ public class Keywords {
 		p.parse(args);
 	}
 	
+    public String getType(){
+        Argument temp = new Argument();
+        temp = p.getArg("type");
+        Object o = temp.getValue();
+        return (String)o;
+    }
+    
+    public int getDigits(){
+        return p.getDigit();
+    }
+    
 	public String getPet(){
 		Argument temp = new Argument();
 		temp = p.getArg("pet");
@@ -117,18 +130,19 @@ public class Keywords {
 			try{
 				length = Integer.parseInt(getLength());
 			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getLength();
+				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getLength();
 			}
 			try{
 				width = Integer.parseInt(getWidth());
 			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getWidth();
+				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getWidth();
 			}
 			try{
 				height = Integer.parseInt(getHeight());
 			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: " + getHeight();
+				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getHeight();
 			}
+            System.out.println("\nLength: " + getLength() + "\nWidth: " + getWidth() + "\nHeight: " + getHeight() + "\nType: " + getType() + "\nDigits: " + getDigits());
 			volume = length * width * height;
 			return Integer.toString(volume);
 		}
