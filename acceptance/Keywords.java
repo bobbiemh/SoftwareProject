@@ -90,6 +90,14 @@ public class Keywords {
 		Object o = temp.getValue();
 		return (String)o;
 	}
+    
+    public String getType(){
+        return p.getType();
+    }
+    
+    public String getDigits(){
+        return String.valueOf(p.getDigit());
+    }
 	
 	public String getProgramOutput(String[] args)
 	{
