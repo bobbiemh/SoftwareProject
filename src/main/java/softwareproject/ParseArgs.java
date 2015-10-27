@@ -59,10 +59,7 @@ public class ParseArgs{
         for(int i = 0; i < args.length; i++) {
             this.args.add(args[i]);
         }
-        if(argRequired)
-        {
-            checkDashes();
-        }
+        checkDashes();
         if(!messageTrue)
         {
             String exceptionMessage = "Error: the following Argument are required: ";
@@ -94,7 +91,7 @@ public class ParseArgs{
                     {
                         exceptionMessage = exceptionMessage + " " + getKey(i);
                     }
-                    exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + getNumberOfKeys();
+                    exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
@@ -109,15 +106,28 @@ public class ParseArgs{
         if(keys.contains("type"))
         {
             if(args.contains("--type")) {
+                if(argRequired){
+                    int i = args.indexOf("--type");
+                    setType(args.get(i+1));
+                }
                 args.remove("--type");
             }
             else {
-                args.add(getType());
+                if(args.contains("--digit")){   
+                    int i = args.indexOf("--digit");
+                    args.add(i - 1, getType());
+                }
+                else
+                    args.add(getType());
             }
         }
         if(keys.contains("digit"))
         {
             if(args.contains("--digit")) {
+                if(argRequired){
+                    int i = args.indexOf("--digit");
+                    setDigit(args.get(i+1));
+                }
                 args.remove("--digit");
             }
             else {
@@ -171,8 +181,16 @@ public class ParseArgs{
         }
     }
     
+    public void setType(String dashType){
+        this.dashType = dashType;
+    }
+    
     public String getType(){
         return dashType;
+    }
+    
+    public void setDigit(String digit){
+        this.digit = digit;
     }
     
     public int getDigit(){

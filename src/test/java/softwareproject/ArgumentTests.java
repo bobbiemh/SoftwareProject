@@ -171,13 +171,41 @@ public class ArgumentTests {
         }
         
     @Test
+        public void checkDashType(){
+            p.addArgs("length", "", Argument.Datatype.STRING);
+			p.addArgs("width", "", Argument.Datatype.STRING);
+			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+            
+            String[] args = {"7", "5", "2", "--type", "ellipsoid"};
+            
+            p.parse(args);
+            assertEquals(p.getType(), "ellipsoid");
+        }
+        
+    @Test
+        public void checkDashDigit(){
+            p.addArgs("length", "", Argument.Datatype.STRING);
+			p.addArgs("width", "", Argument.Datatype.STRING);
+			p.addArgs("height", "", Argument.Datatype.STRING);
+			p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+            
+            String[] args = {"7", "5", "2", "--digit", "3"};
+            
+            p.parse(args);
+            assertEquals(p.getDigit(), 3);
+        }
+        
+    @Test
         public void checkForMultipleDashDashArguments() {
             p.addArgs("length", "", Argument.Datatype.STRING);
 			p.addArgs("width", "", Argument.Datatype.STRING);
 			p.addArgs("height", "", Argument.Datatype.STRING);
 			p.addArgs("type", "", Argument.Datatype.STRING);
             p.addArgs("digit", "", Argument.Datatype.INT);
-			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digits", "4"};
+			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
 			p.parse(args);	
             assertEquals(p.getType(), "ellipsoid");
             assertEquals(p.getDigit(), 4);
