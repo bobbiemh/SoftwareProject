@@ -36,7 +36,9 @@ public class ArgumentTests {
 			p.addArgs("length", "", Argument.Datatype.STRING);
 			p.addArgs("width", "", Argument.Datatype.STRING);
 			p.addArgs("height", "", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 3);
+            p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
+			assertEquals(p.getNumberOfKeys(), 5);
 			String[] args = {"0","0"};
 			p.parse(args);
 		}
