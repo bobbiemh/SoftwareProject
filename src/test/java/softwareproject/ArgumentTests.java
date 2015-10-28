@@ -147,7 +147,7 @@ public class ArgumentTests {
         public void incorrectArgType(){
 			expectedEx.expect(NumberFormatException.class);
 				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something");
-	    p.programInfo("VolumeCalculator","");
+            p.programInfo("VolumeCalculator","");
             p.addArgs("length", "", Argument.Datatype.INT);
             p.addArgs("width", "", Argument.Datatype.INT);
             p.addArgs("height", "", Argument.Datatype.INT);
@@ -166,8 +166,10 @@ public class ArgumentTests {
             
             String[] args = {"7", "5", "2"};
             p.parse(args);
-            assertEquals(p.getType(), "box");
-            assertEquals(p.getDigit(), 4);
+            a = p.getArg("type");
+            assertEquals(a.getValue(), "box");
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), 4);
         }
         
     @Test
@@ -181,7 +183,8 @@ public class ArgumentTests {
             String[] args = {"7", "5", "2", "--type", "ellipsoid"};
             
             p.parse(args);
-            assertEquals(p.getType(), "ellipsoid");
+            a = p.getArg("type");
+            assertEquals(a.getValue(), "ellipsoid");
         }
         
     @Test
@@ -195,7 +198,8 @@ public class ArgumentTests {
             String[] args = {"7", "5", "2", "--digit", "3"};
             
             p.parse(args);
-            assertEquals(p.getDigit(), 3);
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), 3);
         }
         
     @Test
@@ -207,8 +211,10 @@ public class ArgumentTests {
             p.addArgs("digit", "", Argument.Datatype.INT);
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
 			p.parse(args);	
-            assertEquals(p.getType(), "ellipsoid");
-            assertEquals(p.getDigit(), 4);
+            a = p.getArg("type");
+            assertEquals(a.getValue(), "ellipsoid");
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), 4);
         }
         
     @Test
@@ -223,7 +229,9 @@ public class ArgumentTests {
             
             p.parse(args);
             
-            assertEquals(p.getType(), "box");
-            assertEquals(p.getDigit(), 4);
+            a = p.getArg("type");
+            assertEquals(a.getValue(), null);
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), null);
         }
 }

@@ -37,8 +37,8 @@ Library				Keywords
 | Test Incorrect Datatype Message 		 | Start Program With Arguments 		 | 7                  | something    | 2           |
 |                                		 | ${output}=		                     | Get Program Output |              |             |
 |                               	     | Should Be Equal      		         | ${output}          | ${isexpected}  |             |
-| Test Named Argument Defaults           | Start Volume Cacluator With Arguments | 7                  | 3            | 2          |            |            |            |            |
-|                                        | ${length}=                            | Get Length         |              |            |            |            |            |            |
+| Test Named Argument Defaults           | Start Volume Calculator Dash Arguments | 7                  | 3            | 2          |            |            |            |            |
+|                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
 |                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
@@ -48,8 +48,8 @@ Library				Keywords
 |                                        | Should Be Equal                       | box                | ${type}      |            |            |            |            |            |
 |                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 4                  | ${digits}    |            |            |            |            |            |
-| Test Named Argument Single             | Start Volume Cacluator With Arguments | 7                  | 3            | 2          | --type     | ellipsoid  |            |            |
-|                                        | ${length}=                            | Get Length         |              |            |            |            |            |            |
+| Test Named Argument Single             | Start Volume Calculator Dash Arguments | 7                  | 3            | 2          | --type     | ellipsoid  |            |            |
+|                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
 |                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
@@ -59,8 +59,8 @@ Library				Keywords
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
 |                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 4                  | ${digits}    |            |            |            |            |            |
-| Test Named Argument Multiple           | Start Volume Cacluator With Arguments | 7                  | 3            | 2          | --type     | ellipsoid  | --digits   | 1          |
-|                                        | ${length}=                            | Get Length         |              |            |            |            |            |            |
+| Test Named Argument Multiple           | Start Volume Calculator Dash Arguments | 7                  | 3            | 2          | --type     | ellipsoid  | --digits   | 1          |
+|                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
 |                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |

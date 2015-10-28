@@ -63,21 +63,24 @@ public class ParseArgs{
         if(!messageTrue)
         {
             String exceptionMessage = "Error: the following Argument are required: ";
-            if(this.args.size() < getNumberOfKeys() || this.args.size() > getNumberOfKeys())
+            if(getNumberOfArgs() < getNumberOfKeys() || getNumberOfArgs() > getNumberOfKeys())
                 illegalArgs = true;
-            if(this.args.size() == 0 && illegalArgs){
+            if(getNumberOfArgs() == 0 && illegalArgs){
                     for(int i = 0; i < getNumberOfKeys(); i++)
                     {
                         exceptionMessage = exceptionMessage + " " + getKey(i);
                     }
                     throw new IllegalArgumentException(exceptionMessage);
                 }
-            else if(this.args.size() < getNumberOfKeys() && illegalArgs)
+            else if(getNumberOfArgs() < getNumberOfKeys() && illegalArgs)
             {
                     
                             for(int i = args.length-1; i < getNumberOfKeys(); i++)
                             {
-                                exceptionMessage = exceptionMessage + " " + getKey(i);
+                                System.out.println("List: " + getNumberOfArgs());
+                                System.out.println("Array: " + args.length);
+                                System.out.println("Keys: " + getNumberOfKeys());
+                                exceptionMessage = exceptionMessage + " no in here " + getKey(i);
                             }
                                 throw new IllegalArgumentException(exceptionMessage);
                     
@@ -88,10 +91,10 @@ public class ParseArgs{
                 String temp = args[a];
                 exceptionMessage = "usage: java " + programName;
                 for(int i = 0; i < getNumberOfKeys(); i++)
-                    {
+                {
                         exceptionMessage = exceptionMessage + " " + getKey(i);
-                    }
-                    exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
+                }
+                exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
@@ -110,15 +113,23 @@ public class ParseArgs{
                     int i = args.indexOf("--type");
                     setType(args.get(i+1));
                 }
+                else if(!argRequired){
+                    int i = args.indexOf("--type");
+                    args.remove(i+1);
+                    keys.remove("type");
+                }
                 args.remove("--type");
             }
             else {
-                if(args.contains("--digit")){   
-                    int i = args.indexOf("--digit");
-                    args.add(i - 1, getType());
+                if(argRequired){
+                    if(args.contains("--digit")){   
+                        int i = args.indexOf("--digit");
+                        args.add(i - 1, getType());
+                    }
+                    else{
+                        args.add(getType());
+                    }  
                 }
-                else
-                    args.add(getType());
             }
         }
         if(keys.contains("digit"))
@@ -128,10 +139,17 @@ public class ParseArgs{
                     int i = args.indexOf("--digit");
                     setDigit(args.get(i+1));
                 }
+                else if(!argRequired){
+                    int i = args.indexOf("--digit");
+                    args.remove(i+1);
+                    keys.remove("digit");
+                }
                 args.remove("--digit");
             }
             else {
-                args.add(digit);
+                if(argRequired){
+                    args.add(digit);
+                }
             }
         }
         args.removeAll(Collections.singleton(null));

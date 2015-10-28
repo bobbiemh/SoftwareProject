@@ -16,13 +16,23 @@ public class Keywords {
 		p.addArgs("length", "", Argument.Datatype.STRING);
 		p.addArgs("width", "", Argument.Datatype.STRING);
 		p.addArgs("height", "", Argument.Datatype.STRING);
-        p.addArgs("type", "", Argument.Datatype.STRING);
-        p.addArgs("digits", "", Argument.Datatype.STRING);
 		lengthOfArgs = args.length;
         try{
             p.parse(args);
         }catch(IllegalArgumentException e){}
 	}
+    
+    public void StartVolumeCalculatorDashArguments(String[] args){
+        p = new ParseArgs();
+        p.addArgs("length", "", Argument.Datatype.STRING);
+        p.addArgs("width", "", Argument.Datatype.STRING);
+        p.addArgs("height", "", Argument.Datatype.STRING);        
+        p.addArgs("type", "", Argument.Datatype.STRING);
+        p.addArgs("digit", "", Argument.Datatype.STRING);
+        //try{
+            p.parse(args);
+        //}catch(IllegalArgumentException e){}
+    }
 	
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
@@ -51,8 +61,8 @@ public class Keywords {
         return (String)o;
     }
     
-    public int getDigits(){
-        return p.getDigit();
+    public String getDigits(){
+        return Integer.toString(p.getDigit());
     }
     
 	public String getPet(){
@@ -142,7 +152,6 @@ public class Keywords {
 			}catch(NumberFormatException e){
 				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getHeight();
 			}
-            System.out.println("\nLength: " + getLength() + "\nWidth: " + getWidth() + "\nHeight: " + getHeight() + "\nType: " + getType() + "\nDigits: " + getDigits());
 			volume = length * width * height;
 			return Integer.toString(volume);
 		}
