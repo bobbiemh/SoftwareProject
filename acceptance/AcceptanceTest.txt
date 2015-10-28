@@ -59,7 +59,7 @@ Library				Keywords
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
 |                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 4                  | ${digits}    |            |            |            |            |            |
-| Test Named Argument Multiple           | Start Volume Calculator Dash Arguments | 7                  | 3            | 2          | --type     | ellipsoid  | --digits   | 1          |
+| Test Named Argument Multiple           | Start Volume Calculator Dash Arguments | 7                  | 3            | 2          | --type     | ellipsoid  | --digit   | 1          |
 |                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
 |                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |

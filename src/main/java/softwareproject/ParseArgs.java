@@ -74,13 +74,13 @@ public class ParseArgs{
                 }
             else if(getNumberOfArgs() < getNumberOfKeys() && illegalArgs)
             {
+
                     
-                            for(int i = args.length-1; i < getNumberOfKeys(); i++)
+                            for(int i = 0; i <= getNumberOfArgs(); i++)
                             {
                                 System.out.println("List: " + getNumberOfArgs());
-                                System.out.println("Array: " + args.length);
                                 System.out.println("Keys: " + getNumberOfKeys());
-                                exceptionMessage = exceptionMessage + " no in here " + getKey(i);
+                                exceptionMessage = exceptionMessage + " " + getKey(i);
                             }
                                 throw new IllegalArgumentException(exceptionMessage);
                     
@@ -95,6 +95,10 @@ public class ParseArgs{
                         exceptionMessage = exceptionMessage + " " + getKey(i);
                 }
                 exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
+                for(int i = 0; i < getNumberOfArgs(); i++)
+                {
+                    System.out.println("Args: " + this.args.get(i));
+                }
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
