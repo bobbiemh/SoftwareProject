@@ -6,7 +6,7 @@ Library				Keywords
 | *Variable*  | *Value*                                                                                                  																								 |
 | ${expected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43 |
 | ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\nPositional arguments:\nlength the length of the box\nwidth the width of the box\nheight the height of the box |
-| ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalcultor.java: error: argument width: invalid int value: something |
+| ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something |
 
 
 | *Test Case*                            | *Action*                              | *Argument*         | *Argument*   | *Argument* | *Argument* | *Argument   | *Argument*  | *Argument*  |
@@ -40,9 +40,9 @@ Library				Keywords
 | Test Named Argument Defaults           | Start Volume Calculator With Arguments | 7                  | 3            | 2          |            |            |            |            |
 |                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
-|                                        | ${width}=                             | Get Width          |              |            |            |            |            |            |
+|                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
-|                                        | ${height}=                            | Get Height         |              |            |            |            |            |            |
+|                                        | ${height}=                            | Keywords.Get Height         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 2                  | ${height}    |            |            |            |            |            |
 |                                        | ${type}=                              | Get Type           |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | box                | ${type}      |            |            |            |            |            |
@@ -51,9 +51,9 @@ Library				Keywords
 | Test Named Argument Single             | Start Volume Calculator With Arguments | 7                  | 3            | 2          | --type     | ellipsoid  |            |            |
 |                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
-|                                        | ${width}=                             | Get Width          |              |            |            |            |            |            |
+|                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
-|                                        | ${height}=                            | Get Height         |              |            |            |            |            |            |
+|                                        | ${height}=                            | Keywords.Get Height         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 2                  | ${height}    |            |            |            |            |            |
 |                                        | ${type}=                              | Get Type           |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
@@ -62,9 +62,9 @@ Library				Keywords
 | Test Named Argument Multiple           | Start Volume Calculator With Arguments | 7                  | 3            | 2          | --type     | ellipsoid  | --digits   | 1          |
 |                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
-|                                        | ${width}=                             | Get Width          |              |            |            |            |            |            |
+|                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
-|                                        | ${height}=                            | Get Height         |              |            |            |            |            |            |
+|                                        | ${height}=                            | Keywords.Get Height         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 2                  | ${height}    |            |            |            |            |            |
 |                                        | ${type}=                              | Get Type           |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
