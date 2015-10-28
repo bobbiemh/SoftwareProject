@@ -234,4 +234,36 @@ public class ArgumentTests {
             a = p.getArg("digit");
             assertEquals(a.getValue(), null);
         }
+    @Test
+        public void testForMixedDashArgumentsTypeFirst() {
+            p.addArgs("length", "", Argument.Datatype.INT);
+			p.addArgs("width", "", Argument.Datatype.INT);
+			p.addArgs("height", "", Argument.Datatype.INT);
+			p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+			String[] args = {"7","--type", "ellipsoid", "5","--digit", "4", "2",};
+			p.parse(args);
+			a = p.getArg("width");
+			assertEquals(a.getValue(), 2);	
+            a = p.getArg("type");
+            assertEquals(a.getValue(), "ellipsoid");
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), 4);
+        }
+    @Test
+        public void testForMixedDashArgumentsDigitFirst(){
+            p.addArgs("length", "", Argument.Datatype.INT);
+			p.addArgs("width", "", Argument.Datatype.INT);
+			p.addArgs("height", "", Argument.Datatype.INT);
+			p.addArgs("type", "", Argument.Datatype.STRING);
+            p.addArgs("digit", "", Argument.Datatype.INT);
+            String[] args = {"--digit", "4","7","5","--type", "ellipsoid", "2",};
+			p.parse(args);
+			a = p.getArg("height");
+			assertEquals(a.getValue(), 2);
+            a = p.getArg("type");
+            assertEquals(a.getValue(), "ellipsoid");
+            a = p.getArg("digit");
+            assertEquals(a.getValue(), 4);
+        }
 }
