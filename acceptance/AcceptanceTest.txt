@@ -70,3 +70,14 @@ Library				Keywords
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
 |                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 1                  | ${digits}    |            |            |            |            |            |
+| Test Named Argument Anywhere           | Start Volume Calculator Dash Arguments | --type             | ellipsoid    | 7          | 3          | --digit   | 1          | 2          |
+|                                        | ${length}=                            | Keywords.Get Length         |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | 7                  | ${length}    |            |            |            |            |            |
+|                                        | ${width}=                             | Keywords.Get Width          |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | 3                  | ${width}     |            |            |            |            |            |
+|                                        | ${height}=                            | Keywords.Get Height         |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | 2                  | ${height}    |            |            |            |            |            |
+|                                        | ${type}=                              | Get Type           |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
+|                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | 1                  | ${digits}    |            |            |            |            |            |

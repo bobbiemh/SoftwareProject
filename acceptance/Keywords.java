@@ -62,7 +62,7 @@ public class Keywords {
     }
     
     public String getDigits(){
-        return Integer.toString(p.getDigit());
+        return p.getDigit();
     }
     
 	public String getPet(){
