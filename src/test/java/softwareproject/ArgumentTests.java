@@ -164,7 +164,7 @@ public class ArgumentTests {
             p.addArgs("width", "", Argument.Datatype.INT);
             p.addArgs("height", "", Argument.Datatype.INT);
             p.addArgs("type", "", Argument.Datatype.STRING);
-            p.addArgs("digit", "", Argument.Datatype.INT);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
             
             String[] args = {"7", "5", "2"};
             p.parse(args);
@@ -195,7 +195,7 @@ public class ArgumentTests {
 			p.addArgs("width", "", Argument.Datatype.STRING);
 			p.addArgs("height", "", Argument.Datatype.STRING);
 			p.addArgs("type", "", Argument.Datatype.STRING);
-            p.addArgs("digit", "", Argument.Datatype.INT);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
             
             String[] args = {"7", "5", "2", "--digit", "3"};
             
@@ -210,7 +210,7 @@ public class ArgumentTests {
 			p.addArgs("width", "", Argument.Datatype.STRING);
 			p.addArgs("height", "", Argument.Datatype.STRING);
 			p.addArgs("type", "", Argument.Datatype.STRING);
-            p.addArgs("digit", "", Argument.Datatype.INT);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
 			p.parse(args);	
             a = p.getArg("type");
@@ -242,11 +242,15 @@ public class ArgumentTests {
 			p.addArgs("width", "", Argument.Datatype.INT);
 			p.addArgs("height", "", Argument.Datatype.INT);
 			p.addArgs("type", "", Argument.Datatype.STRING);
-            p.addArgs("digit", "", Argument.Datatype.INT);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
 			String[] args = {"7","--type", "ellipsoid", "5","--digit", "4", "2",};
 			p.parse(args);
+            a = p.getArg("length");
+            assertEquals(a.getValue(), 7);
 			a = p.getArg("width");
-			assertEquals(a.getValue(), 2);	
+			assertEquals(a.getValue(), 5);	
+            a = p.getArg("height");
+            assertEquals(a.getValue(), 2);
             a = p.getArg("type");
             assertEquals(a.getValue(), "ellipsoid");
             a = p.getArg("digit");
@@ -258,9 +262,13 @@ public class ArgumentTests {
 			p.addArgs("width", "", Argument.Datatype.INT);
 			p.addArgs("height", "", Argument.Datatype.INT);
 			p.addArgs("type", "", Argument.Datatype.STRING);
-            p.addArgs("digit", "", Argument.Datatype.INT);
+            p.addArgs("digit", "", Argument.Datatype.STRING);
             String[] args = {"--digit", "4","7","5","--type", "ellipsoid", "2",};
 			p.parse(args);
+            a = p.getArg("length");
+            assertEquals(a.getValue(), 7);
+            a = p.getArg("width");
+            assertEquals(a.getValue(), 5);
 			a = p.getArg("height");
 			assertEquals(a.getValue(), 2);
             a = p.getArg("type");

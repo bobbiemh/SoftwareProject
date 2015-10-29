@@ -8,16 +8,18 @@ import java.lang.*;
 public class ParseArgs{
     private Map<String, Argument> map;
     private List<String> keys;
-    private ArrayList<String> args;
+    private List<String> args;
+    private List<String> copy;//keys that need args
+    
     private boolean messageTrue;
     private boolean illegalArgs;
+    private boolean argRequired;
+    
     private String programName;
     private String programDescription;
     private String helpMessage;
-    private boolean argRequired;
     private String dashType;
-    private String digit;
-    
+    private String digit;    
     
     
     public ParseArgs() {
@@ -34,6 +36,7 @@ public class ParseArgs{
             helpMessage = "usage: java ";
             
             args = new ArrayList<String>();
+            copy = new ArrayList<String>();
     }
     
     public void addArgs(String userInput, String Description, Argument.Datatype datatype)
@@ -63,42 +66,33 @@ public class ParseArgs{
         if(!messageTrue)
         {
             String exceptionMessage = "Error: the following Argument are required: ";
-            if(getNumberOfArgs() < getNumberOfKeys() || getNumberOfArgs() > getNumberOfKeys())
+            if(getNumberOfArgs() < needToSet() || getNumberOfArgs() > needToSet())
                 illegalArgs = true;
             if(getNumberOfArgs() == 0 && illegalArgs){
-                    for(int i = 0; i < getNumberOfKeys(); i++)
+                    for(int i = 0; i < needToSet(); i++)
                     {
-                        exceptionMessage = exceptionMessage + " " + getKey(i);
+                        exceptionMessage = exceptionMessage + " " + getCopy(i);
                     }
                     throw new IllegalArgumentException(exceptionMessage);
                 }
-            else if(getNumberOfArgs() < getNumberOfKeys() && illegalArgs)
-            {
-
-                    
-                            for(int i = 0; i <= getNumberOfArgs(); i++)
-                            {
-                                System.out.println("List: " + getNumberOfArgs());
-                                System.out.println("Keys: " + getNumberOfKeys());
-                                exceptionMessage = exceptionMessage + " " + getKey(i);
-                            }
-                                throw new IllegalArgumentException(exceptionMessage);
-                    
+            else if(getNumberOfArgs() < needToSet() && illegalArgs)
+            {                    
+                for(int i = 0; i <= getNumberOfArgs(); i++)
+                {
+                    exceptionMessage = exceptionMessage + " " + getCopy(i);
                 }
-            else if (getNumberOfArgs() > getNumberOfKeys())
+                throw new IllegalArgumentException(exceptionMessage);        
+            }
+            else if (getNumberOfArgs() > needToSet())
             {
                 int a = this.args.size() - 1;
                 String temp = args[a];
                 exceptionMessage = "usage: java " + programName;
-                for(int i = 0; i < getNumberOfKeys(); i++)
+                for(int i = 0; i < needToSet(); i++)
                 {
-                        exceptionMessage = exceptionMessage + " " + getKey(i);
+                    exceptionMessage = exceptionMessage + " " + getCopy(i);
                 }
                 exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
-                for(int i = 0; i < getNumberOfArgs(); i++)
-                {
-                    System.out.println("Args: " + this.args.get(i));
-                }
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
@@ -106,6 +100,9 @@ public class ParseArgs{
     }
     
     private void checkDashes(){
+        for(int i = 0; i < getNumberOfKeys(); i++){
+            copy.add(keys.get(i));
+        }
         if(args.contains("--help")) {
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
@@ -116,23 +113,28 @@ public class ParseArgs{
                 if(argRequired){
                     int i = args.indexOf("--type");
                     setType(args.get(i+1));
+                    Argument temp = getArg("type");
+                    temp.setValue(getType());
+                    map.put("type", temp);
+                    args.remove(i+1);                    
+                    args.remove(i);
+                    copy.remove("type");
                 }
                 else if(!argRequired){
                     int i = args.indexOf("--type");
                     args.remove(i+1);
+                    args.remove("--type");
                     keys.remove("type");
+                    copy.remove("type");
                 }
-                args.remove("--type");
             }
-            else {
-                if(argRequired){
-                    if(args.contains("--digit")){   
-                        int i = args.indexOf("--digit");
-                        args.add(i - 1, getType());
-                    }
-                    else{
-                        args.add(getType());
-                    }  
+            else{
+                if(argRequired)
+                {
+                    Argument temp = getArg("type");
+                    temp.setValue(getType());
+                    map.put("type", temp);
+                    copy.remove("type");
                 }
             }
         }
@@ -142,19 +144,28 @@ public class ParseArgs{
                 if(argRequired){
                     int i = args.indexOf("--digit");
                     setDigit(args.get(i+1));
+                    Argument temp = getArg("digit");
+                    temp.setValue(args.get(i+1));
+                    map.put("digit", temp);
+                    args.remove(i+1);
+                    args.remove(i);
+                    copy.remove("digit");
                 }
                 else if(!argRequired){
                     int i = args.indexOf("--digit");
                     args.remove(i+1);
+                    args.remove(i);
                     keys.remove("digit");
+                    copy.remove("digit");
                 }
-                args.remove("--digit");
             }
-            else {
+            else
                 if(argRequired){
-                    args.add(digit);
+                    Argument temp = getArg("digit");
+                    temp.setValue(getDigit());
+                    map.put("digit", temp);
+                    copy.remove("digit");
                 }
-            }
         }
         args.removeAll(Collections.singleton(null));
     }
@@ -169,27 +180,28 @@ public class ParseArgs{
     
     private void putToMap(){
         int i = 0;
-        for(i = 0; i < getNumberOfKeys(); i++){
+        for(i = 0; i < needToSet(); i++){
             
-            String key = keys.get(i);           
-            Argument temp = getArg(key);
+            String key = copy.get(i);           
+            Argument temp = new Argument();
+            temp = getArg(key);
             Argument.Datatype datatype = temp.getDataType();
             
             String exceptionMessage = "usage: java " + programName;
-            for(int a = 0; a < getNumberOfKeys(); a++) {
-                exceptionMessage = exceptionMessage + " " + getKey(a);
+            for(int a = 0; a < needToSet(); a++) {
+                exceptionMessage = exceptionMessage + " " + getCopy(a);
             }
-            exceptionMessage = exceptionMessage + "\n" + programName + ".java: error: argument " + getKey(i) + ": invalid ";
+            exceptionMessage = exceptionMessage + "\n" + programName + ".java: error: argument " + getCopy(i) + ": invalid ";
             
             
             if(datatype == Argument.Datatype.INT){
-                temp.setValue(convertToInt(args.get(i), getKey(i)));
+                temp.setValue(convertToInt(args.get(i), getCopy(i)));
             }
             else if(datatype == Argument.Datatype.BOOLEAN){
-                temp.setValue(convertToBoolean(args.get(i), getKey(i)));
+                temp.setValue(convertToBoolean(args.get(i), getCopy(i)));
             }
             else if(datatype == Argument.Datatype.FLOAT){
-                temp.setValue(convertToFloat(args.get(i), getKey(i)));
+                temp.setValue(convertToFloat(args.get(i), getCopy(i)));
             }
             else{
                 temp.setValue(convertToString(args.get(i)));
@@ -197,7 +209,7 @@ public class ParseArgs{
             map.put(key, temp);
         }
         
-        while(i <= this.args.size() && i > getNumberOfKeys())
+        while(i <= this.args.size() && i > needToSet())
         {
             String str = this.args.get(args.size() - 1);
         }
@@ -215,8 +227,12 @@ public class ParseArgs{
         this.digit = digit;
     }
     
-    public int getDigit(){
-        return Integer.parseInt(digit);
+    public String getDigit(){
+        return (digit);
+    }
+    
+    private int needToSet(){
+        return copy.size();
     }
     
     private String convertToString(String arg){
@@ -274,6 +290,12 @@ public class ParseArgs{
         Argument temp = new Argument();
         temp = map.get(key);
         return temp;
+    }
+    
+    public String getCopy(int where)
+    {
+        String s = copy.get(where);
+        return s;
     }
     
     public String getKey(int where)
