@@ -145,8 +145,7 @@ public class ParseArgs{
                     int i = args.indexOf("--digit");
                     setDigit(args.get(i+1));
                     Argument temp = getArg("digit");
-                    int num = Integer.parseInt(args.get(i+1));
-                    temp.setValue(num);
+                    temp.setValue(args.get(i+1));
                     map.put("digit", temp);
                     args.remove(i+1);
                     args.remove(i);
@@ -163,8 +162,7 @@ public class ParseArgs{
             else
                 if(argRequired){
                     Argument temp = getArg("digit");
-                    int num = Integer.parseInt(getDigit());
-                    temp.setValue(num);
+                    temp.setValue(getDigit());
                     map.put("digit", temp);
                     copy.remove("digit");
                 }
