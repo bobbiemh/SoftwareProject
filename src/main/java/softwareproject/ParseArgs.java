@@ -23,20 +23,20 @@ public class ParseArgs{
     
     
     public ParseArgs() {
-            map = new HashMap<String, Argument>();
-            keys = new ArrayList<String>();
-            
-            messageTrue = false;
-            illegalArgs = false;
-            argRequired = true;
-            
-            dashType = "box";
-            digit = "4";
-            
-            helpMessage = "usage: java ";
-            
-            args = new ArrayList<String>();
-            copy = new ArrayList<String>();
+        map = new HashMap<String, Argument>();
+        keys = new ArrayList<String>();
+        
+        messageTrue = false;
+        illegalArgs = false;
+        argRequired = true;
+        
+        dashType = "box";
+        digit = "4";
+        
+        helpMessage = "usage: java ";
+        
+        args = new ArrayList<String>();
+        copy = new ArrayList<String>();
     }
     
     public void addArgs(String userInput, String Description, Argument.Datatype datatype)
@@ -69,12 +69,12 @@ public class ParseArgs{
             if(getNumberOfArgs() < needToSet() || getNumberOfArgs() > needToSet())
                 illegalArgs = true;
             if(getNumberOfArgs() == 0 && illegalArgs){
-                    for(int i = 0; i < needToSet(); i++)
-                    {
-                        exceptionMessage = exceptionMessage + " " + getCopy(i);
-                    }
-                    throw new IllegalArgumentException(exceptionMessage);
+                for(int i = 0; i < needToSet(); i++)
+                {
+                    exceptionMessage = exceptionMessage + " " + getCopy(i);
                 }
+                throw new IllegalArgumentException(exceptionMessage);
+            }
             else if(getNumberOfArgs() < needToSet() && illegalArgs)
             {                    
                 for(int i = 0; i <= getNumberOfArgs(); i++)
@@ -314,24 +314,24 @@ public class ParseArgs{
         return keys.size();
     }
     public void programInfo(String name, String description){
-            String key = "";
-            Argument temp = new Argument();
-            String[] keyDescription = new String[getNumberOfKeys()];
-            for(int i = 0; i < getNumberOfKeys(); i++)
-            {
-                key = key + " " + getKey(i);
-                temp = getArg(getKey(i));
-                keyDescription[i] = temp.getDescription();
-            }
-            this.programName = name;
-            this.programDescription = description;          
-            helpMessage = helpMessage + name + key + "\n" + description;
-            
-            helpMessage = helpMessage + "\nPositional arguments:";
-            
-            for(int i = 0; i < getNumberOfKeys(); i++)
-            {
-                helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
-            }
+        String key = "";
+        Argument temp = new Argument();
+        String[] keyDescription = new String[getNumberOfKeys()];
+        for(int i = 0; i < getNumberOfKeys(); i++)
+        {
+            key = key + " " + getKey(i);
+            temp = getArg(getKey(i));
+            keyDescription[i] = temp.getDescription();
+        }
+        this.programName = name;
+        this.programDescription = description;          
+        helpMessage = helpMessage + name + key + "\n" + description;
+        
+        helpMessage = helpMessage + "\nPositional arguments:";
+        
+        for(int i = 0; i < getNumberOfKeys(); i++)
+        {
+            helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
+        }
     }
 }
