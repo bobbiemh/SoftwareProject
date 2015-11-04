@@ -282,9 +282,9 @@ public class ParseArgs{
     }
     
     public void programInfo(String name, String description){
-        /*String key = "";
+        String key = "";
         Argument temp = new Positional();
-        String[] keyDescription = new String[getNumberOfKeys()];
+        /*String[] keyDescription = new String[getNumberOfKeys()];
         for(int i = 0; i < getNumberOfKeys(); i++)
         {
             key = key + " " + getKey(i);
@@ -294,15 +294,27 @@ public class ParseArgs{
             } 
             catch (UnsupportedOperationException ex) {}
         }
+        //////////////////////////////
+        for(String k : positionalKeys)
+        {
+            key = key + " " + k;
+            temp = getArg(k);
+            
+        }*///////////////////////////
         this.programName = name;
-        this.programDescription = description;          
+        this.programDescription = description;
+        for(String k : positionalKeys)
+        {
+            key = key + " " + k;
+        }          
         helpMessage = helpMessage + name + key + "\n" + description;
         
         helpMessage = helpMessage + "\nPositional arguments:";
         
-        for(int i = 0; i < getNumberOfKeys(); i++)
+        for(String k : positionalKeys)
         {
-            helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
-        }*/
+            temp = getArg(k);
+            helpMessage = helpMessage + "\n" + k + " " + temp.getDescription();
+        }
     }
 }
