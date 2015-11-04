@@ -20,44 +20,44 @@ public class ArgumentTests {
         
         @Test
 		public void enoughArgument() {
-			assertEquals(p.getNumberOfKeys(), 0);
-			p.addPos("length","", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 1);
-			p.addPos("width","", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 2);
-			p.addPos("height","", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 3);
+			assertEquals(p.numberOfPositionalKeys(), 0);
+			p.addPos("length","", Argument.Type.STRING);
+			assertEquals(p.numberOfPositionalKeys(), 1);
+			p.addPos("width","", Argument.Type.STRING);
+			assertEquals(p.numberOfPositionalKeys(), 2);
+			p.addPos("height","", Argument.Type.STRING);
+			assertEquals(p.numberOfPositionalKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
-			assertEquals(p.getNumberOfArgs(), 3);
+			assertEquals(p.numberOfArgs(), 3);
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
-			p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
-            p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 5);
+			p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
+            p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.STRING, false);
+			assertEquals(p.numberOfTotalKeys(), 5);
 			String[] args = {"0","0"};
 			p.parse(args);
 		}
 		
 	@Test (expected = IllegalArgumentException.class)
 		public void TooManyArgs(){
-			p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
-			assertEquals(p.getNumberOfKeys(), 3);
+			p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
+			assertEquals(p.numberOfPositionalKeys(), 3);
 			String[] args = {"7", "5", "2", "3"};
 			p.parse(args);
 		}
 		
 	@Test
 		public void returnArgumentValue(){
-			p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
+			p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
 			
 			String[] args = {"7", "5", "2"};
 			p.parse(args);			
@@ -71,17 +71,17 @@ public class ArgumentTests {
 		}
 		
 	@Test
-	    public void testArgumentDataType(){
-	        p.addPos("height","", Argument.Datatype.INT);
+	    public void testArgumentType(){
+	        p.addPos("height","", Argument.Type.INT);
 			String [] args = {"0"};
 			p.parse(args);
 			a = p.getArg("height");
-	        assertEquals(a.getDataType(), Argument.Datatype.INT);
+	        assertEquals(a.getType(), Argument.Type.INT);
 	    }
     
     @Test
 		public void testArgumentInt() {
-			p.addPos("length", "", Argument.Datatype.INT);
+			p.addPos("length", "", Argument.Type.INT);
             String[] args = {"7"};
             p.parse(args);		
 			a = p.getArg("length");
@@ -91,7 +91,7 @@ public class ArgumentTests {
     
     @Test
         public void testArgumentFloat() {
-            p.addPos("height", "", Argument.Datatype.FLOAT);
+            p.addPos("height", "", Argument.Type.FLOAT);
             String[] args = {"7.5"};
             p.parse(args);	
 			a = p.getArg("height");
@@ -100,7 +100,7 @@ public class ArgumentTests {
 
     @Test
         public void testArgumentBoolean() {
-            p.addPos("TodayIsWednesday", "", Argument.Datatype.BOOLEAN);
+            p.addPos("TodayIsWednesday", "", Argument.Type.BOOLEAN);
             String[] args = {"true"};
             p.parse(args);
 			a = p.getArg("TodayIsWednesday");
@@ -109,7 +109,7 @@ public class ArgumentTests {
 
     @Test
         public void testArgumentDefaultString() {
-            p.addPos("message", "", Argument.Datatype.STRING);
+            p.addPos("message", "", Argument.Type.STRING);
             String[] args = {"hello"};
             p.parse(args);
 			a = p.getArg("message");
@@ -117,11 +117,11 @@ public class ArgumentTests {
         }        
     
 	@Test
-	        public void testArgumentDescription(){
-	                p.addPos("height","height the height of the box", Argument.Datatype.STRING);
-					a = p.getArg("height");
-	                assertEquals(a.getDescription(), "height the height of the box");
-	        }
+	    public void testArgumentDescription(){
+	        p.addPos("height","height the height of the box", Argument.Type.STRING);
+            a = p.getArg("height");
+	        assertEquals(a.getDescription(), "height the height of the box");
+	    }
         
 	@Test (expected = IllegalArgumentException.class)
 		public void helpMessageWorking(){
@@ -138,9 +138,9 @@ public class ArgumentTests {
 	                                 "length the length of the box\n"+
 									 "width the width of the box\n" +
 	                                 "height the height of the box");
-	        p.addPos("length","the length of the box", Argument.Datatype.STRING);
-			p.addPos("width", "the width of the box", Argument.Datatype.STRING);
-	        p.addPos("height","the height of the box", Argument.Datatype.STRING);
+	        p.addPos("length","the length of the box", Argument.Type.STRING);
+			p.addPos("width", "the width of the box", Argument.Type.STRING);
+	        p.addPos("height","the height of the box", Argument.Type.STRING);
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"--help"};
 	        p.parse(args);
@@ -150,9 +150,9 @@ public class ArgumentTests {
 			expectedEx.expect(NumberFormatException.class);
 				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something");
             p.programInfo("VolumeCalculator","");
-            p.addPos("length", "", Argument.Datatype.INT);
-            p.addPos("width", "", Argument.Datatype.INT);
-            p.addPos("height", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.INT);
+            p.addPos("width", "", Argument.Type.INT);
+            p.addPos("height", "", Argument.Type.INT);
                        
             String[] args = {"0", "something", "0"};
             p.parse(args);
@@ -160,11 +160,11 @@ public class ArgumentTests {
         
     @Test
         public void DefaultDashArguments(){
-            p.addPos("length", "", Argument.Datatype.INT);
-            p.addPos("width", "", Argument.Datatype.INT);
-            p.addPos("height", "", Argument.Datatype.INT);
-            p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.INT);
+            p.addPos("width", "", Argument.Type.INT);
+            p.addPos("height", "", Argument.Type.INT);
+            p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
             
             String[] args = {"7", "5", "2"};
             p.parse(args);
@@ -176,11 +176,11 @@ public class ArgumentTests {
         
     @Test
         public void checkDashType(){
-            p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
-			p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
+			p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
             
             String[] args = {"7", "5", "2", "--type", "ellipsoid"};
             
@@ -191,11 +191,11 @@ public class ArgumentTests {
         
     @Test
         public void checkDashDigit(){
-            p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
-			p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
+			p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
             
             String[] args = {"7", "5", "2", "--digit", "3"};
             
@@ -206,11 +206,11 @@ public class ArgumentTests {
         
     @Test
         public void checkForMultipleDashDashArguments() {
-            p.addPos("length", "", Argument.Datatype.STRING);
-			p.addPos("width", "", Argument.Datatype.STRING);
-			p.addPos("height", "", Argument.Datatype.STRING);
-			p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.STRING);
+			p.addPos("width", "", Argument.Type.STRING);
+			p.addPos("height", "", Argument.Type.STRING);
+			p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
 			p.parse(args);	
             a = p.getArg("type");
@@ -221,11 +221,11 @@ public class ArgumentTests {
         
     @Test
         public void IgnoreDashArguments() {
-            p.addPos("length", "", Argument.Datatype.INT);
-            p.addPos("width", "", Argument.Datatype.INT);
-            p.addPos("height", "", Argument.Datatype.INT);
-            p.addOpt("type", "", Argument.Datatype.STRING, false);
-            p.addOpt("digit", "", Argument.Datatype.INT, false);
+            p.addPos("length", "", Argument.Type.INT);
+            p.addPos("width", "", Argument.Type.INT);
+            p.addPos("height", "", Argument.Type.INT);
+            p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
             
             String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "7"};
             
@@ -238,11 +238,11 @@ public class ArgumentTests {
         }
     @Test
         public void testForMixedDashArgumentsTypeFirst() {
-            p.addPos("length", "", Argument.Datatype.INT);
-			p.addPos("width", "", Argument.Datatype.INT);
-			p.addPos("height", "", Argument.Datatype.INT);
-			p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.INT);
+			p.addPos("width", "", Argument.Type.INT);
+			p.addPos("height", "", Argument.Type.INT);
+			p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
 			String[] args = {"7","--type", "ellipsoid", "5","--digit", "4", "2",};
 			p.parse(args);
             a = p.getArg("length");
@@ -258,11 +258,11 @@ public class ArgumentTests {
         }
     @Test
         public void testForMixedDashArgumentsDigitFirst(){
-            p.addPos("length", "", Argument.Datatype.INT);
-			p.addPos("width", "", Argument.Datatype.INT);
-			p.addPos("height", "", Argument.Datatype.INT);
-			p.addOpt("type", "", Argument.Datatype.STRING);
-            p.addOpt("digit", "", Argument.Datatype.INT);
+            p.addPos("length", "", Argument.Type.INT);
+			p.addPos("width", "", Argument.Type.INT);
+			p.addPos("height", "", Argument.Type.INT);
+			p.addOpt("type", "", Argument.Type.STRING, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);
             String[] args = {"--digit", "4","7","5","--type", "ellipsoid", "2",};
 			p.parse(args);
             a = p.getArg("length");
