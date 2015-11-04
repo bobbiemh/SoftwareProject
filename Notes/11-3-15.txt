@@ -1,0 +1,12 @@
+Bobbie:
+	so no compilitation errors, just logic ones. 
+	8 unit tests failing, (haven't even tried acceptance)
+	optional and positional are now subclass of Argument
+	Argument is a parent class but it's not abstract like we 			talked about, mostly cause couldn't get it to work
+	different keys to keep track of opt and pos args
+	took out getnumberof___ added numberof___ finds the 
+		number of the different list
+	no need for copy
+	added false to all the addOpt in ArgumentTests.java
+	haven't changed Keywords.java yet
+	added addDefaultType and a map for it

@@ -18,25 +18,22 @@ public class ParseArgs{
     private String programName;
     private String programDescription;
     private String helpMessage;
-    private String dashType;
-    private String digit;    
     
+    private Map<Argument.Type, Object> defaultArgs;
     
     public ParseArgs() {
         map = new HashMap<String, Argument>();
         positionalKeys = new ArrayList<String>();
         optionalKeys = new ArrayList<String>();
+        allArgs = new ArrayList<String>();
             
         messageTrue = false;
         illegalArgs = false;
         argRequired = true;
         
-        dashType = "box";
-        digit = "4";
-        
         helpMessage = "usage: java ";
         
-        allArgs = new ArrayList<String>();
+        defaultArgs = new HashMap<Argument.Type, Object>();
     }
     
     public void addPos(String name, String description, Argument.Type type)
@@ -56,6 +53,20 @@ public class ParseArgs{
         temp.setRequired(defaultOption);
         map.put(name, temp);
     }
+    
+    public void addDefaultTypes(String str, int i, boolean b, float f){
+        defaultArgs.put(Argument.Type.STRING, str);
+        defaultArgs.put(Argument.Type.INT, i);
+        defaultArgs.put(Argument.Type.BOOLEAN, b);
+        defaultArgs.put(Argument.Type.FLOAT, f);
+    }
+    /*
+    public void setDefaultShortHand(String key, String shorthand){
+        look up the key from the map and set shorthand
+        Argument temp = getArg(key);
+        temp.setShortHand();
+        map.put(key,temp);
+    }*/
     
     public void parse(String[] args)
     {
@@ -104,59 +115,39 @@ public class ParseArgs{
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
         }
-        if(optionalKeys.contains("type"))
-        {
-            if(allArgs.contains("--type")) {
-                if(argRequired){
-                    int i = allArgs.indexOf("--type");
-                    Argument temp = getArg("type");
-                    temp.setValue("box");
-                    map.put("type", temp);
-                    allArgs.remove(i+1);                    
-                    allArgs.remove(i);
+        for(int i = 0; i < numberOfOptionalKeys(); i++){
+            String key = optionalKeys.get(i);
+            String dashArg = "--" + key;
+            if(allArgs.contains(dashArg)){
+                Argument temp = getArg(key);
+                int index = allArgs.indexOf(dashArg);
+                Argument.Type type = temp.getType(); 
+                
+                if(type == Argument.Type.INT){
+                    temp.setValue(convertToInt(allArgs.get(index), key));
                 }
-                else if(!argRequired){
-                    int i = allArgs.indexOf("--type");
-                    allArgs.remove(i+1);
-                    allArgs.remove("--type");
+                else if(type == Argument.Type.BOOLEAN){
+                    temp.setValue(convertToBoolean(allArgs.get(index), key));
                 }
+                else if(type == Argument.Type.FLOAT){
+                    temp.setValue(convertToFloat(allArgs.get(index), key));
+                }
+                else{
+                    temp.setValue(convertToString(allArgs.get(index)));
+                }
+                
+                allArgs.remove(index - 1);
+                allArgs.remove(index);
+                map.put(key, temp);
             }
             else{
-                if(argRequired)
-                {
-                    Argument temp = getArg("type");
-                    temp.setValue("box");
-                    map.put("type", temp);
-                }
+                Argument temp = getArg(key);
+                Argument.Type argType = temp.getType();
+                Object defaultType = defaultArgs.get(argType);
+                temp.setValue(defaultType);
+                map.put(key, temp);
             }
         }
-        if(optionalKeys.contains("digit"))
-        {
-            if(allArgs.contains("--digit")) {
-                if(argRequired){
-                    int i = allArgs.indexOf("--digit");
-                    Argument temp = getArg("digit");
-                    int num = Integer.parseInt(allArgs.get(i+1));
-                    temp.setValue(num);
-                    map.put("digit", temp);
-                    allArgs.remove(i+1);
-                    allArgs.remove(i);
-                }
-                else if(!argRequired){
-                    int i = allArgs.indexOf("--digit");
-                    allArgs.remove(i+1);
-                    allArgs.remove(i);
-                }
-            }
-            else
-                if(argRequired){
-                    Argument temp = getArg("digit");
-                    int num = Integer.parseInt("4");
-                    temp.setValue(num);
-                    map.put("digit", temp);
-                }
-        }
-        allArgs.removeAll(Collections.singleton(null));
     }
     
     public String getUsage() {

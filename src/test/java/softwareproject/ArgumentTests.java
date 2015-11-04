@@ -166,7 +166,10 @@ public class ArgumentTests {
             p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
             
+            p.addDefaultTypes("box", 4, false, 4.5f);
+            
             String[] args = {"7", "5", "2"};
+            
             p.parse(args);
             a = p.getArg("type");
             assertEquals(a.getValue(), "box");
@@ -180,7 +183,9 @@ public class ArgumentTests {
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
 			p.addOpt("type", "", Argument.Type.STRING, false);
-            p.addOpt("digit", "", Argument.Type.INT, false);
+            p.addOpt("digit", "", Argument.Type.INT, false);            
+            
+            p.addDefaultTypes("box", 4, false, 4.5f);
             
             String[] args = {"7", "5", "2", "--type", "ellipsoid"};
             
@@ -197,6 +202,8 @@ public class ArgumentTests {
 			p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
             
+            p.addDefaultTypes("box", 4, false, 4.5f);
+            
             String[] args = {"7", "5", "2", "--digit", "3"};
             
             p.parse(args);
@@ -211,7 +218,11 @@ public class ArgumentTests {
 			p.addPos("height", "", Argument.Type.STRING);
 			p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
+            
+            p.addDefaultTypes("box", 4, false, 4.5f);
+            
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
+            
 			p.parse(args);	
             a = p.getArg("type");
             assertEquals(a.getValue(), "ellipsoid");
@@ -226,6 +237,8 @@ public class ArgumentTests {
             p.addPos("height", "", Argument.Type.INT);
             p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
+            
+            p.addDefaultTypes("box", 4, false, 4.5f);
             
             String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "7"};
             
@@ -243,7 +256,11 @@ public class ArgumentTests {
 			p.addPos("height", "", Argument.Type.INT);
 			p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
+            
+            p.addDefaultTypes("box", 4, false, 4.5f);
+            
 			String[] args = {"7","--type", "ellipsoid", "5","--digit", "4", "2",};
+            
 			p.parse(args);
             a = p.getArg("length");
             assertEquals(a.getValue(), 7);
@@ -263,7 +280,11 @@ public class ArgumentTests {
 			p.addPos("height", "", Argument.Type.INT);
 			p.addOpt("type", "", Argument.Type.STRING, false);
             p.addOpt("digit", "", Argument.Type.INT, false);
+            
+            p.addDefaultTypes("box", 4, false, 4.5f);
+            
             String[] args = {"--digit", "4","7","5","--type", "ellipsoid", "2",};
+            
 			p.parse(args);
             a = p.getArg("length");
             assertEquals(a.getValue(), 7);
