@@ -13,7 +13,6 @@ public class ParseArgs{
     
     private boolean messageTrue;
     private boolean illegalArgs;
-    private boolean argRequired;
     
     private String programName;
     private String programDescription;
@@ -29,7 +28,6 @@ public class ParseArgs{
             
         messageTrue = false;
         illegalArgs = false;
-        argRequired = true;
         
         helpMessage = "usage: java ";
         
@@ -45,12 +43,12 @@ public class ParseArgs{
         map.put(name, temp);
     }
                            //key        shorthand -t        datatype           required?
-    public void addOpt(String name, String shortHand, Argument.Type type, boolean defaultOption){
+    public void addOpt(String name, String shortHand, Argument.Type type, boolean required){
         Optional temp = new Optional();
         optionalKeys.add(name);
         temp.setShortHand(shortHand);
         temp.setType(type);
-        temp.setRequired(defaultOption);
+        temp.setRequired(required);
         map.put(name, temp);
     }
     
@@ -111,7 +109,7 @@ public class ParseArgs{
     }
     
     private void checkDashes(){
-        if(allArgs.contains("--help")) {
+        if(allArgs.contains("--help") || allArgs.contains("-h")) {
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
         }
@@ -166,7 +164,7 @@ public class ParseArgs{
         for(i = 0; i < positionalKeys.size(); i++){
             
             String key = positionalKeys.get(i);           
-            Argument temp = new Argument();
+            Argument temp = new Positional();
             temp = getArg(key);
             Argument.Type type = temp.getType();
             

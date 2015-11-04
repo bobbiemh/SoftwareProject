@@ -24,16 +24,8 @@ public class Positional extends Argument {
     }
     public String getDescription(){
         return description;
-    }   
-    //public void setShortHand(String shorthand);
-    public String getShortHand()
-    {
-        return "";
-    }
-    public void setRequired(boolean required){
-        this.required = true;
-    }
+    }  
     public boolean getRequired(){
-        return required;
+        return true;
     }
 }
