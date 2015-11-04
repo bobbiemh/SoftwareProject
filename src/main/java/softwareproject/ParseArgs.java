@@ -23,38 +23,37 @@ public class ParseArgs{
     
     
     public ParseArgs() {
-            map = new HashMap<String, Argument>();
-            keys = new ArrayList<String>();
+        map = new HashMap<String, Argument>();
+        keys = new ArrayList<String>();
             
-            messageTrue = false;
-            illegalArgs = false;
-            argRequired = true;
-            
-            dashType = "box";
-            digit = "4";
-            
-            helpMessage = "usage: java ";
-            
-            args = new ArrayList<String>();
-            copy = new ArrayList<String>();
+        messageTrue = false;
+        illegalArgs = false;
+        argRequired = true;
+        
+        dashType = "box";
+        digit = "4";
+        
+        helpMessage = "usage: java ";
+        
+        args = new ArrayList<String>();
+        copy = new ArrayList<String>();
     }
     
-    public void addArgs(String userInput, String Description, Argument.Datatype datatype)
+    public void addPos(String name, String description, Argument.Type type)
     {
-        Argument temp = new Argument();
-        keys.add(userInput);
-        temp.setDescription(Description);
-        temp.setDataType(datatype);
-        map.put(userInput, temp);
+        Argument temp = new Positional();
+        keys.add(name);
+        temp.setDescription(description);
+        temp.setType(type);
+        map.put(name, temp);
     }
     
-    public void addArgs(String userInput, String Description, Argument.Datatype datatype, boolean required){
-        Argument temp = new Argument();
-        keys.add(userInput);
-        temp.setDescription(Description);
-        temp.setDataType(datatype);
-        map.put(userInput, temp);
-        argRequired = required;
+    public void addOpt(String name, String shortHand, String defaultOption, Argument.Type type){
+        Argument temp = new Optional();
+        keys.add(name);
+        temp.setShort(shortHand);
+        temp.setType(type);
+        map.put(name, temp);
     }
     
     public void parse(String[] args)
@@ -69,12 +68,12 @@ public class ParseArgs{
             if(getNumberOfArgs() < needToSet() || getNumberOfArgs() > needToSet())
                 illegalArgs = true;
             if(getNumberOfArgs() == 0 && illegalArgs){
-                    for(int i = 0; i < needToSet(); i++)
-                    {
-                        exceptionMessage = exceptionMessage + " " + getCopy(i);
-                    }
-                    throw new IllegalArgumentException(exceptionMessage);
+                for(int i = 0; i < needToSet(); i++)
+                {
+                    exceptionMessage = exceptionMessage + " " + getCopy(i);
                 }
+                throw new IllegalArgumentException(exceptionMessage);
+            }
             else if(getNumberOfArgs() < needToSet() && illegalArgs)
             {                    
                 for(int i = 0; i <= getNumberOfArgs(); i++)
@@ -187,7 +186,7 @@ public class ParseArgs{
             String key = copy.get(i);           
             Argument temp = new Argument();
             temp = getArg(key);
-            Argument.Datatype datatype = temp.getDataType();
+            Argument.Type type = temp.getType();
             
             String exceptionMessage = "usage: java " + programName;
             for(int a = 0; a < needToSet(); a++) {
@@ -196,13 +195,13 @@ public class ParseArgs{
             exceptionMessage = exceptionMessage + "\n" + programName + ".java: error: argument " + getCopy(i) + ": invalid ";
             
             
-            if(datatype == Argument.Datatype.INT){
+            if(type == Argument.Type.INT){
                 temp.setValue(convertToInt(args.get(i), getCopy(i)));
             }
-            else if(datatype == Argument.Datatype.BOOLEAN){
+            else if(type == Argument.Type.BOOLEAN){
                 temp.setValue(convertToBoolean(args.get(i), getCopy(i)));
             }
-            else if(datatype == Argument.Datatype.FLOAT){
+            else if(type == Argument.Type.FLOAT){
                 temp.setValue(convertToFloat(args.get(i), getCopy(i)));
             }
             else{
@@ -314,24 +313,27 @@ public class ParseArgs{
         return keys.size();
     }
     public void programInfo(String name, String description){
-            String key = "";
-            Argument temp = new Argument();
-            String[] keyDescription = new String[getNumberOfKeys()];
-            for(int i = 0; i < getNumberOfKeys(); i++)
-            {
-                key = key + " " + getKey(i);
-                temp = getArg(getKey(i));
+        String key = "";
+        Argument temp = new Positional();
+        String[] keyDescription = new String[getNumberOfKeys()];
+        for(int i = 0; i < getNumberOfKeys(); i++)
+        {
+            key = key + " " + getKey(i);
+            temp = getArg(getKey(i));
+            try{
                 keyDescription[i] = temp.getDescription();
-            }
-            this.programName = name;
-            this.programDescription = description;          
-            helpMessage = helpMessage + name + key + "\n" + description;
-            
-            helpMessage = helpMessage + "\nPositional arguments:";
-            
-            for(int i = 0; i < getNumberOfKeys(); i++)
-            {
-                helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
-            }
+            } 
+            catch (UnsupportedOperationException ex) {}
+        }
+        this.programName = name;
+        this.programDescription = description;          
+        helpMessage = helpMessage + name + key + "\n" + description;
+        
+        helpMessage = helpMessage + "\nPositional arguments:";
+        
+        for(int i = 0; i < getNumberOfKeys(); i++)
+        {
+            helpMessage = helpMessage + "\n" + getKey(i) + " " + keyDescription[i];
+        }
     }
 }
