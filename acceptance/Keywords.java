@@ -13,9 +13,9 @@ public class Keywords {
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "", Argument.Datatype.STRING);
-		p.addArgs("width", "", Argument.Datatype.STRING);
-		p.addArgs("height", "", Argument.Datatype.STRING);
+		p.addPos("length", "", Argument.Type.STRING);
+		p.addPos("width", "", Argument.Type.STRING);
+		p.addPos("height", "", Argument.Type.STRING);
 		lengthOfArgs = args.length;
         try{
             p.parse(args);
@@ -24,11 +24,13 @@ public class Keywords {
     
     public void StartVolumeCalculatorDashArguments(String[] args){
         p = new ParseArgs();
-        p.addArgs("length", "", Argument.Datatype.STRING);
-        p.addArgs("width", "", Argument.Datatype.STRING);
-        p.addArgs("height", "", Argument.Datatype.STRING);        
-        p.addArgs("type", "", Argument.Datatype.STRING);
-        p.addArgs("digit", "", Argument.Datatype.STRING);
+        p.addPos("length", "", Argument.Type.STRING);
+        p.addPos("width", "", Argument.Type.STRING);
+        p.addPos("height", "", Argument.Type.STRING);        
+        p.addOpt("type", "", Argument.Type.STRING, false);
+        p.addOpt("digit", "", Argument.Type.INT, false);
+        
+        p.addDefaultTypes("box", 4, false, 4.5f);
         //try{
             p.parse(args);
         //}catch(IllegalArgumentException e){}
@@ -36,9 +38,9 @@ public class Keywords {
 	
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("length", "the length of the box", Argument.Datatype.STRING);
-		p.addArgs("width", "the width of the box", Argument.Datatype.STRING);
-	    p.addArgs("height","the height of the box", Argument.Datatype.STRING);		
+		p.addPos("length", "the length of the box", Argument.Type.STRING);
+		p.addPos("width", "the width of the box", Argument.Type.STRING);
+	    p.addPos("height","the height of the box", Argument.Type.STRING);		
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         try{
             p.parse(args);
@@ -47,10 +49,10 @@ public class Keywords {
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
 		p = new ParseArgs();
-		p.addArgs("pet", "", Argument.Datatype.STRING);
-		p.addArgs("number", "", Argument.Datatype.STRING);
-		p.addArgs("rainy", "", Argument.Datatype.STRING);
-		p.addArgs("bathrooms", "", Argument.Datatype.STRING);
+		p.addPos("pet", "", Argument.Type.STRING);
+		p.addPos("number", "", Argument.Type.STRING);
+		p.addPos("rainy", "", Argument.Type.STRING);
+		p.addPos("bathrooms", "", Argument.Type.STRING);
 		p.parse(args);
 	}
 	
@@ -62,7 +64,10 @@ public class Keywords {
     }
     
     public String getDigits(){
-        return p.getDigit();
+        Argument temp = new Argument();
+        temp = p.getArg("digit");
+        Object o = temp.getValue();
+        return o.toString();
     }
     
 	public String getPet(){
@@ -155,6 +160,6 @@ public class Keywords {
 			volume = length * width * height;
 			return Integer.toString(volume);
 		}
-		return Integer.toString(p.getNumberOfKeys());
+		return Integer.toString(p.numberOfTotalKeys());
 	}
 }

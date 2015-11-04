@@ -231,25 +231,6 @@ public class ArgumentTests {
         }
         
     @Test
-        public void IgnoreDashArguments() {
-            p.addPos("length", "", Argument.Type.INT);
-            p.addPos("width", "", Argument.Type.INT);
-            p.addPos("height", "", Argument.Type.INT);
-            p.addOpt("type", "", Argument.Type.STRING, false);
-            p.addOpt("digit", "", Argument.Type.INT, false);
-            
-            p.addDefaultTypes("box", 4, false, 4.5f);
-            
-            String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "7"};
-            
-            p.parse(args);
-            
-            a = p.getArg("type");
-            assertEquals(a.getValue(), null);
-            a = p.getArg("digit");
-            assertEquals(a.getValue(), null);
-        }
-    @Test
         public void testForMixedDashArgumentsTypeFirst() {
             p.addPos("length", "", Argument.Type.INT);
 			p.addPos("width", "", Argument.Type.INT);
@@ -297,4 +278,6 @@ public class ArgumentTests {
             a = p.getArg("digit");
             assertEquals(a.getValue(), 4);
         }
+        
+    
 }

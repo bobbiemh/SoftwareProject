@@ -124,19 +124,19 @@ public class ParseArgs{
                 Argument.Type type = temp.getType(); 
                 
                 if(type == Argument.Type.INT){
-                    temp.setValue(convertToInt(allArgs.get(index), key));
+                    temp.setValue(convertToInt(allArgs.get(index + 1), key));
                 }
                 else if(type == Argument.Type.BOOLEAN){
-                    temp.setValue(convertToBoolean(allArgs.get(index), key));
+                    temp.setValue(convertToBoolean(allArgs.get(index + 1), key));
                 }
                 else if(type == Argument.Type.FLOAT){
-                    temp.setValue(convertToFloat(allArgs.get(index), key));
+                    temp.setValue(convertToFloat(allArgs.get(index + 1), key));
                 }
                 else{
-                    temp.setValue(convertToString(allArgs.get(index)));
+                    temp.setValue(convertToString(allArgs.get(index + 1)));
                 }
                 
-                allArgs.remove(index - 1);
+                allArgs.remove(index + 1);
                 allArgs.remove(index);
                 map.put(key, temp);
             }
