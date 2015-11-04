@@ -3,10 +3,11 @@ Library				Keywords
 
 
 
-| *Variable*  | *Value*                                                                                                  																								 |
+| *Variable*  | *Value*                                                                                                  																								                        |
 | ${expected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43 |
 | ${helpmessage} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\nPositional arguments:\nlength the length of the box\nwidth the width of the box\nheight the height of the box |
 | ${isexpected} | usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something |
+| ${floatcheck} | usage: java VolumeCalculator length width height\nCalculate the volume of a box.\npositional arguments:\n   length the length of the box(float)\n   width the width of the box(float)\n   height the height of the box(float) |
 
 
 | *Test Case*                            | *Action*                              | *Argument*         | *Argument*   | *Argument* | *Argument* | *Argument   | *Argument*  | *Argument*  |
@@ -81,3 +82,6 @@ Library				Keywords
 |                                        | Should Be Equal                       | ellipsoid          | ${type}      |            |            |            |            |            |
 |                                        | ${digits}=                            | Get Digits         |              |            |            |            |            |            |
 |                                        | Should Be Equal                       | 1                  | ${digits}    |            |            |            |            |            |
+| Test Help Flag                         | Start Program With Float Arguments    | 7                  | --help       | 3          | 2          |            |            |            |
+|                                        | ${output}=                            | Get Program Output |              |            |            |            |            |            |
+|                                        | Should Be Equal                       | ${floatcheck}      | ${output}    |            |            |            |            |            |

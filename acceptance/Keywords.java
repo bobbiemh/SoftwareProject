@@ -35,7 +35,17 @@ public class Keywords {
             p.parse(args);
         //}catch(IllegalArgumentException e){}
     }
-	
+	public void StartProgramWithFloatArguments(String[] args){
+        p = new ParseArgs();
+        p.addPos("length", "the length of the box(float)", Argument.Type.STRING);
+        p.addPos("width", "the width of the box(float)", Argument.Type.STRING);
+	    p.addPos("height","the height of the box(float)", Argument.Type.STRING);		
+		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
+        try{
+            p.parse(args);
+        }catch(IllegalArgumentException e){}
+    }
+    
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
 		p.addPos("length", "the length of the box", Argument.Type.STRING);
