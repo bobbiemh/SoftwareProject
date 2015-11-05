@@ -9,6 +9,7 @@ public class Argument {
     protected Type type;
     protected String shorthand;
     protected boolean required;
+    protected Object defaultValue;
     public enum Type {STRING, INT, BOOLEAN, FLOAT};
     
     public Argument() {
@@ -17,6 +18,7 @@ public class Argument {
         type = Type.STRING;
         shorthand = "";
         required = true;
+        defaultValue = "";
     }
     public <T> void setValue(T value){
         this.value = value;
@@ -53,5 +55,13 @@ public class Argument {
     
     public boolean getRequired() {
         return required;
+    }
+        
+    public void setDefault(Object defaultValue){
+        this.defaultValue = defaultValue;
+    }
+    
+    public Object getDefault(){
+        return defaultValue;
     }
 }

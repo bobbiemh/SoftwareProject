@@ -43,23 +43,17 @@ public class ParseArgs{
         map.put(name, temp);
     }
                            //key        shorthand -t        datatype           required?
-    public void addOpt(String name, String shortHand, Argument.Type type, boolean required){
+    public void addOpt(String name, String shortHand, Object defaultValue, Argument.Type type, boolean required){
         Optional temp = new Optional();
         optionalKeys.add(name);
         temp.setShortHand(shortHand);
         temp.setType(type);
         temp.setRequired(required);
+        temp.setDefault(defaultValue);
         map.put(name, temp);
     }
-    
-    public void addDefaultTypes(String str, int i, boolean b, float f){
-        defaultArgs.put(Argument.Type.STRING, str);
-        defaultArgs.put(Argument.Type.INT, i);
-        defaultArgs.put(Argument.Type.BOOLEAN, b);
-        defaultArgs.put(Argument.Type.FLOAT, f);
-    }
     /*
-    public void setDefaultShortHand(String key, String shorthand){
+    public void setShortHand(String key, String shorthand){
         look up the key from the map and set shorthand
         Argument temp = getArg(key);
         temp.setShortHand();
@@ -117,7 +111,8 @@ public class ParseArgs{
             String key = optionalKeys.get(i);
             String dashArg = "--" + key;
             if(allArgs.contains(dashArg)){
-                Argument temp = getArg(key);
+                Argument temp = new Optional();
+                temp = getArg(key);
                 int index = allArgs.indexOf(dashArg);
                 Argument.Type type = temp.getType(); 
                 
@@ -139,10 +134,9 @@ public class ParseArgs{
                 map.put(key, temp);
             }
             else{
-                Argument temp = getArg(key);
-                Argument.Type argType = temp.getType();
-                Object defaultType = defaultArgs.get(argType);
-                temp.setValue(defaultType);
+                Argument temp = new Optional();
+                temp = getArg(key);
+                temp.setValue(temp.getDefault());
                 map.put(key, temp);
             }
         }
@@ -267,6 +261,12 @@ public class ParseArgs{
         Argument temp = new Argument();
         temp = map.get(key);
         return temp;
+    }
+    
+    public Object getValue(String key)
+    {
+        Argument temp = getArg(key);
+        return temp.getValue();
     }
     
     public String getPositionalKey(int where)

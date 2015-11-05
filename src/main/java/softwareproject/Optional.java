@@ -40,4 +40,12 @@ public class Optional extends Argument{
     public boolean getRequired() {
         return required;
     }
+    
+    public void setDefault(Object defaultValue){
+        this.defaultValue = defaultValue;
+    }
+    
+    public Object getDefault(){
+        return defaultValue;
+    }
 }
