@@ -205,8 +205,18 @@ public class ParseArgs{
     
     private boolean convertToBoolean(String arg, String key){
         try{
-            boolean b = Boolean.parseBoolean(arg);
-            return b;
+            if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("t"))
+            {
+                return true;
+            }
+            else if (arg.equalsIgnoreCase("false") || arg.equalsIgnoreCase("f"))
+            {
+                return false;
+            }
+            else
+            {
+            throw new NumberFormatException();
+            }
         }
         catch(NumberFormatException e){
             String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid boolean value: " + arg;
