@@ -9,14 +9,23 @@ public class VolumeCalculator {
         ParseArgs p = new ParseArgs();
         
         p.programInfo("volumeCalculator", "Calculate the volume of a box.");
-        p.addPos("length", "the length of a box", "int");
-        p.addPos("width", "the width of a box", "int");
-        p.addPos("height", "the height of a box", "int");
-        p.addOpt("digit", "int", 4, false);
+        p.addPos("length", "the length of a box", Argument.Type.INT);
+        p.addPos("width", "the width of a box", Argument.Type.INT);
+        p.addPos("height", "the height of a box", Argument.Type.INT);
+        p.addOpt("digit", "-d", 4, Argument.Type.INT, false);
         
         p.parse(args);
-        int volumeOfBox = (p.getArg("length") * p.getArg("width") * p.getArg("height"));
+        Argument a = p.getArg("length");//in parse create a getValue (calls getArg, returns an object)
+        int length = a.getValue();
+        a = p.getArg("width");
+        int width = a.getValue();
+        a = p.getArg("height");
+        int height = a.getValue();
+        int volumeOfBox = (length * width * height);
+        //later int volumeOfBox = (p.getValue(key) * p.getValue(key) * p.getValue(key));
         
-        system.out.println(volumeOfBox + "");
+        
+        
+        System.out.println(volumeOfBox + "");
     }
 }
