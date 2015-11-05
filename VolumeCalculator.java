@@ -15,14 +15,7 @@ public class VolumeCalculator {
         p.addOpt("digit", "-d", 4, Argument.Type.INT, false);
         
         p.parse(args);
-        Argument a = p.getArg("length");//in parse create a getValue (calls getArg, returns an object)
-        int length = a.getValue();
-        a = p.getArg("width");
-        int width = a.getValue();
-        a = p.getArg("height");
-        int height = a.getValue();
-        int volumeOfBox = (length * width * height);
-        //later int volumeOfBox = (p.getValue(key) * p.getValue(key) * p.getValue(key));
+        int volumeOfBox = ((int)p.getValue("length") * (int)p.getValue("width") * (int)p.getValue("height"));
         
         
         
