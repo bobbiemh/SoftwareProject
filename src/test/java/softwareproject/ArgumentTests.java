@@ -157,6 +157,30 @@ public class ArgumentTests {
         }
         
     @Test
+        public void incorrectArgTypeBoolean(){
+            expectedEx.expect(NumberFormatException.class);
+                expectedEx.expectMessage("usage: java BooleanTool todayIsFriday\nBooleanTool.java: error: argument todayIsFriday: invalid boolean value: something");
+            p.programInfo("BooleanTool", "");
+            p.addPos("todayIsFriday", "", Argument.Type.BOOLEAN);
+            
+            String[] args = {"something"};
+            p.parse(args);
+        }
+        
+    @Test
+        public void incorrectArgTypeFloat(){
+			expectedEx.expect(NumberFormatException.class);
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid float value: something");
+            p.programInfo("VolumeCalculator","");
+            p.addPos("length", "", Argument.Type.FLOAT);
+            p.addPos("width", "", Argument.Type.FLOAT);
+            p.addPos("height", "", Argument.Type.FLOAT);
+                       
+            String[] args = {"0.0", "something", "0.0"};
+            p.parse(args);
+        }
+        
+    @Test
         public void DefaultDashArguments(){
             p.addPos("length", "", Argument.Type.INT);
             p.addPos("width", "", Argument.Type.INT);
