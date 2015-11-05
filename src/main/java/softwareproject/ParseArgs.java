@@ -42,23 +42,21 @@ public class ParseArgs{
         temp.setType(type);
         map.put(name, temp);
     }
-                           //key        shorthand -t        datatype           required?
-    public void addOpt(String name, String shortHand, Object defaultValue, Argument.Type type, boolean required){
+    
+    public void addOpt(String name, Object defaultValue, Argument.Type type, boolean required){
         Optional temp = new Optional();
         optionalKeys.add(name);
-        temp.setShortHand(shortHand);
         temp.setType(type);
         temp.setRequired(required);
         temp.setDefault(defaultValue);
         map.put(name, temp);
     }
-    /*
+    
     public void setShortHand(String key, String shorthand){
-        look up the key from the map and set shorthand
         Argument temp = getArg(key);
-        temp.setShortHand();
+        temp.setShortHand(shorthand);
         map.put(key,temp);
-    }*/
+    }
     
     public void parse(String[] args)
     {
@@ -284,23 +282,6 @@ public class ParseArgs{
     public void programInfo(String name, String description){
         String key = "";
         Argument temp = new Positional();
-        /*String[] keyDescription = new String[getNumberOfKeys()];
-        for(int i = 0; i < getNumberOfKeys(); i++)
-        {
-            key = key + " " + getKey(i);
-            temp = getArg(getKey(i));
-            try{
-                keyDescription[i] = temp.getDescription();
-            } 
-            catch (UnsupportedOperationException ex) {}
-        }
-        //////////////////////////////
-        for(String k : positionalKeys)
-        {
-            key = key + " " + k;
-            temp = getArg(k);
-            
-        }*///////////////////////////
         this.programName = name;
         this.programDescription = description;
         for(String k : positionalKeys)

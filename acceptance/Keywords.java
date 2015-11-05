@@ -27,8 +27,8 @@ public class Keywords {
         p.addPos("length", "", Argument.Type.STRING);
         p.addPos("width", "", Argument.Type.STRING);
         p.addPos("height", "", Argument.Type.STRING);        
-        p.addOpt("type", "", "box", Argument.Type.STRING, false);
-        p.addOpt("digit", "", 4, Argument.Type.INT, false);
+        p.addOpt("type", "box", Argument.Type.STRING, false);
+        p.addOpt("digit", 4, Argument.Type.INT, false);
         //try{
             p.parse(args);
         //}catch(IllegalArgumentException e){}
