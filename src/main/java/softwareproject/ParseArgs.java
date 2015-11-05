@@ -261,7 +261,7 @@ public class ParseArgs{
         return temp;
     }
     
-    public Object getValue(String key)
+    public <T> T getValue(String key)
     {
         Argument temp = getArg(key);
         return temp.getValue();
