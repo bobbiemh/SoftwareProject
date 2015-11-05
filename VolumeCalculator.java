@@ -1,6 +1,6 @@
 import softwareproject.*;
-/*import java.util.*;
-import java.lang.*;*/
+import java.util.*;
+import java.lang.*;
 
 public class VolumeCalculator {
     
@@ -16,9 +16,9 @@ public class VolumeCalculator {
         
         p.parse(args);
         
-        int length = (int)p.getValue("length");
-        int width = (int)p.getValue("width");
-        int height = (int)p.getValue("height");
+        int length = p.getValue("length");
+        int width = p.getValue("width");
+        int height = p.getValue("height");
         
         int volumeOfBox = length * width * height;
         
