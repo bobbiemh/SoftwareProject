@@ -49,11 +49,16 @@ public class ParseArgs{
         temp.setType(type);
         temp.setRequired(required);
         temp.setDefault(defaultValue);
-        temp.setShortHand("-" + name.charAt(0));
+        if(("-" + name.charAt(0)) != "-h") 
+            temp.setShortHand("-" + name.charAt(0));
+        else
+            temp.setShortHand("-");
         map.put(name, temp);
     }
     
     public void setShortHand(String key, String shorthand){
+        if(shorthand == "-h")
+            throw new IllegalArgumentException("-h is used for only help");
         Argument temp = getArg(key);
         temp.setShortHand(shorthand);
         map.put(key,temp);

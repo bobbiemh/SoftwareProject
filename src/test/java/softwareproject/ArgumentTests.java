@@ -327,4 +327,25 @@ public class ArgumentTests {
             a = p.getArg("gorilla");
             assertEquals(a.getShortHand(), "-g");
         }
+    @Test
+        public void dashDashHelpAndDashH() {
+            expectedEx.expect(IllegalArgumentException.class);
+				expectedEx.expectMessage("usage: java volumeCalculator\n"+
+	                                 "Calculate the volume of a box\n" + "Positional arguments:");
+            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.programInfo("volumeCalculator", "Calculate the volume of a box");
+            
+            String [] args = {"-h"};
+            
+            p.parse(args);
+        }
+    @Test
+        public void noOtherArgCanBeNamedH() {
+            expectedEx.expect(IllegalArgumentException.class);
+				expectedEx.expectMessage("-h is used for only help");
+            p.addOpt("happy", "feeling", Argument.Type.STRING, false);
+            String[] args = {"-h"};
+            p.setShortHand("happy", "-h");
+            p.parse(args);
+        }
 }
