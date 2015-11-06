@@ -49,6 +49,7 @@ public class ParseArgs{
         temp.setType(type);
         temp.setRequired(required);
         temp.setDefault(defaultValue);
+        temp.setShortHand("-" + name.charAt(0));
         map.put(name, temp);
     }
     
@@ -93,7 +94,7 @@ public class ParseArgs{
                 {
                     exceptionMessage = exceptionMessage + " " + getPositionalKey(i);
                 }
-                exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp;
+                exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp + " " + allArgs.size() + " " + positionalKeys.size();
                 throw new IllegalArgumentException(exceptionMessage);
             }
             putToMap();
@@ -106,11 +107,13 @@ public class ParseArgs{
             throw new IllegalArgumentException(helpMessage);
         }
         for(int i = 0; i < numberOfOptionalKeys(); i++){
+            
             String key = optionalKeys.get(i);
             String dashArg = "--" + key;
+            Argument temp = new Optional();
+            temp = getArg(key);
+            
             if(allArgs.contains(dashArg)){
-                Argument temp = new Optional();
-                temp = getArg(key);
                 int index = allArgs.indexOf(dashArg);
                 Argument.Type type = temp.getType(); 
                 
@@ -131,9 +134,27 @@ public class ParseArgs{
                 allArgs.remove(index);
                 map.put(key, temp);
             }
+            else if(allArgs.contains(temp.getShortHand()))
+            {
+                Argument.Type type = temp.getType();
+                int index = allArgs.indexOf(temp.getShortHand());
+                if(type == Argument.Type.INT){
+                    temp.setValue(convertToInt(allArgs.get(index + 1), key));
+                }
+                else if(type == Argument.Type.BOOLEAN){
+                    temp.setValue(convertToBoolean(allArgs.get(index + 1), key));
+                }
+                else if(type == Argument.Type.FLOAT){
+                    temp.setValue(convertToFloat(allArgs.get(index + 1), key));
+                }
+                else{
+                    temp.setValue(convertToString(allArgs.get(index + 1)));
+                }                
+                allArgs.remove(index + 1);
+                allArgs.remove(index);
+                map.put(key, temp);
+            }
             else{
-                Argument temp = new Optional();
-                temp = getArg(key);
                 temp.setValue(temp.getDefault());
                 map.put(key, temp);
             }
@@ -204,7 +225,6 @@ public class ParseArgs{
     }
     
     private boolean convertToBoolean(String arg, String key){
-        try{
             if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("t"))
             {
                 return true;
@@ -214,14 +234,10 @@ public class ParseArgs{
                 return false;
             }
             else
-            {
-            throw new NumberFormatException();
+            {                
+                String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid boolean value: " + arg;
+                throw new NumberFormatException(exceptionMessage);
             }
-        }
-        catch(NumberFormatException e){
-            String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid boolean value: " + arg;
-            throw new NumberFormatException(exceptionMessage);
-        }
     }
     
     private float convertToFloat(String arg, String key){

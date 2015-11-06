@@ -289,6 +289,42 @@ public class ArgumentTests {
             o = p.getValue("digit");
             assertEquals(o, 4);
         }
-        
-    
+    @Test  
+        public void addShortHand(){
+            p.addOpt("type", "box", Argument.Type.STRING, false);
+            p.addOpt("float", 4.5f, Argument.Type.FLOAT, false);
+            p.addOpt("bool", false, Argument.Type.BOOLEAN, false);
+            
+            String[] args = {"-t", "ellipsoid", "-f", "5.5f", "-b", "true"};
+            
+            p.setShortHand("type", "-t");
+            p.setShortHand("float", "-f");
+            p.setShortHand("bool", "-b");
+            
+            p.parse(args);
+            
+            Argument a = p.getArg("type");
+            assertEquals(a.getShortHand(), "-t");
+            a = p.getArg("float");
+            assertEquals(a.getShortHand(), "-f");
+            a = p.getArg("bool");
+            assertEquals(a.getShortHand(), "-b");
+        }
+    @Test
+        public void defaultShortHand(){
+            p.addOpt("type", "box", Argument.Type.STRING, false);
+            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("gorilla", false, Argument.Type.BOOLEAN, false);
+            
+            String[] args = {"-t", "ellipsoid", "-d", "1", "-g", "true"};
+            
+            p.parse(args);
+            
+            Argument a = p.getArg("type");
+            assertEquals(a.getShortHand(), "-t");
+            a = p.getArg("digit");
+            assertEquals(a.getShortHand(), "-d");
+            a = p.getArg("gorilla");
+            assertEquals(a.getShortHand(), "-g");
+        }
 }

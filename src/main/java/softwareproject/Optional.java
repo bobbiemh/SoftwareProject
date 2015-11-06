@@ -3,6 +3,7 @@ package softwareproject;
 public class Optional extends Argument{
     
     public Optional(){
+        
     }
     public <T> void setValue(T value){
         this.value = value;
