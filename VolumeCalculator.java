@@ -12,7 +12,10 @@ public class VolumeCalculator {
         p.addPos("length", "the length of a box", Argument.Type.INT);
         p.addPos("width", "the width of a box", Argument.Type.INT);
         p.addPos("height", "the height of a box", Argument.Type.INT);
-        p.addOpt("digit", 4, Argument.Type.INT, false);
+        p.addPos("boolTest", "", Argument.Type.BOOLEAN);
+        p.addOpt("isLoud", false, Argument.Type.BOOLEAN, false);
+        p.setShortHand("isLoud", "l");
+        
         
         p.parse(args);
         
@@ -22,8 +25,12 @@ public class VolumeCalculator {
         
         int volumeOfBox = length * width * height;
         
-        
+        if(p.getValue("isLoud") == true)
+        {
+            System.out.println("Wrong kind of volume, man\n");
+        }
         
         System.out.println(volumeOfBox + "");
+        System.out.println("boolTest = " + p.getValue("boolTest"));
     }
 }
