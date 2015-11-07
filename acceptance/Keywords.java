@@ -29,9 +29,11 @@ public class Keywords {
         p.addPos("height", "", Argument.Type.STRING);        
         p.addOpt("type", "box", Argument.Type.STRING, false);
         p.addOpt("digit", 4, Argument.Type.INT, false);
-        //try{
-            p.parse(args);
-        //}catch(IllegalArgumentException e){}
+        
+        p.setShortHand("type", "-t");
+        p.setShortHand("digit", "-d");
+        
+        p.parse(args);
     }
 	public void StartProgramWithFloatArguments(String[] args){
         p = new ParseArgs();

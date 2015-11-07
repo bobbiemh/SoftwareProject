@@ -126,7 +126,7 @@ public class ParseArgs{
                     temp.setValue(convertToInt(allArgs.get(index + 1), key));
                 }
                 else if(type == Argument.Type.BOOLEAN){
-                    temp.setValue(convertToBoolean(allArgs.get(index + 1), key));
+                    temp.setValue(true);
                 }
                 else if(type == Argument.Type.FLOAT){
                     temp.setValue(convertToFloat(allArgs.get(index + 1), key));
@@ -135,7 +135,8 @@ public class ParseArgs{
                     temp.setValue(convertToString(allArgs.get(index + 1)));
                 }
                 
-                allArgs.remove(index + 1);
+                if(type != Argument.Type.BOOLEAN)
+                    allArgs.remove(index + 1);
                 allArgs.remove(index);
                 map.put(key, temp);
             }
@@ -147,21 +148,49 @@ public class ParseArgs{
                     temp.setValue(convertToInt(allArgs.get(index + 1), key));
                 }
                 else if(type == Argument.Type.BOOLEAN){
-                    temp.setValue(convertToBoolean(allArgs.get(index + 1), key));
+                    temp.setValue(true);
                 }
                 else if(type == Argument.Type.FLOAT){
                     temp.setValue(convertToFloat(allArgs.get(index + 1), key));
                 }
                 else{
                     temp.setValue(convertToString(allArgs.get(index + 1)));
-                }                
-                allArgs.remove(index + 1);
+                }  
+                if(type != Argument.Type.BOOLEAN)
+                    allArgs.remove(index + 1);
                 allArgs.remove(index);
                 map.put(key, temp);
             }
             else{
-                temp.setValue(temp.getDefault());
+                Argument.Type type = temp.getType();
+                if(type == Argument.Type.BOOLEAN)
+                    temp.setValue(false);
+                else
+                    temp.setValue(temp.getDefault());
                 map.put(key, temp);
+            }
+        }
+        String doesNotExist = "";
+        int count = 0;
+        for(int i = 0; i < allArgs.size(); i ++)
+        {
+            if(allArgs.get(i).startsWith("--")){
+                doesNotExist = doesNotExist + " " + allArgs.get(i);
+                count++;
+            }
+        }
+        if(count != 0)
+        {
+            String message = "\nusage: java " + programName;
+            if(count == 1)
+            {
+                message = message + "\nThe following argument was not specified " + doesNotExist;
+                throw new IllegalArgumentException(message);
+            }
+            else
+            {
+                message = message + "\nThe following arguments were not specified " + doesNotExist;
+                throw new IllegalArgumentException(message);
             }
         }
     }
