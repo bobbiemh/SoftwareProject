@@ -5,14 +5,15 @@ public class Optional extends Argument{
     public Optional(){
         
     }
-    public <T> void setValue(T value){
+    public void setValue(Object value){
         this.value = value;
     }
-    public <T> T getValue(){
-        if(type == Argument.Type.INT) return (T)(Integer)value;
+    public Object getValue(){
+        /*if(type == Argument.Type.INT) return (T)(Integer)value;
         else if(type == Argument.Type.BOOLEAN) return (T)(Boolean)value;
         else if(type == Argument.Type.FLOAT) return (T)(Float)value;
-        else return (T)(String)value;
+        else return (T)(String)value;*/
+        return value;
     }
     public void setType(Type type){
         this.type = type;
@@ -43,10 +44,10 @@ public class Optional extends Argument{
     }
     
     public void setDefault(Object defaultValue){
-        this.defaultValue = defaultValue;
+        value = defaultValue;
     }
     
     public Object getDefault(){
-        return defaultValue;
+        return value;
     }
 }

@@ -7,6 +7,8 @@ import java.lang.*;
 
 public class ParseArgs{
     private Map<String, Argument> map;
+    private Map<String, String> shmap;
+    
     private List<String> positionalKeys;
     private List<String> optionalKeys;
     private List<String> allArgs;//make not global
@@ -22,9 +24,11 @@ public class ParseArgs{
     
     public ParseArgs() {
         map = new HashMap<String, Argument>();
+        shmap = new HashMap<String, String>();
+        
         positionalKeys = new ArrayList<String>();
         optionalKeys = new ArrayList<String>();
-        allArgs = new ArrayList<String>();
+        allArgs = new ArrayList<String>();//make not in constructor
             
         messageTrue = false;
         illegalArgs = false;
@@ -49,11 +53,15 @@ public class ParseArgs{
         temp.setType(type);
         temp.setRequired(required);
         temp.setDefault(defaultValue);
+        
+        String shorthand = "";
         if(("-" + name.charAt(0)) != "-h") 
-            temp.setShortHand("-" + name.charAt(0));
+            shorthand = "-" + name.charAt(0);
         else
-            temp.setShortHand("-");
+            shorthand = "-";
+        temp.setShortHand(shorthand);
         map.put(name, temp);
+        shmap.put(shorthand, name);
     }
     
     public void setShortHand(String key, String shorthand){
@@ -62,6 +70,7 @@ public class ParseArgs{
         Argument temp = getArg(key);
         temp.setShortHand(shorthand);
         map.put(key,temp);
+        shmap.put(shorthand, key);
     }
     
     public void parse(String[] args)
@@ -69,131 +78,16 @@ public class ParseArgs{
         for(int i = 0; i < args.length; i++) {
             allArgs.add(args[i]);
         }
-        checkDashes();
-        if(!messageTrue)
-        {
-            String exceptionMessage = "Error: the following Argument are required: ";
-            if(allArgs.size() < positionalKeys.size() || allArgs.size() > positionalKeys.size())
-                illegalArgs = true;
-            if(allArgs.size() == 0 && illegalArgs){
-                for(int i = 0; i < positionalKeys.size(); i++)
-                {
-                    exceptionMessage = exceptionMessage + " " + getPositionalKey(i);
-                }
-                throw new IllegalArgumentException(exceptionMessage);
-            }
-            else if(allArgs.size() < positionalKeys.size() && illegalArgs)
-            {                    
-                for(int i = 0; i <= allArgs.size(); i++)
-                {
-                    exceptionMessage = exceptionMessage + " " + getPositionalKey(i);
-                }
-                throw new IllegalArgumentException(exceptionMessage);        
-            }
-            else if (allArgs.size() > positionalKeys.size())
-            {
-                int a = allArgs.size() - 1;
-                String temp = args[a];
-                exceptionMessage = "usage: java " + programName;
-                for(int i = 0; i < positionalKeys.size(); i++)
-                {
-                    exceptionMessage = exceptionMessage + " " + getPositionalKey(i);
-                }
-                exceptionMessage = exceptionMessage + programName + ".java: error: unrecognized Argument: " + temp + " " + allArgs.size() + " " + positionalKeys.size();
-                throw new IllegalArgumentException(exceptionMessage);
-            }
-            putToMap();
-        }
+        checkHelp();
+        putToMap();
     }
     
-    private void checkDashes(){
+    private void checkHelp(){
         if(allArgs.contains("--help") || allArgs.contains("-h")) {
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
         }
-        for(int i = 0; i < numberOfOptionalKeys(); i++){
-            
-            String key = optionalKeys.get(i);
-            String dashArg = "--" + key;
-            Argument temp = new Optional();
-            temp = getArg(key);
-            
-            if(allArgs.contains(dashArg)){
-                int index = allArgs.indexOf(dashArg);
-                Argument.Type type = temp.getType(); 
-                
-                if(type == Argument.Type.INT){
-                    temp.setValue(convertToInt(allArgs.get(index + 1), key));
-                }
-                else if(type == Argument.Type.BOOLEAN){
-                    temp.setValue(true);
-                }
-                else if(type == Argument.Type.FLOAT){
-                    temp.setValue(convertToFloat(allArgs.get(index + 1), key));
-                }
-                else{
-                    temp.setValue(convertToString(allArgs.get(index + 1)));
-                }
-                
-                if(type != Argument.Type.BOOLEAN)
-                    allArgs.remove(index + 1);
-                allArgs.remove(index);
-                map.put(key, temp);
-            }
-            else if(allArgs.contains(temp.getShortHand()))
-            {
-                Argument.Type type = temp.getType();
-                int index = allArgs.indexOf(temp.getShortHand());
-                if(type == Argument.Type.INT){
-                    temp.setValue(convertToInt(allArgs.get(index + 1), key));
-                }
-                else if(type == Argument.Type.BOOLEAN){
-                    temp.setValue(true);
-                }
-                else if(type == Argument.Type.FLOAT){
-                    temp.setValue(convertToFloat(allArgs.get(index + 1), key));
-                }
-                else{
-                    temp.setValue(convertToString(allArgs.get(index + 1)));
-                }  
-                if(type != Argument.Type.BOOLEAN)
-                    allArgs.remove(index + 1);
-                allArgs.remove(index);
-                map.put(key, temp);
-            }
-            else{
-                Argument.Type type = temp.getType();
-                if(type == Argument.Type.BOOLEAN)
-                    temp.setValue(false);
-                else
-                    temp.setValue(temp.getDefault());
-                map.put(key, temp);
-            }
-        }
-        String doesNotExist = "";
-        int count = 0;
-        for(int i = 0; i < allArgs.size(); i ++)
-        {
-            if(allArgs.get(i).startsWith("--")){
-                doesNotExist = doesNotExist + " " + allArgs.get(i);
-                count++;
-            }
-        }
-        if(count != 0)
-        {
-            String message = "\nusage: java " + programName;
-            if(count == 1)
-            {
-                message = message + "\nThe following argument was not specified " + doesNotExist;
-                throw new IllegalArgumentException(message);
-            }
-            else
-            {
-                message = message + "\nThe following arguments were not specified " + doesNotExist;
-                throw new IllegalArgumentException(message);
-            }
-        }
-    }
+    }    
     
     public String getUsage() {
         String message = "usage: java " + programName;
@@ -207,40 +101,60 @@ public class ParseArgs{
     }
     
     private void putToMap(){
-        int i = 0;
-        for(i = 0; i < positionalKeys.size(); i++){
-            
-            String key = positionalKeys.get(i);           
-            Argument temp = new Positional();
-            temp = getArg(key);
+        int posCount = 0;
+        for(int i = 0; i < allArgs.size(); i++){
+            String key = "";
+            String arg = allArgs.get(i);
+            if(arg.charAt(0) != '-'){
+                if(posCount >= positionalKeys.size())
+                {
+                    throw new IllegalArgumentException("oh no");
+                }
+                else{
+                    key = positionalKeys.get(posCount);
+                    posCount++;
+                }
+            }
+            else if(shmap.containsKey(arg)){
+                key = shmap.get(arg);
+                Argument temp = getArg(key);
+                Argument.Type type = temp.getType();
+                if(type != Argument.Type.BOOLEAN)
+                {
+                    i++;
+                    arg = allArgs.get(i);
+                }                
+            }
+            else if(arg.startsWith("--")){
+                if(map.containsKey(arg.substring(2))){
+                    key = arg.substring(2);
+                    i++;
+                    arg = allArgs.get(i);
+                }
+            }
+            Argument temp = getArg(key);
             Argument.Type type = temp.getType();
-            
-            String exceptionMessage = "usage: java " + programName;
-            for(int a = 0; a < positionalKeys.size(); a++) {
-                exceptionMessage = exceptionMessage + " " + getPositionalKey(a);
-            }
-            exceptionMessage = exceptionMessage + "\n" + programName + ".java: error: argument " + getPositionalKey(i) + ": invalid ";
-            
-            
             if(type == Argument.Type.INT){
-                temp.setValue(convertToInt(allArgs.get(i), getPositionalKey(i)));
-            }
-            else if(type == Argument.Type.BOOLEAN){
-                temp.setValue(convertToBoolean(allArgs.get(i), getPositionalKey(i)));
+                temp.setValue(convertToInt(arg, key));
             }
             else if(type == Argument.Type.FLOAT){
-                temp.setValue(convertToFloat(allArgs.get(i), getPositionalKey(i)));
+                temp.setValue(convertToFloat(arg, key));
             }
-            else{
-                temp.setValue(convertToString(allArgs.get(i)));
+            else if(type == Argument.Type.BOOLEAN){
+                //do later
+                
+                temp.setValue(true);
             }
+            else
+                temp.setValue(arg);
             map.put(key, temp);
         }
-        
-        while(i <= allArgs.size() && i > positionalKeys.size())
+        if(!messageTrue)
         {
-            String str = allArgs.get(allArgs.size() - 1);
-        }
+            if(posCount < positionalKeys.size()){
+                throw new IllegalArgumentException("oh no");
+            }            
+        }    
     }
     
     private String convertToString(String arg){
@@ -321,7 +235,7 @@ public class ParseArgs{
         return temp;
     }
     
-    public <T> T getValue(String key)
+    public Object getValue(String key)
     {
         Argument temp = getArg(key);
         return temp.getValue();

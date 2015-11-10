@@ -83,7 +83,7 @@ public class ArgumentTests {
             String[] args = {"7"};
             p.parse(args);		
 			a = p.getArg("length");
-            int v = a.getValue();
+            Object v = a.getValue();
             assertEquals(v, 7);
         }
     
@@ -156,8 +156,8 @@ public class ArgumentTests {
             p.parse(args);
         }
         
-    @Test
-        public void incorrectArgTypeBoolean(){
+    /*@Test        OBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETE
+        public void incorrectArgTypeBoolean(){ 
             expectedEx.expect(NumberFormatException.class);
                 expectedEx.expectMessage("usage: java BooleanTool todayIsFriday\nBooleanTool.java: error: argument todayIsFriday: invalid boolean value: something");
             p.programInfo("BooleanTool", "");
@@ -166,6 +166,7 @@ public class ArgumentTests {
             String[] args = {"something"};
             p.parse(args);
         }
+        */
         
     @Test
         public void incorrectArgTypeFloat(){
@@ -186,16 +187,15 @@ public class ArgumentTests {
             p.addPos("width", "", Argument.Type.INT);
             p.addPos("height", "", Argument.Type.INT);
             p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
             p.addOpt("digit", 4, Argument.Type.INT, false);
                         
             String[] args = {"7", "5", "2"};
             
             p.parse(args);
-            a = p.getArg("type");
-            assertEquals(a.getValue(), "box");
-            a = p.getArg("digit");
-            assertEquals(a.getValue(), 4);
+            Object  o = p.getValue("length");
+            assertEquals(o, 7);
+            o = p.getValue("digit");
+            assertEquals(o, 4);      
         }
         
     @Test
