@@ -331,7 +331,7 @@ public class ArgumentTests {
         public void dashDashHelpAndDashH() {
             expectedEx.expect(IllegalArgumentException.class);
 				expectedEx.expectMessage("usage: java volumeCalculator\n"+
-	                                 "Calculate the volume of a box\n" + "Positional arguments:");
+	                                     "Calculate the volume of a box\n" + "Positional arguments:");
             p.addOpt("digit", 4, Argument.Type.INT, false);
             p.programInfo("volumeCalculator", "Calculate the volume of a box");
             
@@ -347,5 +347,37 @@ public class ArgumentTests {
             String[] args = {"-h"};
             p.setShortHand("happy", "-h");
             p.parse(args);
+        }
+    @Test
+        public void testXMLArgs(){
+            p.readXML("VolumeCalculator.xml");
+            p.parse(args);
+			assertEquals(p.getNumberOfPostionalKeys(), 3);
+			assertEquals(p.getNumberOfOptionalKeys(), 2);
+        }
+    @Test
+        public void testXMLParsing() {
+            p.readXML("VolumeCalculator.xml");
+            p.parse(args);
+			assertEquals(p.getValue("length", 7);
+			assertEquals(p.getValue("width", 5);
+			assertEquals(p.getValue("height",2);
+        }
+    @Test
+        public void testXMLHelp() {
+        expectedEx.expect(IllegalArgumentException.class);
+                expectedEx.expectMessage("usage: java volumeCalculator length width height\n"+
+	                                     "Calculate the volume of a box.\n"+
+	                                     "Positional arguments:\n"+
+	                                     "length the length of the box\n"+
+									     "width the width of the box\n" +
+	                                     "height the height of the box");
+	        p.addPos("length","the length of the box", Argument.Type.STRING);
+			p.addPos("width", "the width of the box", Argument.Type.STRING);
+	        p.addPos("height","the height of the box", Argument.Type.STRING);
+	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
+	        String[] args = {"--help"};
+            p.readXML("VolumeCalculator.xml");
+            p.parse(args); 
         }
 }
