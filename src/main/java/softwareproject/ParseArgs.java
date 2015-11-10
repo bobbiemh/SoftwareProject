@@ -11,10 +11,8 @@ public class ParseArgs{
     
     private List<String> positionalKeys;
     private List<String> optionalKeys;
-    private List<String> allArgs;//make not global
     
     private boolean messageTrue;
-    private boolean illegalArgs;
     
     private String programName;
     private String programDescription;
@@ -28,14 +26,10 @@ public class ParseArgs{
         
         positionalKeys = new ArrayList<String>();
         optionalKeys = new ArrayList<String>();
-        allArgs = new ArrayList<String>();//make not in constructor
             
         messageTrue = false;
-        illegalArgs = false;
         
-        helpMessage = "usage: java ";
-        
-        defaultArgs = new HashMap<Argument.Type, Object>();
+        helpMessage = "usage: java ";        
     }
     
     public void addPos(String name, String description, Argument.Type type)
@@ -75,14 +69,16 @@ public class ParseArgs{
     
     public void parse(String[] args)
     {
+        
+        List<String> allArgs = new ArrayList<String>();
         for(int i = 0; i < args.length; i++) {
             allArgs.add(args[i]);
         }
-        checkHelp();
-        putToMap();
+        checkHelp(allArgs);
+        putToMap(allArgs);
     }
     
-    private void checkHelp(){
+    private void checkHelp(List<String> allArgs){
         if(allArgs.contains("--help") || allArgs.contains("-h")) {
             messageTrue = true;
             throw new IllegalArgumentException(helpMessage);
@@ -100,12 +96,35 @@ public class ParseArgs{
         return message;
     }
     
-    private void putToMap(){
+    private void putToMap(List<String> allArgs){
+        
+        
         int posCount = 0;
         for(int i = 0; i < allArgs.size(); i++){
             String key = "";
             String arg = allArgs.get(i);
-            if(arg.charAt(0) != '-'){
+            if(arg.startsWith("--")){
+                if(map.containsKey(arg.substring(2))){
+                    key = arg.substring(2);
+                    i++;
+                    arg = allArgs.get(i);
+                }
+            }
+            else if(arg.startsWith("-")){
+                if(shmap.containsKey(arg)){
+                    key = shmap.get(arg);
+                    Argument temp = getArg(key);
+                    Argument.Type type = temp.getType();
+                    if(type != Argument.Type.BOOLEAN)
+                    {
+                        i++;
+                        arg = allArgs.get(i);
+                    } 
+                }
+                else
+                    throw new IllegalArgumentException("the argument does not exist");
+            }
+            else{
                 if(posCount >= positionalKeys.size())
                 {
                     throw new IllegalArgumentException("oh no");
@@ -115,23 +134,7 @@ public class ParseArgs{
                     posCount++;
                 }
             }
-            else if(shmap.containsKey(arg)){
-                key = shmap.get(arg);
-                Argument temp = getArg(key);
-                Argument.Type type = temp.getType();
-                if(type != Argument.Type.BOOLEAN)
-                {
-                    i++;
-                    arg = allArgs.get(i);
-                }                
-            }
-            else if(arg.startsWith("--")){
-                if(map.containsKey(arg.substring(2))){
-                    key = arg.substring(2);
-                    i++;
-                    arg = allArgs.get(i);
-                }
-            }
+
             Argument temp = getArg(key);
             Argument.Type type = temp.getType();
             if(type == Argument.Type.INT){
@@ -207,7 +210,7 @@ public class ParseArgs{
         return optionalKeys.size();
     }
     
-    public int numberOfArgs(){
+    public int numberOfArgs(List<String> allArgs){
         return allArgs.size();
     }
     
@@ -221,11 +224,6 @@ public class ParseArgs{
     
     public boolean doesHelpWork(){
         return messageTrue;
-    }
-    
-    public boolean getIllegalArgs()
-    {
-        return illegalArgs;
     }
     
     public Argument getArg(String key)

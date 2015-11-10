@@ -135,41 +135,26 @@ public class Keywords {
 		{
 			return p.getHelpMessage();
 		}
-		if(p.getIllegalArgs() == true)
-		{
-			if(lengthOfArgs == 0)
-				return "Error: the following Arguments are required: length, width, height";
-			else if(lengthOfArgs == 1)
-				return "Error: the following Arguments are required: width, height";
-			else if(lengthOfArgs == 2)
-				return "Error: the following Arguments are required : height";
-			else if (lengthOfArgs > 3)
-			{
-				int i = lengthOfArgs;
-				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43";
-			}
+        if(lengthOfArgs > p.numberOfPositionalKeys())
+            return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43";
+		int volume = 0;
+		int length = 0, width = 0, height = 0;
+		try{
+			length = Integer.parseInt(getLength());
+		}catch(NumberFormatException e){
+			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getLength();
 		}
-		else{
-			int volume = 0;
-			int length = 0, width = 0, height = 0;
-			try{
-				length = Integer.parseInt(getLength());
-			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getLength();
-			}
-			try{
-				width = Integer.parseInt(getWidth());
-			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getWidth();
-			}
-			try{
-				height = Integer.parseInt(getHeight());
-			}catch(NumberFormatException e){
-				return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getHeight();
-			}
-			volume = length * width * height;
-			return Integer.toString(volume);
+		try{
+			width = Integer.parseInt(getWidth());
+		}catch(NumberFormatException e){
+			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getWidth();
 		}
-		return Integer.toString(p.numberOfTotalKeys());
+		try{
+			height = Integer.parseInt(getHeight());
+		}catch(NumberFormatException e){
+			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getHeight();
+		}
+		volume = length * width * height;
+		return Integer.toString(volume);
 	}
 }

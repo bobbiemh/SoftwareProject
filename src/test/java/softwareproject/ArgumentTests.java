@@ -29,7 +29,7 @@ public class ArgumentTests {
 			assertEquals(p.numberOfPositionalKeys(), 3);
 			String[] args = {"0", "0", "0"};
 			p.parse(args);
-			assertEquals(p.numberOfArgs(), 3);
+			assertEquals(p.numberOfTotalKeys(), 3);
         }
         @Test(expected = IllegalArgumentException.class)
 		public void TooFewArgs(){
