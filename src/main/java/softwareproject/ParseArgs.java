@@ -251,6 +251,10 @@ public class ParseArgs{
         return s;
     }
     
+    public String getProgramName(){
+        return programName;
+    }
+    
     public void programInfo(String name, String description){
         String key = "";
         Argument temp = new Positional();

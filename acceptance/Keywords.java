@@ -16,6 +16,7 @@ public class Keywords {
 		p.addPos("length", "", Argument.Type.STRING);
 		p.addPos("width", "", Argument.Type.STRING);
 		p.addPos("height", "", Argument.Type.STRING);
+        p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
 		lengthOfArgs = args.length;
         try{
             p.parse(args);
@@ -29,6 +30,7 @@ public class Keywords {
         p.addPos("height", "", Argument.Type.STRING);        
         p.addOpt("type", "box", Argument.Type.STRING, false);
         p.addOpt("digit", 4, Argument.Type.INT, false);
+        p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         
         p.setShortHand("type", "-t");
         p.setShortHand("digit", "-d");
@@ -135,8 +137,17 @@ public class Keywords {
 		{
 			return p.getHelpMessage();
 		}
-        if(lengthOfArgs > p.numberOfPositionalKeys())
-            return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: unrecognized arguments: 43";
+        
+        if(lengthOfArgs > p.numberOfPositionalKeys()){
+            String errorMessage = "";
+            errorMessage = "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: unrecognized arguments:";
+        
+            for(int i = p.numberOfPositionalKeys(); i < lengthOfArgs; i++){
+                errorMessage += " " + args[i];
+            }
+            return errorMessage;
+        }
+        
 		int volume = 0;
 		int length = 0, width = 0, height = 0;
 		try{
