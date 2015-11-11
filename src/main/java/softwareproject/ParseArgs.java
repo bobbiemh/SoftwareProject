@@ -69,21 +69,8 @@ public class ParseArgs{
     
     public void parse(String[] args)
     {
-        
-        List<String> allArgs = new ArrayList<String>();
-        for(int i = 0; i < args.length; i++) {
-            allArgs.add(args[i]);
-        }
-        checkHelp(allArgs);
-        putToMap(allArgs, args);
+        queueToMap(args);
     }
-    
-    private void checkHelp(List<String> allArgs){
-        if(allArgs.contains("--help") || allArgs.contains("-h")) {
-            messageTrue = true;
-            throw new IllegalArgumentException(helpMessage);
-        }
-    }    
     
     public String getUsage() {
         String message = "usage: java " + programName;
@@ -106,7 +93,11 @@ public class ParseArgs{
             String arg = argsQueue.remove();
             String key = "";
             if(arg.startsWith("--")){
-                if(map.containsKey(arg.substring(2))){
+                if(arg.equals("--help")){
+                    messageTrue = true;
+                    throw new IllegalArgumentException(getHelpMessage());
+                }
+                else if(map.containsKey(arg.substring(2))){
                     key = arg.substring(2);
                     arg = argsQueue.remove();
                 }
@@ -114,7 +105,11 @@ public class ParseArgs{
                     throw new IllegalArgumentException("the argument does not exist");
             }
             else if(arg.startsWith("-")){
-                if(shmap.containsKey(arg)){
+                if(arg.equals("-h")){
+                    messageTrue = true;
+                    throw new IllegalArgumentException(getHelpMessage());
+                }
+                else if(shmap.containsKey(arg)){
                     key = shmap.get(arg);
                     arg = argsQueue.remove();
                 }
@@ -153,71 +148,7 @@ public class ParseArgs{
             }            
         } 
     }
-    
-    private void putToMap(List<String> allArgs, String[] args){
-        queueToMap(args);
-        /*
-        int posCount = 0;
-        for(int i = 0; i < allArgs.size(); i++){
-            String key = "";
-            String arg = allArgs.get(i);
-            if(arg.startsWith("--")){
-                if(map.containsKey(arg.substring(2))){
-                    key = arg.substring(2);
-                    i++;
-                    arg = allArgs.get(i);
-                }
-            }
-            else if(arg.startsWith("-")){
-                if(shmap.containsKey(arg)){
-                    key = shmap.get(arg);
-                    Argument temp = getArg(key);
-                    Argument.Type type = temp.getType();
-                    if(type != Argument.Type.BOOLEAN)
-                    {
-                        i++;
-                        arg = allArgs.get(i);
-                    } 
-                }
-                else
-                    throw new IllegalArgumentException("the argument does not exist");
-            }
-            else{
-                if(posCount >= positionalKeys.size())
-                {
-                    throw new IllegalArgumentException("oh no");
-                }
-                else{
-                    key = positionalKeys.get(posCount);
-                    posCount++;
-                }
-            }
-
-            Argument temp = getArg(key);
-            Argument.Type type = temp.getType();
-            if(type == Argument.Type.INT){
-                temp.setValue(convertToInt(arg, key));
-            }
-            else if(type == Argument.Type.FLOAT){
-                temp.setValue(convertToFloat(arg, key));
-            }
-            else if(type == Argument.Type.BOOLEAN){
-                //do later
-                
-                temp.setValue(true);
-            }
-            else
-                temp.setValue(arg);
-            map.put(key, temp);
-        }
-        if(!messageTrue)
-        {
-            if(posCount < positionalKeys.size()){
-                throw new IllegalArgumentException("oh no");
-            }            
-        } */   
-    }
-    
+        
     private String convertToString(String arg){
         return arg;
     }

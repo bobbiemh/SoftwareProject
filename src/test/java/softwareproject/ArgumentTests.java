@@ -347,17 +347,25 @@ public class ArgumentTests {
     @Test
         public void testXMLArgs(){
             p.readXML("VolumeCalculator.xml");
+
+            String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
+            
             p.parse(args);
-			assertEquals(p.getNumberOfPostionalKeys(), 3);
-			assertEquals(p.getNumberOfOptionalKeys(), 2);
+			assertEquals(p.numberOfPositionalKeys(), 3);
+			assertEquals(p.numberOfOptionalKeys(), 2);
         }
     @Test
         public void testXMLParsing() {
             p.readXML("VolumeCalculator.xml");
+            
+            String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
+            
             p.parse(args);
-			assertEquals(p.getValue("length", 7);
-			assertEquals(p.getValue("width", 5);
-			assertEquals(p.getValue("height",2);
+			assertEquals(p.getValue("length"), 7);
+			assertEquals(p.getValue("width"), 5);
+			assertEquals(p.getValue("height"), 2);
+            assertEquals(p.getValue("type"), "pizza");
+            assertEquals(p.getValue("digit"), 1);
         }
     @Test
         public void testXMLHelp() {

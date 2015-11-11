@@ -5,19 +5,26 @@ import java.lang.*;
 public class Keywords {
 	private ParseArgs p;
 	int lengthOfArgs;
+    List<String> allArgs;
 	
 	private void Keywords(){
-		p = new ParseArgs();
 		lengthOfArgs = 0;
 	}
 	
 	public void StartVolumeCalculatorWithArguments(String[] args){
 		p = new ParseArgs();
+        
+        allArgs = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++)
+        {
+            allArgs.add(args[i]);
+        }
+        
 		p.addPos("length", "", Argument.Type.STRING);
 		p.addPos("width", "", Argument.Type.STRING);
 		p.addPos("height", "", Argument.Type.STRING);
         p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
-		lengthOfArgs = args.length;
+		lengthOfArgs = allArgs.size();
         try{
             p.parse(args);
         }catch(IllegalArgumentException e){}
@@ -25,6 +32,13 @@ public class Keywords {
     
     public void StartVolumeCalculatorDashArguments(String[] args){
         p = new ParseArgs();
+        
+        allArgs = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++)
+        {
+            allArgs.add(args[i]);
+        }
+        
         p.addPos("length", "", Argument.Type.STRING);
         p.addPos("width", "", Argument.Type.STRING);
         p.addPos("height", "", Argument.Type.STRING);        
@@ -39,6 +53,13 @@ public class Keywords {
     }
 	public void StartProgramWithFloatArguments(String[] args){
         p = new ParseArgs();
+        
+        allArgs = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++)
+        {
+            allArgs.add(args[i]);
+        }        
+        
         p.addPos("length", "the length of the box(float)", Argument.Type.STRING);
         p.addPos("width", "the width of the box(float)", Argument.Type.STRING);
 	    p.addPos("height","the height of the box(float)", Argument.Type.STRING);		
@@ -50,6 +71,13 @@ public class Keywords {
     
 	public void StartProgramWithArguments(String[] args){
 		p = new ParseArgs();
+        
+        allArgs = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++)
+        {
+            allArgs.add(args[i]);
+        }
+        
 		p.addPos("length", "the length of the box", Argument.Type.STRING);
 		p.addPos("width", "the width of the box", Argument.Type.STRING);
 	    p.addPos("height","the height of the box", Argument.Type.STRING);		
@@ -61,6 +89,13 @@ public class Keywords {
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
 		p = new ParseArgs();
+        
+        allArgs = new ArrayList<String>();
+        for(int i = 0; i < args.length; i++)
+        {
+            allArgs.add(args[i]);
+        }
+        
 		p.addPos("pet", "", Argument.Type.STRING);
 		p.addPos("number", "", Argument.Type.STRING);
 		p.addPos("rainy", "", Argument.Type.STRING);
@@ -131,7 +166,7 @@ public class Keywords {
 		return (String)o;
 	}
 	
-	public String getProgramOutput(String[] args)
+	public String getProgramOutput()
 	{
 		if(p.doesHelpWork() == true)
 		{
@@ -143,7 +178,7 @@ public class Keywords {
             errorMessage = "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: unrecognized arguments:";
         
             for(int i = p.numberOfPositionalKeys(); i < lengthOfArgs; i++){
-                errorMessage += " " + args[i];
+                errorMessage += " " + allArgs.get(i);
             }
             return errorMessage;
         }
