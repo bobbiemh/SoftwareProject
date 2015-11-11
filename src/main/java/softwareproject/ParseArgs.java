@@ -75,7 +75,7 @@ public class ParseArgs{
             allArgs.add(args[i]);
         }
         checkHelp(allArgs);
-        putToMap(allArgs);
+        putToMap(allArgs, args);
     }
     
     private void checkHelp(List<String> allArgs){
@@ -96,9 +96,67 @@ public class ParseArgs{
         return message;
     }
     
-    private void putToMap(List<String> allArgs){
-        
-        
+    private void queueToMap(String[] args){
+        Queue<String> argsQueue = new LinkedList<String>();
+        for(int i = 0; i < args.length; i++){
+            argsQueue.add(args[i]);
+        }
+        int posCount = 0;
+        while(argsQueue.peek() != null){
+            String arg = argsQueue.remove();
+            String key = "";
+            if(arg.startsWith("--")){
+                if(map.containsKey(arg.substring(2))){
+                    key = arg.substring(2);
+                    arg = argsQueue.remove();
+                }
+                else
+                    throw new IllegalArgumentException("the argument does not exist");
+            }
+            else if(arg.startsWith("-")){
+                if(shmap.containsKey(arg)){
+                    key = shmap.get(arg);
+                    arg = argsQueue.remove();
+                }
+                else
+                    throw new IllegalArgumentException("the argument does not exist");
+            }
+            else{
+                if(posCount >= positionalKeys.size()){
+                    throw new IllegalArgumentException("too many args");
+                }
+                else{
+                    key = positionalKeys.get(posCount);
+                    posCount++;
+                }
+            }
+            
+            Argument temp = getArg(key);
+            Argument.Type type = temp.getType();
+            if(type == Argument.Type.INT){
+                temp.setValue(convertToInt(arg, key));
+            }
+            else if(type == Argument.Type.FLOAT){
+                temp.setValue(convertToFloat(arg, key));
+            }
+            else if(type == Argument.Type.BOOLEAN){                
+                temp.setValue(true);
+            }
+            else
+                temp.setValue(arg);
+            map.put(key, temp);
+        }
+        if(!messageTrue)
+        {
+            if(posCount < positionalKeys.size()){
+                throw new IllegalArgumentException("oh no");
+            }            
+        } 
+    }
+    
+    private void putToMap(List<String> allArgs, String[] args){
+        queueToMap(args);
+        /*
         int posCount = 0;
         for(int i = 0; i < allArgs.size(); i++){
             String key = "";
@@ -157,7 +215,7 @@ public class ParseArgs{
             if(posCount < positionalKeys.size()){
                 throw new IllegalArgumentException("oh no");
             }            
-        }    
+        } */   
     }
     
     private String convertToString(String arg){
