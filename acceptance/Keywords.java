@@ -174,8 +174,11 @@ public class Keywords {
 		}
         
         if(lengthOfArgs > p.numberOfPositionalKeys()){
-            String errorMessage = "";
-            errorMessage = "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: unrecognized arguments:";
+            String errorMessage = "usage: java " + p.getProgramName();
+            for (int i = 0; i < p.numberOfPositionalKeys(); i++) {
+                errorMessage += " " + p.getPositionalKey(i);
+            }
+            errorMessage += "\n" + p.getProgramName() + ".java: error: unrecognized arguments:";
         
             for(int i = p.numberOfPositionalKeys(); i < lengthOfArgs; i++){
                 errorMessage += " " + allArgs.get(i);
@@ -188,17 +191,17 @@ public class Keywords {
 		try{
 			length = Integer.parseInt(getLength());
 		}catch(NumberFormatException e){
-			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getLength();
+			return "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: argument width: invalid int value: " + getLength();
 		}
 		try{
 			width = Integer.parseInt(getWidth());
 		}catch(NumberFormatException e){
-			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getWidth();
+			return "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: argument width: invalid int value: " + getWidth();
 		}
 		try{
 			height = Integer.parseInt(getHeight());
 		}catch(NumberFormatException e){
-			return "usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: " + getHeight();
+			return "usage: java " + p.getProgramName() + " length width height\n" + p.getProgramName() + ".java: error: argument width: invalid int value: " + getHeight();
 		}
 		volume = length * width * height;
 		return Integer.toString(volume);
