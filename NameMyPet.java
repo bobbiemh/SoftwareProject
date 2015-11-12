@@ -11,8 +11,8 @@ public class NameMyPet {
         p.addPos("nameCat", "the name of the cat", Argument.Type.STRING);
         p.addPos("nameJBird", "the name of the jbird", Argument.Type.STRING);
         
-        p.addOpt("color", "the color of the pet", Argument.Type.STRING, false);
-        p.addOpt("size", "the size of the pet", Argument.Type.STRING, false);
+        p.addOpt("color", "the color of the pet", Argument.Type.STRING);
+        p.addOpt("size", "the size of the pet", Argument.Type.STRING);
         
         p.parse(args);
         
