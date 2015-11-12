@@ -1,6 +1,4 @@
 import softwareproject.*;
-import java.util.*;
-import java.lang.*;
 
 public class VolumeCalculator {
     
@@ -13,12 +11,16 @@ public class VolumeCalculator {
         p.addPos("width", "the width of a box", Argument.Type.INT);
         p.addPos("height", "the height of a box", Argument.Type.INT);
         
-        
         p.parse(args);
         
-        int length = p.getValue("length");
-        int width = p.getValue("width");
-        int height = p.getValue("height");
+        // int length = p.getValue("length");
+        // int width = p.getValue("width");
+        // int height = p.getValue("height");
+        
+        
+        int length = (Integer)p.getValue("length");
+        int width = (Integer)p.getValue("width");
+        int height = (Integer)p.getValue("height");
         
         int volumeOfBox = length * width * height;
                 
