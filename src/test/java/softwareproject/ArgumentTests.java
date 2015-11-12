@@ -131,11 +131,11 @@ public class ArgumentTests {
 	    public void helpMessageCorrect(){
 	        expectedEx.expect(IllegalArgumentException.class);
                 expectedEx.expectMessage("usage: java volumeCalculator length width height\n"+
-	                                 "Calculate the volume of a box.\n"+
-	                                 "Positional arguments:\n"+
-	                                 "length the length of the box\n"+
-									 "width the width of the box\n" +
-	                                 "height the height of the box");
+	                                     "Calculate the volume of a box.\n"+
+	                                     "Positional arguments:\n"+
+	                                     "length the length of the box\n"+
+								    	 "width the width of the box\n" +
+	                                     "height the height of the box");
 	        p.addPos("length","the length of the box", Argument.Type.STRING);
 			p.addPos("width", "the width of the box", Argument.Type.STRING);
 	        p.addPos("height","the height of the box", Argument.Type.STRING);
@@ -186,8 +186,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.INT);
             p.addPos("width", "", Argument.Type.INT);
             p.addPos("height", "", Argument.Type.INT);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
                         
             String[] args = {"7", "5", "2"};
             
@@ -203,8 +203,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.STRING);
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);  
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);  
             
             String[] args = {"7", "5", "2", "--type", "ellipsoid"};
             
@@ -218,8 +218,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.STRING);
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
             
             String[] args = {"7", "5", "2", "--digit", "3"};
             
@@ -233,8 +233,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.STRING);
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
             
 			String[] args = {"7", "5", "2", "--type", "ellipsoid", "--digit", "4"};
             
@@ -250,8 +250,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.INT);
 			p.addPos("width", "", Argument.Type.INT);
 			p.addPos("height", "", Argument.Type.INT);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
             
 			String[] args = {"7","--type", "ellipsoid", "5","--digit", "4", "2",};
             
@@ -272,8 +272,8 @@ public class ArgumentTests {
             p.addPos("length", "", Argument.Type.INT);
 			p.addPos("width", "", Argument.Type.INT);
 			p.addPos("height", "", Argument.Type.INT);
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
             
             String[] args = {"--digit", "4","7","5","--type", "ellipsoid", "2",};
             
@@ -291,9 +291,9 @@ public class ArgumentTests {
         }
     @Test  
         public void addShortHand(){
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("float", 4.5f, Argument.Type.FLOAT, false);
-            p.addOpt("bool", false, Argument.Type.BOOLEAN, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("float", 4.5f, Argument.Type.FLOAT);
+            p.addOpt("bool", false, Argument.Type.BOOLEAN);
             
             String[] args = {"-t", "ellipsoid", "-f", "5.5f"};
             
@@ -310,9 +310,9 @@ public class ArgumentTests {
         }
     @Test
         public void defaultShortHand(){
-            p.addOpt("type", "box", Argument.Type.STRING, false);
-            p.addOpt("digit", 4, Argument.Type.INT, false);
-            p.addOpt("gorilla", false, Argument.Type.BOOLEAN, false);
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
+            p.addOpt("gorilla", false, Argument.Type.BOOLEAN);
             
             String[] args = {"-t", "ellipsoid", "-d", "1"};
             
@@ -328,7 +328,7 @@ public class ArgumentTests {
             expectedEx.expect(IllegalArgumentException.class);
 				expectedEx.expectMessage("usage: java volumeCalculator\n"+
 	                                     "Calculate the volume of a box\n" + "Positional arguments:");
-            p.addOpt("digit", 4, Argument.Type.INT, false);
+            p.addOpt("digit", 4, Argument.Type.INT);
             p.programInfo("volumeCalculator", "Calculate the volume of a box");
             
             String [] args = {"-h"};
@@ -339,16 +339,16 @@ public class ArgumentTests {
         public void noOtherArgCanBeNamedH() {
             expectedEx.expect(IllegalArgumentException.class);
 				expectedEx.expectMessage("-h is used for only help");
-            p.addOpt("happy", "feeling", Argument.Type.STRING, false);
+            p.addOpt("happy", "feeling", Argument.Type.STRING);
             String[] args = {"-h"};
             p.setShortHand("happy", "-h");
             p.parse(args);
         }
     @Test
         public void testXMLArgs(){
-            p.readXML("VolumeCalculator.xml");
+            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
 
-            String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
+            String[] args = {"7", "5", "2"};
             
             p.parse(args);
 			assertEquals(p.numberOfPositionalKeys(), 3);
@@ -356,7 +356,7 @@ public class ArgumentTests {
         }
     @Test
         public void testXMLParsing() {
-            p.readXML("VolumeCalculator.xml");
+            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
             
             String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
             
@@ -376,12 +376,9 @@ public class ArgumentTests {
 	                                     "length the length of the box\n"+
 									     "width the width of the box\n" +
 	                                     "height the height of the box");
-	        p.addPos("length","the length of the box", Argument.Type.STRING);
-			p.addPos("width", "the width of the box", Argument.Type.STRING);
-	        p.addPos("height","the height of the box", Argument.Type.STRING);
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"--help"};
-            p.readXML("VolumeCalculator.xml");
+            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
             p.parse(args); 
         }
 }

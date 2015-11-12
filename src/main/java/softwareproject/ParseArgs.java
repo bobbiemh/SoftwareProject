@@ -4,13 +4,16 @@ package softwareproject;
 import java.util.*;
 import java.lang.*;
 
+import java.io.*;
+import org.xml.sax.SAXException;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class ParseArgs{
     private Map<String, Argument> map;
     private Map<String, String> shmap;
     
-    private List<String> positionalKeys;
-    private List<String> optionalKeys;
+    protected List<String> positionalKeys;
+    protected List<String> optionalKeys;
     
     private boolean messageTrue;
     
@@ -19,6 +22,8 @@ public class ParseArgs{
     private String helpMessage;
     
     private Map<Argument.Type, Object> defaultArgs;
+    
+    private XMLParse x;
     
     public ParseArgs() {
         map = new HashMap<String, Argument>();
@@ -41,11 +46,11 @@ public class ParseArgs{
         map.put(name, temp);
     }
     
-    public void addOpt(String name, Object defaultValue, Argument.Type type, boolean required){
+    public void addOpt(String name, Object defaultValue, Argument.Type type){
         Optional temp = new Optional();
         optionalKeys.add(name);
         temp.setType(type);
-        temp.setRequired(required);
+        //temp.setRequired(required);
         temp.setDefault(defaultValue);
         
         String shorthand = "";
@@ -56,6 +61,17 @@ public class ParseArgs{
         temp.setShortHand(shorthand);
         map.put(name, temp);
         shmap.put(shorthand, name);
+    }
+    
+    public void readXML(String file){
+        x = new XMLParse();
+        try{
+            x.readXML(file);
+        }
+        catch (IOException | SAXException | ParserConfigurationException e){
+            System.err.println("Error reading XML FIle: " + file + "\n" +
+                               "Is filepath correct?");
+        }
     }
     
     public void setShortHand(String key, String shorthand){
