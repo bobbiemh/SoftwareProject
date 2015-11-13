@@ -13,14 +13,9 @@ public class VolumeCalculator {
         
         p.parse(args);
         
-        // int length = p.getValue("length");
-        // int width = p.getValue("width");
-        // int height = p.getValue("height");
-        
-        
-        int length = (Integer)p.getValue("length");
-        int width = (Integer)p.getValue("width");
-        int height = (Integer)p.getValue("height");
+        int length = p.getValue("length");
+        int width = p.getValue("width");
+        int height = p.getValue("height");
         
         int volumeOfBox = length * width * height;
                 
