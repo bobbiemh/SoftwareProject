@@ -27,27 +27,18 @@ public class ParseArgs extends DefaultHandler{
     
     private Map<Argument.Type, Object> defaultArgs;
     
-    private Positional posTemp;
-    private Optional optTemp;
-    private String nodeTemp;
-    private String tempName;
-    private Argument.Type tempType;
-    private String tempDescript;
-    private Object tempDefaultValue;
-    private boolean isPos;
-    private ParseArgs p;
-    private DefaultHandler handler;
-    
+    protected XMLParse x;
+       
     public ParseArgs() {
         map = new HashMap<String, Argument>();
         shmap = new HashMap<String, String>();
         
         positionalKeys = new ArrayList<String>();
         optionalKeys = new ArrayList<String>();
-            
+        
         messageTrue = false;
         
-        helpMessage = "usage: java ";        
+        helpMessage = "usage: java ";       
     }
     
     public void addPos(String name, String description, Argument.Type type)
@@ -76,7 +67,7 @@ public class ParseArgs extends DefaultHandler{
         shmap.put(shorthand, name);
     }
     
-    /*public void readXML(String file){
+    public void readXML(String file) throws IOException, SAXException, ParserConfigurationException{
         x = new XMLParse();
         try{
             x.readXML(file);
@@ -85,7 +76,16 @@ public class ParseArgs extends DefaultHandler{
             throw new IllegalArgumentException("Error reading XML FIle: " + file + "\n" +
                                "Is filepath correct?");
         }
-    }*/
+    }
+    
+    public void setMap(Map<String, Argument> xmlmap){
+        map = xmlmap;
+    }
+    
+    public void setKeys(List<String> positional, List<String> optional){
+        positionalKeys = positional;
+        optionalKeys = optional;
+    }
     
     public void setShortHand(String key, String shorthand){
         if(shorthand == "-h")
@@ -293,61 +293,5 @@ public class ParseArgs extends DefaultHandler{
         }
     }
     
-    public void readXML(String file) throws IOException, SAXException, ParserConfigurationException{
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser = factory.newSAXParser();
-        this.handler = new ParseArgs();
-        try{
-            saxParser.parse(file, this.handler);
-        }
-        catch(IOException | SAXException e){
-            throw new IOException("shit");
-        }
-    }
-    public void characters(char[] buffer, int start, int length){
-        nodeTemp = new String(buffer, start, length);
-    }
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        nodeTemp = "";
-        if(qName.equalsIgnoreCase("positional")){
-            posTemp = new Positional();
-            isPos = true;
-            tempName = "";
-            tempType = Argument.Type.STRING;
-            tempDescript = "";
-        }
-        if(qName.equalsIgnoreCase("optional")){
-            optTemp = new Optional();
-            isPos = false;
-            tempName = "";
-            tempType = Argument.Type.STRING;
-            tempDefaultValue = "";
-        }
-    }
-    public void endElement(String uri, String qName) throws SAXException {
-        if(isPos){
-            if(qName.equalsIgnoreCase("positional")){
-                addPos(tempName, tempDescript, tempType);
-            }
-            else if(qName.equalsIgnoreCase("name"))
-                tempName = nodeTemp;
-            else if(qName.equalsIgnoreCase("descript"))
-                tempDescript = nodeTemp;
-            else if(qName.equalsIgnoreCase("type"))
-                tempType = Argument.Type.valueOf(nodeTemp);
-        }
-        else if(!isPos){
-            if(qName.equalsIgnoreCase("optional")){
-                addOpt(tempName, tempDefaultValue, tempType);
-            }
-            else if(qName.equalsIgnoreCase("name"))
-                tempName = nodeTemp;
-            else if(qName.equalsIgnoreCase("default"))
-                tempDefaultValue = nodeTemp;
-            else if(qName.equalsIgnoreCase("type"))
-                tempType = Argument.Type.valueOf(nodeTemp);
-        }
-        else
-           throw new IllegalArgumentException("In endElement, at least that works");
-   }
+
 }

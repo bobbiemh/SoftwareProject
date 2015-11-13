@@ -349,12 +349,15 @@ public class ArgumentTests {
         }
     @Test
         public void testXMLArgs(){
+        expectedEx.expect(IllegalArgumentException.class);
+            expectedEx.expectMessage(Integer.toString(p.numberOfPositionalKeys()));
             try{
                 p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
             }
             catch(IOException | SAXException | ParserConfigurationException e){
                 throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
             }
+            
             String[] args = {"7", "5", "2"};
             
             p.parse(args);
