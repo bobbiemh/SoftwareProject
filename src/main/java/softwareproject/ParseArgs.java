@@ -7,8 +7,12 @@ import java.lang.*;
 import java.io.*;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
-public class ParseArgs{
+public class ParseArgs extends DefaultHandler{
     private Map<String, Argument> map;
     private Map<String, String> shmap;
     
@@ -23,7 +27,16 @@ public class ParseArgs{
     
     private Map<Argument.Type, Object> defaultArgs;
     
-    private XMLParse x;
+    private Positional posTemp;
+    private Optional optTemp;
+    private String nodeTemp;
+    private String tempName;
+    private Argument.Type tempType;
+    private String tempDescript;
+    private Object tempDefaultValue;
+    private boolean isPos;
+    private ParseArgs p;
+    private DefaultHandler handler;
     
     public ParseArgs() {
         map = new HashMap<String, Argument>();
@@ -63,16 +76,16 @@ public class ParseArgs{
         shmap.put(shorthand, name);
     }
     
-    public void readXML(String file){
+    /*public void readXML(String file){
         x = new XMLParse();
         try{
             x.readXML(file);
         }
         catch (IOException | SAXException | ParserConfigurationException e){
-            System.err.println("Error reading XML FIle: " + file + "\n" +
+            throw new IllegalArgumentException("Error reading XML FIle: " + file + "\n" +
                                "Is filepath correct?");
         }
-    }
+    }*/
     
     public void setShortHand(String key, String shorthand){
         if(shorthand == "-h")
@@ -279,4 +292,62 @@ public class ParseArgs{
             helpMessage = helpMessage + "\n" + k + " " + temp.getDescription();
         }
     }
+    
+    public void readXML(String file) throws IOException, SAXException, ParserConfigurationException{
+        SAXParserFactory factory = SAXParserFactory.newInstance();
+        SAXParser saxParser = factory.newSAXParser();
+        this.handler = new ParseArgs();
+        try{
+            saxParser.parse(file, this.handler);
+        }
+        catch(IOException | SAXException e){
+            throw new IOException("shit");
+        }
+    }
+    public void characters(char[] buffer, int start, int length){
+        nodeTemp = new String(buffer, start, length);
+    }
+    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        nodeTemp = "";
+        if(qName.equalsIgnoreCase("positional")){
+            posTemp = new Positional();
+            isPos = true;
+            tempName = "";
+            tempType = Argument.Type.STRING;
+            tempDescript = "";
+        }
+        if(qName.equalsIgnoreCase("optional")){
+            optTemp = new Optional();
+            isPos = false;
+            tempName = "";
+            tempType = Argument.Type.STRING;
+            tempDefaultValue = "";
+        }
+    }
+    public void endElement(String uri, String qName) throws SAXException {
+        if(isPos){
+            if(qName.equalsIgnoreCase("positional")){
+                addPos(tempName, tempDescript, tempType);
+            }
+            else if(qName.equalsIgnoreCase("name"))
+                tempName = nodeTemp;
+            else if(qName.equalsIgnoreCase("descript"))
+                tempDescript = nodeTemp;
+            else if(qName.equalsIgnoreCase("type"))
+                tempType = Argument.Type.valueOf(nodeTemp);
+        }
+        else if(!isPos){
+            if(qName.equalsIgnoreCase("optional")){
+                addOpt(tempName, tempDefaultValue, tempType);
+            }
+            else if(qName.equalsIgnoreCase("name"))
+                tempName = nodeTemp;
+            else if(qName.equalsIgnoreCase("default"))
+                tempDefaultValue = nodeTemp;
+            else if(qName.equalsIgnoreCase("type"))
+                tempType = Argument.Type.valueOf(nodeTemp);
+        }
+        else
+           throw new IllegalArgumentException("In endElement, at least that works");
+   }
 }

@@ -3,7 +3,10 @@ package softwareproject;
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
+import java.io.*;
 import org.junit.rules.ExpectedException;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 import java.lang.*;
 
 public class ArgumentTests {
@@ -346,18 +349,27 @@ public class ArgumentTests {
         }
     @Test
         public void testXMLArgs(){
-            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
-
+            try{
+                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+            }
+            catch(IOException | SAXException | ParserConfigurationException e){
+                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
+            }
             String[] args = {"7", "5", "2"};
             
             p.parse(args);
+            
 			assertEquals(p.numberOfPositionalKeys(), 3);
 			assertEquals(p.numberOfOptionalKeys(), 2);
         }
     @Test
         public void testXMLParsing() {
-            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
-            
+            try{
+                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+            }
+            catch(IOException | SAXException | ParserConfigurationException e){
+                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
+            }
             String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
             
             p.parse(args);
@@ -378,7 +390,12 @@ public class ArgumentTests {
 	                                     "height the height of the box");
 	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"--help"};
-            p.readXML("/home/alex/SoftwareProject/src/test/java/softwareproject/VolumeCalculator.xml");
+	        try{
+                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+            }
+            catch(IOException | SAXException | ParserConfigurationException e){
+                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
+            }
             p.parse(args); 
         }
 }
