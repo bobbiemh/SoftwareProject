@@ -349,56 +349,40 @@ public class ArgumentTests {
         }
     @Test
         public void testXMLArgs(){
-        expectedEx.expect(IllegalArgumentException.class);
-            expectedEx.expectMessage(Integer.toString(p.numberOfPositionalKeys()));
-            try{
-                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
-            }
-            catch(IOException | SAXException | ParserConfigurationException e){
-                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
-            }
-            
+            p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+        
             String[] args = {"7", "5", "2"};
             
             p.parse(args);
             
-			assertEquals(p.numberOfPositionalKeys(), 3);
-			assertEquals(p.numberOfOptionalKeys(), 2);
+		    assertEquals(p.numberOfPositionalKeys(), 3);
+		    assertEquals(p.numberOfOptionalKeys(), 2);
         }
     @Test
         public void testXMLParsing() {
-            try{
-                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
-            }
-            catch(IOException | SAXException | ParserConfigurationException e){
-                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
-            }
-            String[] args = {"7", "5", "2", "--type", "box", "-d", "1"};
+            p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+            String[] args = {"7", "5", "2", "--type", "pizza", "-d", "1"};
             
             p.parse(args);
 			assertEquals(p.getValue("length"), 7);
 			assertEquals(p.getValue("width"), 5);
 			assertEquals(p.getValue("height"), 2);
             assertEquals(p.getValue("type"), "pizza");
-            assertEquals(p.getValue("digit"), 1);
+            assertEquals(p.getValue("digits"), 1);
         }
     @Test
         public void testXMLHelp() {
         expectedEx.expect(IllegalArgumentException.class);
-                expectedEx.expectMessage("usage: java volumeCalculator length width height\n"+
+                expectedEx.expectMessage("usage: java VolumeCalculator length width height\n"+
 	                                     "Calculate the volume of a box.\n"+
 	                                     "Positional arguments:\n"+
 	                                     "length the length of the box\n"+
 									     "width the width of the box\n" +
 	                                     "height the height of the box");
-	        p.programInfo("volumeCalculator","Calculate the volume of a box.");
+	                                     
+            p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
+	        p.programInfo("VolumeCalculator","Calculate the volume of a box.");
 	        String[] args = {"--help"};
-	        try{
-                p.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
-            }
-            catch(IOException | SAXException | ParserConfigurationException e){
-                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
-            }
             p.parse(args); 
         }
 }

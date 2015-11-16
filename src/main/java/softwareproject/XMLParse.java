@@ -23,26 +23,19 @@ public class XMLParse extends DefaultHandler {
     private ParseArgs p;
     private XMLParse handler;
     
-    private List<String> positional;
-    private List<String> optional;
-    private Map<String, Argument> xmlmap;
-    
     public XMLParse() {        
         p = new ParseArgs();
-        xmlmap = new HashMap();
-        positional = new ArrayList<String>();
-        optional = new ArrayList<String>();
     }
     
-    public void readXML(String file) throws IOException, SAXException, ParserConfigurationException{
+    public void readXML(String file) {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser = factory.newSAXParser();
-        this.handler = new XMLParse();
         try{
+            SAXParser saxParser = factory.newSAXParser();
+            this.handler = new XMLParse();
             saxParser.parse(file, this.handler);
         }
-        catch(IOException | SAXException e){
-            throw new IOException("XML file does not exist");
+        catch(IOException | SAXException | ParserConfigurationException e){
+            System.err.println("XML file does not exist");
         }
     }
     public void characters(char[] buffer, int start, int length){
@@ -68,39 +61,24 @@ public class XMLParse extends DefaultHandler {
     }
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if(isPos){
-            if(qName.equalsIgnoreCase("positional")){
-                Argument temp = new Argument();
-                temp.setType(tempType);
-                temp.setDescription(tempDescript);
-                positional.add(tempName);
-                xmlmap.put(tempName, temp);
-            }
+            if(qName.equalsIgnoreCase("positional"))
+                p.addPos(tempName, tempDescript, tempType);
             else if(qName.equalsIgnoreCase("name"))
                 tempName = nodeTemp;
-            else if(qName.equalsIgnoreCase("descript"))
+            else if(qName.equalsIgnoreCase("description"))
                 tempDescript = nodeTemp;
             else if(qName.equalsIgnoreCase("type"))
                 tempType = Argument.Type.valueOf(nodeTemp);
         }
-        else if(!isPos){
-            if(qName.equalsIgnoreCase("optional")){
-                Argument temp = new Argument();
-                temp.setType(tempType);
-                temp.setDescription(tempDescript);
-                optional.add(tempName);
-                xmlmap.put(tempName, temp);
-            }
+        else{
+            if(qName.equalsIgnoreCase("optional"))
+                p.addOpt(tempName, tempDefaultValue, tempType);
             else if(qName.equalsIgnoreCase("name"))
                 tempName = nodeTemp;
             else if(qName.equalsIgnoreCase("default"))
                 tempDefaultValue = nodeTemp;
-            else if(qName.equalsIgnoreCase("type")){
-                tempType = Argument.Type.valueOf(nodeTemp);               
-            }
-        }
-   }
-   public void endDocument() throws SAXException{
-        p.setMap(xmlmap);
-        p.setKeys(positional, optional);
+            else if(qName.equalsIgnoreCase("type"))
+                tempType = Argument.Type.valueOf(nodeTemp);
+       }
    }
 }

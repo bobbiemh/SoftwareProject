@@ -5,19 +5,13 @@ import java.util.*;
 import java.lang.*;
 
 import java.io.*;
-import org.xml.sax.SAXException;
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.Attributes;
-import org.xml.sax.helpers.DefaultHandler;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
-public class ParseArgs extends DefaultHandler{
-    private Map<String, Argument> map;
-    private Map<String, String> shmap;
+public class ParseArgs{
+    protected static Map<String, Argument> map;
+    protected static Map<String, String> shmap;
     
-    protected List<String> positionalKeys;
-    protected List<String> optionalKeys;
+    protected static List<String> positionalKeys;
+    protected static List<String> optionalKeys;
     
     private boolean messageTrue;
     
@@ -38,7 +32,7 @@ public class ParseArgs extends DefaultHandler{
         
         messageTrue = false;
         
-        helpMessage = "usage: java ";       
+        helpMessage = "usage: java ";    
     }
     
     public void addPos(String name, String description, Argument.Type type)
@@ -67,24 +61,9 @@ public class ParseArgs extends DefaultHandler{
         shmap.put(shorthand, name);
     }
     
-    public void readXML(String file) throws IOException, SAXException, ParserConfigurationException{
-        x = new XMLParse();
-        try{
-            x.readXML(file);
-        }
-        catch (IOException | SAXException | ParserConfigurationException e){
-            throw new IllegalArgumentException("Error reading XML FIle: " + file + "\n" +
-                               "Is filepath correct?");
-        }
-    }
-    
-    public void setMap(Map<String, Argument> xmlmap){
-        map = xmlmap;
-    }
-    
-    public void setKeys(List<String> positional, List<String> optional){
-        positionalKeys = positional;
-        optionalKeys = optional;
+    public void readXML(String file){
+        x = new XMLParse(); 
+        x.readXML(file);
     }
     
     public void setShortHand(String key, String shorthand){
