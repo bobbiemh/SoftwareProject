@@ -35,7 +35,7 @@ public class ParseArgs{
         helpMessage = "usage: java ";    
     }
     /**
-     * addPos adds an positional argument, an argument that is always required. 
+     * addPos adds a positional argument, an argument that is always required. 
      *
      * @param  description  what it is
      * @param  name the name of the key
@@ -51,11 +51,18 @@ public class ParseArgs{
         map.put(name, temp);
     }
     
+    /**
+    * addOpt adds an optional argument, an argument that is not required.
+    *
+    *@param   name            is the name of the optional argument.
+    *@param   defaultValue    is a default value for the optional argument.
+    *@param   type            is the enum from class Argument that tells the program whether the argument is a string, integer, float, or boolean.
+    *@see     Optional Class
+    */
     public void addOpt(String name, Object defaultValue, Argument.Type type){
         Optional temp = new Optional();
         optionalKeys.add(name);
         temp.setType(type);
-        //temp.setRequired(required);
         temp.setDefault(defaultValue);
         
         String shorthand = "";
@@ -68,11 +75,24 @@ public class ParseArgs{
         shmap.put(shorthand, name);
     }
     
+    /**
+    *readXML calls XMLParse.java to read a .xml file
+    *
+    *@param   file     the name of the .xml file
+    *@see     XMLParse Class
+    */
     public void readXML(String file){
         x = new XMLParse(); 
         x.readXML(file);
     }
     
+    /**
+    *setShortHand sets a shorthand name to the specified key except if -h is 
+    *given as the shorthand name because it is reserved for help
+    *
+    *@param   key          the key to set the shorthand name to
+    *@param   shorthand    the desired shorthand name
+    */
     public void setShortHand(String key, String shorthand){
         if(shorthand == "-h")
             throw new IllegalArgumentException("-h is used for only help");
@@ -82,11 +102,23 @@ public class ParseArgs{
         shmap.put(shorthand, key);
     }
     
+    /**
+    *parse calls the function queueToMap with the given args
+    *
+    *@param   args    the given arguments from command prompt
+    */
     public void parse(String[] args)
     {
         queueToMap(args);
     }
     
+    /**
+    *getUsage creates and returns a message that states "usage: java " 
+    *then the program name, all the positional argument names, and all 
+    *the optional argument names.
+    *
+    *@return the message that was built
+    */
     public String getUsage() {
         String message = "usage: java " + programName;
         for(int a = 0; a < positionalKeys.size(); a++) {
@@ -206,19 +238,19 @@ public class ParseArgs{
         }
     }
     
-    public int numberOfPositionalKeys(){
+    protected int numberOfPositionalKeys(){
         return positionalKeys.size();
     }
     
-    public int numberOfOptionalKeys(){
+    protected int numberOfOptionalKeys(){
         return optionalKeys.size();
     }
     
-    public int numberOfArgs(List<String> allArgs){
+    protected int numberOfArgs(List<String> allArgs){
         return allArgs.size();
     }
     
-    public int numberOfTotalKeys(){
+    protected int numberOfTotalKeys(){
         return optionalKeys.size() + positionalKeys.size();
     }
     
