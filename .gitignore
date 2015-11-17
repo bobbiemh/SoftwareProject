@@ -1,2 +1,8 @@
-build/*
+build/classes/*
+build/dependency-cache/*
+build/jacoco/*
+build/libs/*
+build/reports/*
+build/test-results/*
+build/tmp/*
 .gradle/*
