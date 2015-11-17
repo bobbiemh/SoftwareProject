@@ -34,7 +34,14 @@ public class ParseArgs{
         
         helpMessage = "usage: java ";    
     }
-    
+    /**
+     * addPos adds an positional argument, an argument that is always required. 
+     *
+     * @param  description  what it is
+     * @param  name the name of the key
+     * @param  type enum from class Argument that tells the program the datatype of the argument
+     * @see         Positional Class
+     */
     public void addPos(String name, String description, Argument.Type type)
     {
         Positional temp = new Positional();
