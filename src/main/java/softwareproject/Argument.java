@@ -4,9 +4,12 @@ import java.util.*;
 import java.lang.*;
 
     /**
-     * The Argument class creates a new Argument. 
+     * The Argument class sets and retrieves an object's value, description, type, 
+     * shorthand, and specifies whether it is required or not. It also includes an 
+     * enum Type that specifies whether the argument is a string, int, boolean, or 
+     * float.
      *
-     * @author CS XY Team
+     * @author CS 310 XXY Team
      * @version Fall 2015
      */
 public class Argument {
@@ -18,7 +21,7 @@ public class Argument {
     public enum Type {STRING, INT, BOOLEAN, FLOAT};
     
     /**
-     * The Argument constructor creates a new Argument and instantiates the specified fields. 
+     * Creates a new Argument. 
      *
      */
     public Argument() {
@@ -54,7 +57,7 @@ public class Argument {
     /**
      * Sets the type to the specified enum. 
      *
-     * @param  type enum tells the program the datatype of the argument
+     * @param  type enum that tells the program the datatype of the argument
      */
     public void setType(Type type){
         this.type = type;
@@ -63,7 +66,7 @@ public class Argument {
     /**
      * Returns the type of the argument. 
      *
-     * @return type the type of the argument 
+     * @return type the Type of the argument 
      */
     public Type getType(){
         return type;

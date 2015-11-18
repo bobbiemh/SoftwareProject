@@ -1,7 +1,17 @@
 package softwareproject;
 
+    /**
+     * The Positional class extends the Argument class. 
+     *
+     * @author CS XXY Team
+     * @version Fall 2015
+     */
 public class Positional extends Argument {
     
+    /**
+     * Creates a new Positional argument. 
+     *
+     */
     public Positional(){
     }
     public <T> void setValue(T value){
