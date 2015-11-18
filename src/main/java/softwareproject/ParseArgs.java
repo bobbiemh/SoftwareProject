@@ -94,8 +94,9 @@ public class ParseArgs{
     *@param   shorthand    the desired shorthand name
     */
     public void setShortHand(String key, String shorthand){
-        if(shorthand == "-h")
+        if(shorthand == "h")
             throw new IllegalArgumentException("-h is used for only help");
+        shorthand = "-" + shorthand;
         Argument temp = getArg(key);
         temp.setShortHand(shorthand);
         map.put(key,temp);

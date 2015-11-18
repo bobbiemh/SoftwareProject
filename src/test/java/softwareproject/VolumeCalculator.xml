@@ -19,13 +19,13 @@
     </positional>
     <optional>
         <name>type</name>
-        <shortname>t</shortname>
+        <shorthand>t</shorthand>
         <type>STRING</type>
         <default>box</default>
     </optional>
     <optional>
         <name>digits</name>
-        <shortname>d</shortname>
+        <shorthand>d</shorthand>
         <type>INT</type>
         <default>4</default>
     </optional>

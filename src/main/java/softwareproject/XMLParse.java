@@ -18,6 +18,7 @@ public class XMLParse extends DefaultHandler {
     private String tempName;
     private Argument.Type tempType;
     private String tempDescript;
+    private String tempShort;
     private Object tempDefaultValue;
     private boolean isPos;
     private ParseArgs p;
@@ -57,6 +58,7 @@ public class XMLParse extends DefaultHandler {
             tempName = "";
             tempType = Argument.Type.STRING;
             tempDefaultValue = "";
+            tempShort = "";
         }
     }
     public void endElement(String uri, String localName, String qName) throws SAXException {
@@ -71,14 +73,18 @@ public class XMLParse extends DefaultHandler {
                 tempType = Argument.Type.valueOf(nodeTemp);
         }
         else{
-            if(qName.equalsIgnoreCase("optional"))
+            if(qName.equalsIgnoreCase("optional")){
                 p.addOpt(tempName, tempDefaultValue, tempType);
+                p.setShortHand(tempName, tempShort);
+            }
             else if(qName.equalsIgnoreCase("name"))
                 tempName = nodeTemp;
             else if(qName.equalsIgnoreCase("default"))
                 tempDefaultValue = nodeTemp;
             else if(qName.equalsIgnoreCase("type"))
                 tempType = Argument.Type.valueOf(nodeTemp);
+            else if(qName.equalsIgnoreCase("shorthand"));
+                tempShort = nodeTemp;
        }
    }
 }
