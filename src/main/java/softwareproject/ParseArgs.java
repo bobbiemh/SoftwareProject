@@ -86,6 +86,11 @@ public class ParseArgs{
         x.readXML(file);
     }
     
+    public void saveToXML(String file){
+        XMLWrite write = new XMLWrite();
+        write.saveToXML(file);
+    }
+    
     /**
     *setShortHand sets a shorthand name to the specified key except if -h is 
     *given as the shorthand name because it is reserved for help
