@@ -103,7 +103,7 @@ public class ParseArgs{
     }
     
     /**
-    *parse calls the function queueToMap with the given args
+    *parse checks if help is called then sets and converts the user's input
     *
     *@param   args    the given arguments from command prompt
     */
@@ -238,30 +238,67 @@ public class ParseArgs{
         }
     }
     
+    /**
+    *numberOfPositionalKeys returns the total number of positional keys
+    *
+    *@return the total number of positional keys
+    */
     protected int numberOfPositionalKeys(){
         return positionalKeys.size();
     }
     
+    /**
+    *numberOfOptionalKeys returns the total number of optional keys
+    *
+    *@return the total number of optional keys
+    */
     protected int numberOfOptionalKeys(){
         return optionalKeys.size();
     }
     
+    /**
+    *numberOfArgs returns the total number of arguments
+    *
+    *@return the total number of arguments
+    */
     protected int numberOfArgs(List<String> allArgs){
         return allArgs.size();
     }
     
+    /**
+    *numberOfTotalKeys returns the total number of keys
+    *
+    *@return the total number of keys
+    */
     protected int numberOfTotalKeys(){
         return optionalKeys.size() + positionalKeys.size();
     }
     
+    /**
+    *getHelpMessage returns the message to help the user to understand the program
+    *
+    *@return the message to help the user to understand the program
+    */
     public String getHelpMessage() {
         return helpMessage;
     }
     
+    /**
+    *doesHelpWork returns a boolean to determine if help works
+    *
+    *@return a boolean to determine if help works
+    */
     public boolean doesHelpWork(){
         return messageTrue;
     }
     
+    /**
+    *getArg returns the Argument associated with the given key
+    *
+    *@param key    the key associated with the desired Argument
+    *@return the Argument associated with the given key
+    *@see Argument Class
+    */
     public Argument getArg(String key)
     {
         Argument temp = new Argument();
@@ -269,28 +306,60 @@ public class ParseArgs{
         return temp;
     }
     
+    /**
+    *getValue calls getValue of Argument to return the user's input associated with the given key
+    *
+    *@param key    the key associated with the desired user input
+    *@return the user's input
+    */
     public <T> T getValue(String key)
     {
         Argument temp = getArg(key);
         return temp.getValue();
     }
     
+    /**
+    *getPositionalKey takes an integer to return the name of the Positional Key at that index
+    *
+    *@param where   the index of the desired Positional Key
+    *@return the name of the Positional Key
+    */
     public String getPositionalKey(int where)
     {
         String s = positionalKeys.get(where);
         return s;
     }
     
+    /**
+    *getOptionalKey takes an integer to return the name of the Optional Key at that index
+    *
+    *@param where   the index of the desired Optional Key
+    *@return the name of the Optional Key
+    */
     public String getOptionalKey(int where)
     {
         String s = optionalKeys.get(where);
         return s;
     }
     
+    /**
+    *getProgramName returns the name of the program
+    *
+    *@return the name of the Program
+    */
     public String getProgramName(){
         return programName;
     }
     
+    /**
+    *programInfo sets the name of the program and uses the description 
+    *of the program and description of the positional keys through getArg
+    *to build the help message
+    *
+    *@param name           name of the program
+    *@param description    description of the program
+    *@see getArg
+    */
     public void programInfo(String name, String description){
         String key = "";
         Argument temp = new Positional();
