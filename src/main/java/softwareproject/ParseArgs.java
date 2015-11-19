@@ -19,6 +19,22 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+/**
+*The ParseArgs class allows the creation of a program 
+*with arguments that can be required or not. This involves 
+*set the program name, description of the program, and the 
+*arguments that the main programmer would like for the 
+*program. It also saves an .xml file for the main that the 
+*programmer creates. It also takes in an .xml file to read 
+*it in. It uses the Argument, Positional, and Optional 
+*classes.
+*
+*@see Argument Class
+*@see Positional Class
+*@see Optional Class
+*@author CS 310 XXY Team
+*@version Fall 2015
+*/
 public class ParseArgs{
     protected static Map<String, Argument> map;
     protected static Map<String, String> shmap;
@@ -33,7 +49,14 @@ public class ParseArgs{
     private String helpMessage;
         
     protected XMLParse x;
-       
+    
+    /**
+    *ParseArgs is the constructor of the class ParseArgs. 
+    *This starts the new maps needed to keep up with the 
+    *arguments given by the programmer, the new ArrayLists 
+    *for keeping the lists of positional and optional keys, 
+    *and begins the help message.
+    */
     public ParseArgs() {
         map = new HashMap<String, Argument>();
         shmap = new HashMap<String, String>();
@@ -97,6 +120,10 @@ public class ParseArgs{
         x.readXML(file);
     }
     
+    /**
+    *saveToXML creates a new .xml file that can be read back in. 
+    *This is used to create new positional or optional arguments.
+    */
     public void saveToXML(String file){
         try{
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
