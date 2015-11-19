@@ -300,9 +300,9 @@ public class ArgumentTests {
             
             String[] args = {"-t", "ellipsoid", "-f", "5.5f"};
             
-            p.setShortHand("type", "-t");
-            p.setShortHand("float", "-f");
-            p.setShortHand("bool", "-b");
+            p.setShortHand("type", "t");
+            p.setShortHand("float", "f");
+            p.setShortHand("bool", "b");
             
             p.parse(args);
             
@@ -344,7 +344,7 @@ public class ArgumentTests {
 				expectedEx.expectMessage("-h is used for only help");
             p.addOpt("happy", "feeling", Argument.Type.STRING);
             String[] args = {"-h"};
-            p.setShortHand("happy", "-h");
+            p.setShortHand("happy", "h");
             p.parse(args);
         }
     @Test
@@ -385,25 +385,25 @@ public class ArgumentTests {
 	        String[] args = {"--help"};
             p.parse(args); 
         }
-    // @Test
-        // public void textXMLWrite() {
-		    // p.addPos("length", "", Argument.Type.STRING);
-		    // p.addPos("width", "", Argument.Type.STRING);
-		    // p.addPos("height", "", Argument.Type.STRING);
+    @Test
+        public void textXMLWrite() {
+            p.addPos("length", "", Argument.Type.STRING);
+		    p.addPos("width", "", Argument.Type.STRING);
+		    p.addPos("height", "", Argument.Type.STRING);
 		
-		    // String[] args = {"7", "5", "2"};
+            String[] args = {"7", "5", "2"};
 		    
-		    // p.saveToXML("VolumeCalculatorToXML.xml");
+		    p.saveToXML("VolumeCalculatorToXML.xml");
 		    
-		    // ParseArgs p2 = new ParseArgs();
-		    // p2.readXML("src/test/java/softwareproject/VolumeCalculator.xml");
-		    // p2.parse(args);			
+            ParseArgs p2 = new ParseArgs();
+		    p2.readXML("VolumeCalculatorToXML.xml");
+		    p2.parse(args);			
 
-		    // a = p.getArg("length");
-		    // assertEquals(a.getValue(), "7");
-		    // a = p.getArg("width");
-		    // assertEquals(a.getValue(), "5");
-		    // a = p.getArg("height");
-		    // assertEquals(a.getValue(), "2");
-        // }
+		    a = p2.getArg("length");
+		    assertEquals(a.getValue(), "7");
+		    a = p2.getArg("width");
+		    assertEquals(a.getValue(), "5");
+		    a = p2.getArg("height");
+		    assertEquals(a.getValue(), "2");
+        }
 }
