@@ -1,1 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Argument>
+<Positional>
+<name>length</name>
+<type>STRING</type>
+<description/>
+</Positional>
+<Positional>
+<name>width</name>
+<type>STRING</type>
+<description/>
+</Positional>
+<Positional>
+<name>height</name>
+<type>STRING</type>
+<description/>
+</Positional>
+</Argument>

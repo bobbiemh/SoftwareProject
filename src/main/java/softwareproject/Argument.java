@@ -26,7 +26,7 @@ public class Argument {
      */
     public Argument() {
         value = "";
-        description = "There isn't one";
+        description = "";
         type = Type.STRING; 
         shorthand = "";
         required = true;

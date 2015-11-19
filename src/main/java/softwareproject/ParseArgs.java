@@ -14,6 +14,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -177,7 +178,7 @@ public class ParseArgs{
                     
                     Element child4 = doc.createElement("default");
                     Object def = temp.getDefault();
-                    child4.appendChild(doc.createTextNode((String)def));
+                    child4.appendChild(doc.createTextNode(def.toString()));
                     
                     opt.appendChild(child1);
                     opt.appendChild(child2);
@@ -189,8 +190,12 @@ public class ParseArgs{
                 }
                 
             }
+            doc.appendChild(root);
+            
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(file));
                 

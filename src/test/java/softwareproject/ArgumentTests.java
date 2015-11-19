@@ -386,7 +386,7 @@ public class ArgumentTests {
             p.parse(args); 
         }
     @Test
-        public void textXMLWrite() {
+        public void textXMLWritePOS() {
             p.addPos("length", "", Argument.Type.STRING);
 		    p.addPos("width", "", Argument.Type.STRING);
 		    p.addPos("height", "", Argument.Type.STRING);
@@ -405,5 +405,26 @@ public class ArgumentTests {
 		    assertEquals(a.getValue(), "5");
 		    a = p2.getArg("height");
 		    assertEquals(a.getValue(), "2");
+        }
+    @Test
+        public void textXMLWriteOPT() {
+            p.addOpt("type", "box", Argument.Type.STRING);
+            p.addOpt("digit", 4, Argument.Type.INT);
+            p.addOpt("gorilla", 4.5f, Argument.Type.FLOAT);
+		
+            String[] args = {"-t", "ellipsoid", "-d", "5", "-g", "5.5f"};
+		    
+		    p.saveToXML("VolumeCalculatorToXML.xml");
+		    
+            ParseArgs p2 = new ParseArgs();
+		    p2.readXML("VolumeCalculatorToXML.xml");
+		    p2.parse(args);			
+
+		    a = p2.getArg("type");
+		    assertEquals(a.getValue(), "ellipsoid");
+		    a = p2.getArg("digit");
+		    assertEquals(a.getValue(), 5);
+		    a = p2.getArg("gorilla");
+		    assertEquals(a.getValue(), 5.5f);
         }
 }
