@@ -480,7 +480,6 @@ public class ParseArgs{
     *
     *@param name           name of the program
     *@param description    description of the program
-    *@see getArg
     */
     public void programInfo(String name, String description){
         String key = "";
