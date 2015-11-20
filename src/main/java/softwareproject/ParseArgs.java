@@ -52,7 +52,8 @@ public class ParseArgs{
     protected XMLParse x;
     
     /**
-    *ParseArgs is the constructor of the class ParseArgs. 
+    *Constructs a new ParseArgs.
+    *<p>
     *This starts the new maps needed to keep up with the 
     *arguments given by the programmer, the new ArrayLists 
     *for keeping the lists of positional and optional keys, 
