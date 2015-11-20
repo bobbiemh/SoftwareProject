@@ -365,7 +365,7 @@ public class ParseArgs{
     *
     *@return the total number of positional keys
     */
-    protected int numberOfPositionalKeys(){
+    public int numberOfPositionalKeys(){
         return positionalKeys.size();
     }
     
@@ -374,25 +374,17 @@ public class ParseArgs{
     *
     *@return the total number of optional keys
     */
-    protected int numberOfOptionalKeys(){
+    public int numberOfOptionalKeys(){
         return optionalKeys.size();
     }
     
-    /**
-    *numberOfArgs returns the total number of arguments
-    *
-    *@return the total number of arguments
-    */
-    protected int numberOfArgs(List<String> allArgs){
-        return allArgs.size();
-    }
     
     /**
     *numberOfTotalKeys returns the total number of keys
     *
     *@return the total number of keys
     */
-    protected int numberOfTotalKeys(){
+    public int numberOfTotalKeys(){
         return optionalKeys.size() + positionalKeys.size();
     }
     
