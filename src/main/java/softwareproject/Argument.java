@@ -37,7 +37,7 @@ public class Argument {
      *
      * @param  value the value to be set
      */
-    public <T> void setValue(T value){
+    public void setValue(Object value){
         this.value = value;
     }
     
@@ -47,10 +47,10 @@ public class Argument {
      * @return the value of the argument
      */
     public <T> T getValue(){
-        // if(type == Argument.Type.INT) return (T)(Integer)value;
-        // else if(type == Argument.Type.BOOLEAN) return (T)(Boolean)value;
-        // else if(type == Argument.Type.FLOAT) return (T)(Float)value;
-        // else return (T)(String)value;
+        if(type == Argument.Type.INT) return (T)(Integer)value;
+        else if(type == Argument.Type.BOOLEAN) return (T)(Boolean)value;
+        else if(type == Argument.Type.FLOAT) return (T)(Float)value;
+        else if(type == Argument.Type.STRING) return (T)(String)value;
         return (T)value;
     }
     

@@ -18,12 +18,12 @@ public class Optional extends Argument{
     public void setValue(Object value){
         this.value = value;
     }
-    public Object getValue(){
-        /*if(type == Argument.Type.INT) return (T)(Integer)value;
+    public <T> T getValue(){
+        if(type == Argument.Type.INT) return (T)(Integer)value;
         else if(type == Argument.Type.BOOLEAN) return (T)(Boolean)value;
         else if(type == Argument.Type.FLOAT) return (T)(Float)value;
-        else return (T)(String)value;*/
-        return value;
+        else if(type == Argument.Type.STRING) return (T)(String)value;
+        return (T)value;
     }
     public void setType(Type type){
         this.type = type;

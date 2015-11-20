@@ -426,7 +426,7 @@ public class ParseArgs{
     *@param key    the key associated with the desired user input
     *@return the user's input
     */
-    public <T> T getValue(String key)
+    public Object getValue(String key)
     {
         Argument temp = getArg(key);
         return temp.getValue();
