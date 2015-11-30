@@ -109,38 +109,11 @@ public class Argument {
     }
     
     /**
-     * Sets whether or not the argument is required.
-     *
-     * @param  required the boolean to be returned
-     */
-    public void setRequired(boolean required){
-        this.required = required;
-    }
-    
-    /**
-     * Returns true if the argument is required or false if the argument is not required.
-     *
-     * @return a boolean based on whether the argument is required or not
-     */
-    public boolean getRequired() {
-        return required;
-    }
-    
-    /**
      * Sets the default value of the argument if it has not already been set.
      *
      * @param  defaultValue the default value of the argument
      */    
     public void setDefault(Object defaultValue){
         value = defaultValue;
-    }
-    
-    /**
-     * Returns the default value of the argument.
-     *
-     * @return the value of default argument
-     */
-    public Object getDefault(){
-        return value;
     }
 }
