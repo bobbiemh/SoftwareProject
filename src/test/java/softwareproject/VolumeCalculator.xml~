@@ -1,0 +1,32 @@
+<arguments>
+    <positional>
+        <name>length</name>
+        <type>INT</type>
+        <description>the length of a box</description>
+        <position>1</position>
+    </positional>
+    <positional>
+        <name>width</name>
+        <type>INT</type>
+        <description>the width of a box</description>
+        <position>2</position>
+    </positional>
+    <positional>
+        <name>height</name>
+        <type>INT</type>
+        <description>the height of a box</description>
+        <position>3</position>
+    </positional>
+    <optional>
+        <name>type</name>
+        <shortname>t</shortname>
+        <type>STRING</type>
+        <default>box</default>
+    </optional>
+    <optional>
+        <name>digits</name>
+        <shortname>d</shortname>
+        <type>INT</type>
+        <default>4</default>
+    </optional>
+</arguments>

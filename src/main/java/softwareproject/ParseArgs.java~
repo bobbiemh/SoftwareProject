@@ -179,7 +179,7 @@ public class ParseArgs{
                     
                     Element child4 = doc.createElement("default");
                     Object def = temp.getValue();
-                    child4.appendChild(doc.createTextNode(def.toString()));
+                    child4.appendChild(doc.createTextNode(convertToString(def)));
                     
                     opt.appendChild(child1);
                     opt.appendChild(child2);
@@ -319,8 +319,8 @@ public class ParseArgs{
         } 
     }
         
-    private String convertToString(String arg){
-        return arg;
+    private String convertToString(Object o){
+        return (String)o;
     }
     
     private int convertToInt(String arg, String key){

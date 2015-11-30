@@ -20,8 +20,8 @@ public class Optional extends Argument{
     }
     public <T> T getValue(){
         if(type == Argument.Type.INT) return (T)(Integer.valueOf((String)value));
-        else if(type == Argument.Type.BOOLEAN) return (T)(Boolean.valueOf((String)value));
-        else if(type == Argument.Type.FLOAT) return (T)(Float.valueOf((String)value));
+        else if(type == Argument.Type.BOOLEAN) return (T)(Boolean)value;
+        else if(type == Argument.Type.FLOAT) return (T)(Float)value;
         else if(type == Argument.Type.STRING) return (T)(String)value;
         return (T)value;
     }
