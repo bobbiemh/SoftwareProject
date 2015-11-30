@@ -427,4 +427,32 @@ public class ArgumentTests {
 		    a = p2.getArg("gorilla");
 		    assertEquals(a.getValue(), 5.5f);
         }
+        
+    @Test
+        public void testShorthand() {
+            a.setShortHand("s");
+            String tempS = a.getShortHand();
+            assertEquals(tempS, "s");
+        }
+        
+    // @Test
+        // public void testValue() {
+            // a.setValue("7");
+            // int temp = a.getValue();
+            // assertEquals(temp, 7);
+        // }
+        
+    @Test
+        public void testDescription() {
+            a.setDescription("this is a description");
+            String tempD = a.getDescription();
+            assertEquals(tempD, "this is a description");
+        }
+        
+    @Test
+        public void testType() {
+            a.setType(Argument.Type.STRING);
+            Argument.Type tempT = a.getType();
+            assertEquals(tempT, Argument.Type.STRING);
+        }
 }

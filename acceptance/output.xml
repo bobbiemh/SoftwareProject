@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 2.9 (Jython 2.7.0 on java1.8.0_66)" generated="20151130 11:22:46.625">
+<robot generator="Robot 2.9 (Jython 2.7.0 on java1.8.0_66)" generated="20151130 12:20:45.077">
 <suite source="C:\Users\Shay\Documents\GitHub\SoftwareProject\acceptance\AcceptanceTest.txt" name="AcceptanceTest" id="s1">
 <test name="Test Volume Calculator Normal Function" id="s1-t1">
 <kw library="Keywords" name="Start Volume Calculator With Arguments">
@@ -8,14 +8,14 @@
 <arg>5</arg>
 <arg>2</arg>
 </arguments>
-<status endtime="20151130 11:22:48.849" starttime="20151130 11:22:48.759" status="PASS"></status>
+<status endtime="20151130 12:20:48.879" starttime="20151130 12:20:48.784" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Length">
 <assign>
 <var>${length}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:48.863">${length} = 7</msg>
-<status endtime="20151130 11:22:48.865" starttime="20151130 11:22:48.855" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:49.008">${length} = 7</msg>
+<status endtime="20151130 12:20:49.010" starttime="20151130 12:20:48.975" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -23,14 +23,14 @@
 <arg>7</arg>
 <arg>${length}</arg>
 </arguments>
-<status endtime="20151130 11:22:48.895" starttime="20151130 11:22:48.870" status="PASS"></status>
+<status endtime="20151130 12:20:49.110" starttime="20151130 12:20:49.079" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Width">
 <assign>
 <var>${width}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:48.918">${width} = 5</msg>
-<status endtime="20151130 11:22:48.920" starttime="20151130 11:22:48.901" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:49.167">${width} = 5</msg>
+<status endtime="20151130 12:20:49.234" starttime="20151130 12:20:49.148" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -38,14 +38,14 @@
 <arg>5</arg>
 <arg>${width}</arg>
 </arguments>
-<status endtime="20151130 11:22:48.954" starttime="20151130 11:22:48.929" status="PASS"></status>
+<status endtime="20151130 12:20:49.306" starttime="20151130 12:20:49.289" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Height">
 <assign>
 <var>${height}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:48.974">${height} = 2</msg>
-<status endtime="20151130 11:22:48.987" starttime="20151130 11:22:48.964" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:49.401">${height} = 2</msg>
+<status endtime="20151130 12:20:49.416" starttime="20151130 12:20:49.388" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -53,14 +53,14 @@
 <arg>2</arg>
 <arg>${height}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.017" starttime="20151130 11:22:48.993" status="PASS"></status>
+<status endtime="20151130 12:20:49.490" starttime="20151130 12:20:49.456" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Program Output">
 <assign>
 <var>${output}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.052">${output} = 70</msg>
-<status endtime="20151130 11:22:49.054" starttime="20151130 11:22:49.035" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:49.642">${output} = 70</msg>
+<status endtime="20151130 12:20:49.644" starttime="20151130 12:20:49.598" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -68,9 +68,9 @@
 <arg>${output}</arg>
 <arg>70</arg>
 </arguments>
-<status endtime="20151130 11:22:49.101" starttime="20151130 11:22:49.079" status="PASS"></status>
+<status endtime="20151130 12:20:49.798" starttime="20151130 12:20:49.753" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:49.108" starttime="20151130 11:22:48.739" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:50.054" starttime="20151130 12:20:48.670" status="PASS"></status>
 </test>
 <test name="Test Unrecognized Argument" id="s1-t2">
 <kw library="Keywords" name="Start Volume Calculator With Arguments">
@@ -80,15 +80,15 @@
 <arg>2</arg>
 <arg>43</arg>
 </arguments>
-<status endtime="20151130 11:22:49.194" starttime="20151130 11:22:49.180" status="PASS"></status>
+<status endtime="20151130 12:20:50.362" starttime="20151130 12:20:50.346" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Program Output">
 <assign>
 <var>${output}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.218">${output} = usage: java VolumeCalculator length width height
+<msg level="INFO" timestamp="20151130 12:20:50.448">${output} = usage: java VolumeCalculator length width height
 VolumeCalculator.java: error: unrecognized arguments: 43</msg>
-<status endtime="20151130 11:22:49.226" starttime="20151130 11:22:49.205" status="PASS"></status>
+<status endtime="20151130 12:20:50.451" starttime="20151130 12:20:50.396" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -96,9 +96,9 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>${expected}</arg>
 <arg>${output}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.266" starttime="20151130 11:22:49.244" status="PASS"></status>
+<status endtime="20151130 12:20:50.499" starttime="20151130 12:20:50.470" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:49.269" starttime="20151130 11:22:49.123" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:50.510" starttime="20151130 12:20:50.288" status="PASS"></status>
 </test>
 <test name="Test Absurd Program Normal Function" id="s1-t3">
 <kw library="Keywords" name="Start Absurd Program With Arguments">
@@ -108,14 +108,14 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>true</arg>
 <arg>3.5</arg>
 </arguments>
-<status endtime="20151130 11:22:49.329" starttime="20151130 11:22:49.307" status="PASS"></status>
+<status endtime="20151130 12:20:50.657" starttime="20151130 12:20:50.627" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Pet">
 <assign>
 <var>${pet}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.356">${pet} = dog</msg>
-<status endtime="20151130 11:22:49.368" starttime="20151130 11:22:49.348" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:50.717">${pet} = dog</msg>
+<status endtime="20151130 12:20:50.728" starttime="20151130 12:20:50.678" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -123,14 +123,14 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>dog</arg>
 <arg>${pet}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.394" starttime="20151130 11:22:49.375" status="PASS"></status>
+<status endtime="20151130 12:20:50.772" starttime="20151130 12:20:50.738" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Number">
 <assign>
 <var>${number}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.426">${number} = 2</msg>
-<status endtime="20151130 11:22:49.442" starttime="20151130 11:22:49.404" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:50.889">${number} = 2</msg>
+<status endtime="20151130 12:20:50.891" starttime="20151130 12:20:50.851" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -138,14 +138,14 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>2</arg>
 <arg>${number}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.494" starttime="20151130 11:22:49.451" status="PASS"></status>
+<status endtime="20151130 12:20:50.923" starttime="20151130 12:20:50.899" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Rainy">
 <assign>
 <var>${rainy}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.527">${rainy} = true</msg>
-<status endtime="20151130 11:22:49.528" starttime="20151130 11:22:49.517" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:50.954">${rainy} = true</msg>
+<status endtime="20151130 12:20:50.956" starttime="20151130 12:20:50.941" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -153,14 +153,14 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>true</arg>
 <arg>${rainy}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.606" starttime="20151130 11:22:49.537" status="PASS"></status>
+<status endtime="20151130 12:20:51.004" starttime="20151130 12:20:50.965" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Bathrooms">
 <assign>
 <var>${bathrooms}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.677">${bathrooms} = 3.5</msg>
-<status endtime="20151130 11:22:49.679" starttime="20151130 11:22:49.624" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.036">${bathrooms} = 3.5</msg>
+<status endtime="20151130 12:20:51.038" starttime="20151130 12:20:51.011" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -168,28 +168,28 @@ VolumeCalculator.java: error: unrecognized arguments: 43</msg>
 <arg>3.5</arg>
 <arg>${bathrooms}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.699" starttime="20151130 11:22:49.686" status="PASS"></status>
+<status endtime="20151130 12:20:51.077" starttime="20151130 12:20:51.061" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:49.708" starttime="20151130 11:22:49.279" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:51.103" starttime="20151130 12:20:50.605" status="PASS"></status>
 </test>
 <test name="Test Usage Message" id="s1-t4">
 <kw library="Keywords" name="Start Program With Arguments">
 <arguments>
 <arg>--help</arg>
 </arguments>
-<status endtime="20151130 11:22:49.742" starttime="20151130 11:22:49.729" status="PASS"></status>
+<status endtime="20151130 12:20:51.177" starttime="20151130 12:20:51.155" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Program Output">
 <assign>
 <var>${output}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.763">${output} = usage: java VolumeCalculator length width height
+<msg level="INFO" timestamp="20151130 12:20:51.199">${output} = usage: java VolumeCalculator length width height
 Calculate the volume of a box.
 Positional arguments:
 length the length of the box
 width the width of the box
 height the height of the box</msg>
-<status endtime="20151130 11:22:49.771" starttime="20151130 11:22:49.753" status="PASS"></status>
+<status endtime="20151130 12:20:51.201" starttime="20151130 12:20:51.186" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -197,9 +197,9 @@ height the height of the box</msg>
 <arg>${helpmessage}</arg>
 <arg>${output}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.794" starttime="20151130 11:22:49.779" status="PASS"></status>
+<status endtime="20151130 12:20:51.219" starttime="20151130 12:20:51.207" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:49.809" starttime="20151130 11:22:49.718" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:51.252" starttime="20151130 12:20:51.120" status="PASS"></status>
 </test>
 <test name="Test Incorrect Datatype Message" id="s1-t5">
 <kw library="Keywords" name="Start Program With Arguments">
@@ -208,15 +208,15 @@ height the height of the box</msg>
 <arg>something</arg>
 <arg>2</arg>
 </arguments>
-<status endtime="20151130 11:22:49.841" starttime="20151130 11:22:49.832" status="PASS"></status>
+<status endtime="20151130 12:20:51.486" starttime="20151130 12:20:51.477" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Program Output">
 <assign>
 <var>${output}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:49.853">${output} = usage: java VolumeCalculator length width height
+<msg level="INFO" timestamp="20151130 12:20:51.571">${output} = usage: java VolumeCalculator length width height
 VolumeCalculator.java: error: argument width: invalid int value: something</msg>
-<status endtime="20151130 11:22:49.900" starttime="20151130 11:22:49.845" status="PASS"></status>
+<status endtime="20151130 12:20:51.594" starttime="20151130 12:20:51.512" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -224,9 +224,9 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>${output}</arg>
 <arg>${isexpected}</arg>
 </arguments>
-<status endtime="20151130 11:22:49.921" starttime="20151130 11:22:49.905" status="PASS"></status>
+<status endtime="20151130 12:20:51.635" starttime="20151130 12:20:51.603" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:49.925" starttime="20151130 11:22:49.816" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:51.647" starttime="20151130 12:20:51.467" status="PASS"></status>
 </test>
 <test name="Test Named Argument Defaults" id="s1-t6">
 <kw library="Keywords" name="Start Volume Calculator Dash Arguments">
@@ -235,14 +235,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>2</arg>
 </arguments>
-<status endtime="20151130 11:22:50.001" starttime="20151130 11:22:49.959" status="PASS"></status>
+<status endtime="20151130 12:20:51.787" starttime="20151130 12:20:51.751" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Length">
 <assign>
 <var>${length}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.017">${length} = 7</msg>
-<status endtime="20151130 11:22:50.037" starttime="20151130 11:22:50.007" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.809">${length} = 7</msg>
+<status endtime="20151130 12:20:51.817" starttime="20151130 12:20:51.798" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -250,14 +250,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>7</arg>
 <arg>${length}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.077" starttime="20151130 11:22:50.062" status="PASS"></status>
+<status endtime="20151130 12:20:51.849" starttime="20151130 12:20:51.837" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Width">
 <assign>
 <var>${width}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.100">${width} = 3</msg>
-<status endtime="20151130 11:22:50.102" starttime="20151130 11:22:50.084" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.859">${width} = 3</msg>
+<status endtime="20151130 12:20:51.861" starttime="20151130 12:20:51.852" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -265,14 +265,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>${width}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.144" starttime="20151130 11:22:50.115" status="PASS"></status>
+<status endtime="20151130 12:20:51.885" starttime="20151130 12:20:51.872" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Height">
 <assign>
 <var>${height}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.161">${height} = 2</msg>
-<status endtime="20151130 11:22:50.163" starttime="20151130 11:22:50.153" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.913">${height} = 2</msg>
+<status endtime="20151130 12:20:51.915" starttime="20151130 12:20:51.889" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -280,14 +280,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>2</arg>
 <arg>${height}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.179" starttime="20151130 11:22:50.168" status="PASS"></status>
+<status endtime="20151130 12:20:51.935" starttime="20151130 12:20:51.920" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Type">
 <assign>
 <var>${type}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.194">${type} = box</msg>
-<status endtime="20151130 11:22:50.195" starttime="20151130 11:22:50.186" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.959">${type} = box</msg>
+<status endtime="20151130 12:20:51.960" starttime="20151130 12:20:51.943" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -295,14 +295,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>box</arg>
 <arg>${type}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.215" starttime="20151130 11:22:50.201" status="PASS"></status>
+<status endtime="20151130 12:20:51.977" starttime="20151130 12:20:51.967" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Digits">
 <assign>
 <var>${digits}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.232">${digits} = 4</msg>
-<status endtime="20151130 11:22:50.234" starttime="20151130 11:22:50.220" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:51.998">${digits} = 4</msg>
+<status endtime="20151130 12:20:52.004" starttime="20151130 12:20:51.985" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -310,9 +310,9 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>4</arg>
 <arg>${digits}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.252" starttime="20151130 11:22:50.239" status="PASS"></status>
+<status endtime="20151130 12:20:52.025" starttime="20151130 12:20:52.011" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:50.256" starttime="20151130 11:22:49.931" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:52.030" starttime="20151130 12:20:51.674" status="PASS"></status>
 </test>
 <test name="Test Named Argument Single" id="s1-t7">
 <kw library="Keywords" name="Start Volume Calculator Dash Arguments">
@@ -323,14 +323,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>--type</arg>
 <arg>ellipsoid</arg>
 </arguments>
-<status endtime="20151130 11:22:50.351" starttime="20151130 11:22:50.341" status="PASS"></status>
+<status endtime="20151130 12:20:52.083" starttime="20151130 12:20:52.061" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Length">
 <assign>
 <var>${length}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.441">${length} = 7</msg>
-<status endtime="20151130 11:22:50.442" starttime="20151130 11:22:50.430" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.107">${length} = 7</msg>
+<status endtime="20151130 12:20:52.109" starttime="20151130 12:20:52.090" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -338,14 +338,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>7</arg>
 <arg>${length}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.476" starttime="20151130 11:22:50.462" status="PASS"></status>
+<status endtime="20151130 12:20:52.132" starttime="20151130 12:20:52.119" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Width">
 <assign>
 <var>${width}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.546">${width} = 3</msg>
-<status endtime="20151130 11:22:50.561" starttime="20151130 11:22:50.521" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.160">${width} = 3</msg>
+<status endtime="20151130 12:20:52.162" starttime="20151130 12:20:52.137" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -353,14 +353,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>${width}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.605" starttime="20151130 11:22:50.586" status="PASS"></status>
+<status endtime="20151130 12:20:52.191" starttime="20151130 12:20:52.168" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Height">
 <assign>
 <var>${height}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.638">${height} = 2</msg>
-<status endtime="20151130 11:22:50.640" starttime="20151130 11:22:50.617" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.210">${height} = 2</msg>
+<status endtime="20151130 12:20:52.211" starttime="20151130 12:20:52.200" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -368,14 +368,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>2</arg>
 <arg>${height}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.664" starttime="20151130 11:22:50.654" status="PASS"></status>
+<status endtime="20151130 12:20:52.258" starttime="20151130 12:20:52.248" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Type">
 <assign>
 <var>${type}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.683">${type} = ellipsoid</msg>
-<status endtime="20151130 11:22:50.687" starttime="20151130 11:22:50.672" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.274">${type} = ellipsoid</msg>
+<status endtime="20151130 12:20:52.275" starttime="20151130 12:20:52.267" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -383,14 +383,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>ellipsoid</arg>
 <arg>${type}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.705" starttime="20151130 11:22:50.691" status="PASS"></status>
+<status endtime="20151130 12:20:52.319" starttime="20151130 12:20:52.280" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Digits">
 <assign>
 <var>${digits}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.737">${digits} = 4</msg>
-<status endtime="20151130 11:22:50.740" starttime="20151130 11:22:50.729" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.341">${digits} = 4</msg>
+<status endtime="20151130 12:20:52.343" starttime="20151130 12:20:52.328" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -398,9 +398,9 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>4</arg>
 <arg>${digits}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.768" starttime="20151130 11:22:50.746" status="PASS"></status>
+<status endtime="20151130 12:20:52.362" starttime="20151130 12:20:52.350" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:50.780" starttime="20151130 11:22:50.262" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:52.367" starttime="20151130 12:20:52.042" status="PASS"></status>
 </test>
 <test name="Test Named Argument Multiple" id="s1-t8">
 <kw library="Keywords" name="Start Volume Calculator Dash Arguments">
@@ -413,14 +413,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>--digit</arg>
 <arg>1</arg>
 </arguments>
-<status endtime="20151130 11:22:50.825" starttime="20151130 11:22:50.812" status="PASS"></status>
+<status endtime="20151130 12:20:52.449" starttime="20151130 12:20:52.421" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Length">
 <assign>
 <var>${length}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.847">${length} = 7</msg>
-<status endtime="20151130 11:22:50.851" starttime="20151130 11:22:50.840" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.462">${length} = 7</msg>
+<status endtime="20151130 12:20:52.464" starttime="20151130 12:20:52.454" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -428,14 +428,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>7</arg>
 <arg>${length}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.870" starttime="20151130 11:22:50.855" status="PASS"></status>
+<status endtime="20151130 12:20:52.483" starttime="20151130 12:20:52.470" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Width">
 <assign>
 <var>${width}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.912">${width} = 3</msg>
-<status endtime="20151130 11:22:50.913" starttime="20151130 11:22:50.906" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.554">${width} = 3</msg>
+<status endtime="20151130 12:20:52.555" starttime="20151130 12:20:52.511" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -443,14 +443,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>${width}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.930" starttime="20151130 11:22:50.920" status="PASS"></status>
+<status endtime="20151130 12:20:52.572" starttime="20151130 12:20:52.562" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Height">
 <assign>
 <var>${height}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:50.944">${height} = 2</msg>
-<status endtime="20151130 11:22:50.945" starttime="20151130 11:22:50.936" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.584">${height} = 2</msg>
+<status endtime="20151130 12:20:52.586" starttime="20151130 12:20:52.577" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -458,14 +458,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>2</arg>
 <arg>${height}</arg>
 </arguments>
-<status endtime="20151130 11:22:50.982" starttime="20151130 11:22:50.968" status="PASS"></status>
+<status endtime="20151130 12:20:52.602" starttime="20151130 12:20:52.591" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Type">
 <assign>
 <var>${type}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.063">${type} = ellipsoid</msg>
-<status endtime="20151130 11:22:51.065" starttime="20151130 11:22:51.055" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.622">${type} = ellipsoid</msg>
+<status endtime="20151130 12:20:52.625" starttime="20151130 12:20:52.607" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -473,14 +473,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>ellipsoid</arg>
 <arg>${type}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.084" starttime="20151130 11:22:51.069" status="PASS"></status>
+<status endtime="20151130 12:20:52.697" starttime="20151130 12:20:52.684" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Digits">
 <assign>
 <var>${digits}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.097">${digits} = 1</msg>
-<status endtime="20151130 11:22:51.100" starttime="20151130 11:22:51.090" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.729">${digits} = 1</msg>
+<status endtime="20151130 12:20:52.730" starttime="20151130 12:20:52.721" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -488,9 +488,9 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>1</arg>
 <arg>${digits}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.113" starttime="20151130 11:22:51.104" status="PASS"></status>
+<status endtime="20151130 12:20:52.747" starttime="20151130 12:20:52.736" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:51.124" starttime="20151130 11:22:50.793" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:52.756" starttime="20151130 12:20:52.387" status="PASS"></status>
 </test>
 <test name="Test Named Argument Anywhere" id="s1-t9">
 <kw library="Keywords" name="Start Volume Calculator Dash Arguments">
@@ -503,14 +503,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>1</arg>
 <arg>2</arg>
 </arguments>
-<status endtime="20151130 11:22:51.239" starttime="20151130 11:22:51.227" status="PASS"></status>
+<status endtime="20151130 12:20:52.797" starttime="20151130 12:20:52.785" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Length">
 <assign>
 <var>${length}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.250">${length} = 7</msg>
-<status endtime="20151130 11:22:51.252" starttime="20151130 11:22:51.243" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.808">${length} = 7</msg>
+<status endtime="20151130 12:20:52.809" starttime="20151130 12:20:52.802" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -518,14 +518,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>7</arg>
 <arg>${length}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.276" starttime="20151130 11:22:51.256" status="PASS"></status>
+<status endtime="20151130 12:20:52.825" starttime="20151130 12:20:52.816" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Width">
 <assign>
 <var>${width}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.292">${width} = 3</msg>
-<status endtime="20151130 11:22:51.294" starttime="20151130 11:22:51.286" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.855">${width} = 3</msg>
+<status endtime="20151130 12:20:52.858" starttime="20151130 12:20:52.830" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -533,14 +533,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>${width}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.358" starttime="20151130 11:22:51.323" status="PASS"></status>
+<status endtime="20151130 12:20:52.908" starttime="20151130 12:20:52.868" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Height">
 <assign>
 <var>${height}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.405">${height} = 2</msg>
-<status endtime="20151130 11:22:51.406" starttime="20151130 11:22:51.397" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.923">${height} = 2</msg>
+<status endtime="20151130 12:20:52.925" starttime="20151130 12:20:52.917" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -548,14 +548,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>2</arg>
 <arg>${height}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.495" starttime="20151130 11:22:51.483" status="PASS"></status>
+<status endtime="20151130 12:20:52.946" starttime="20151130 12:20:52.934" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Type">
 <assign>
 <var>${type}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.560">${type} = ellipsoid</msg>
-<status endtime="20151130 11:22:51.581" starttime="20151130 11:22:51.543" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:52.976">${type} = ellipsoid</msg>
+<status endtime="20151130 12:20:52.978" starttime="20151130 12:20:52.967" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -563,14 +563,14 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>ellipsoid</arg>
 <arg>${type}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.679" starttime="20151130 11:22:51.665" status="PASS"></status>
+<status endtime="20151130 12:20:53.060" starttime="20151130 12:20:53.044" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Digits">
 <assign>
 <var>${digits}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:51.876">${digits} = 1</msg>
-<status endtime="20151130 11:22:51.879" starttime="20151130 11:22:51.869" status="PASS"></status>
+<msg level="INFO" timestamp="20151130 12:20:53.104">${digits} = 1</msg>
+<status endtime="20151130 12:20:53.111" starttime="20151130 12:20:53.070" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -578,9 +578,9 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>1</arg>
 <arg>${digits}</arg>
 </arguments>
-<status endtime="20151130 11:22:51.989" starttime="20151130 11:22:51.980" status="PASS"></status>
+<status endtime="20151130 12:20:53.135" starttime="20151130 12:20:53.123" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:52.019" starttime="20151130 11:22:51.167" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:53.139" starttime="20151130 12:20:52.771" status="PASS"></status>
 </test>
 <test name="Test Help Flag" id="s1-t10">
 <kw library="Keywords" name="Start Program With Float Arguments">
@@ -590,19 +590,19 @@ VolumeCalculator.java: error: argument width: invalid int value: something</msg>
 <arg>3</arg>
 <arg>2</arg>
 </arguments>
-<status endtime="20151130 11:22:52.152" starttime="20151130 11:22:52.136" status="PASS"></status>
+<status endtime="20151130 12:20:53.197" starttime="20151130 12:20:53.186" status="PASS"></status>
 </kw>
 <kw library="Keywords" name="Get Program Output">
 <assign>
 <var>${output}</var>
 </assign>
-<msg level="INFO" timestamp="20151130 11:22:52.181">${output} = usage: java VolumeCalculator length width height
+<msg level="INFO" timestamp="20151130 12:20:53.222">${output} = usage: java VolumeCalculator length width height
 Calculate the volume of a box.
 Positional arguments:
 length the length of the box(float)
 width the width of the box(float)
 height the height of the box...</msg>
-<status endtime="20151130 11:22:52.184" starttime="20151130 11:22:52.171" status="PASS"></status>
+<status endtime="20151130 12:20:53.224" starttime="20151130 12:20:53.208" status="PASS"></status>
 </kw>
 <kw library="BuiltIn" name="Should Be Equal">
 <doc>Fails if the given objects are unequal.</doc>
@@ -610,11 +610,11 @@ height the height of the box...</msg>
 <arg>${floatcheck}</arg>
 <arg>${output}</arg>
 </arguments>
-<status endtime="20151130 11:22:52.232" starttime="20151130 11:22:52.215" status="PASS"></status>
+<status endtime="20151130 12:20:53.273" starttime="20151130 12:20:53.262" status="PASS"></status>
 </kw>
-<status critical="yes" endtime="20151130 11:22:52.249" starttime="20151130 11:22:52.113" status="PASS"></status>
+<status critical="yes" endtime="20151130 12:20:53.286" starttime="20151130 12:20:53.174" status="PASS"></status>
 </test>
-<status endtime="20151130 11:22:52.406" starttime="20151130 11:22:46.737" status="PASS"></status>
+<status endtime="20151130 12:20:53.396" starttime="20151130 12:20:45.123" status="PASS"></status>
 </suite>
 <statistics>
 <total>

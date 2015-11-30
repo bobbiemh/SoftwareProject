@@ -178,7 +178,7 @@ public class ParseArgs{
                     child3.appendChild(doc.createTextNode(type.name()));
                     
                     Element child4 = doc.createElement("default");
-                    Object def = temp.getDefault();
+                    Object def = temp.getValue();
                     child4.appendChild(doc.createTextNode(def.toString()));
                     
                     opt.appendChild(child1);
