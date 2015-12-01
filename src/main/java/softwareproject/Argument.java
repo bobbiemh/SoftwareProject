@@ -50,7 +50,7 @@ public class Argument {
         if(type == Argument.Type.INT) return (T)(Integer.valueOf((String)value));
         else if(type == Argument.Type.BOOLEAN) return (T)(Boolean.valueOf((String)value));
         else if(type == Argument.Type.FLOAT) return (T)(Float.valueOf((String)value));
-        else if(type == Argument.Type.STRING) return (T)(String)value;
+        else if(type == Argument.Type.STRING) return (T)String.valueOf(value);
         return (T)value;
     }
     
