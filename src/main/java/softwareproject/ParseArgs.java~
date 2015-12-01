@@ -272,7 +272,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException("Argument " + arg.substring(2) + " does not exist");
+                    throw new IllegalArgumentException(getUsage() + "\nArgument: " + arg.substring(2) + " does not exist");
             }
             else if(arg.startsWith("-")){
                 if(arg.equals("-h")){
@@ -284,7 +284,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException("the argument does not exist");
+                    throw new IllegalArgumentException(getUsage() + "\nShorthand Argument: " + arg.substring(1) + " does not exist");
             }
             else{
                 if(posCount >= positionalKeys.size()){

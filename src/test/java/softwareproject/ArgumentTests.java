@@ -474,7 +474,8 @@ public class ArgumentTests {
     @Test
         public void testDashDashException() {
             expectedEx.expect(IllegalArgumentException.class);
-				expectedEx.expectMessage("the argument does not exist");
+				expectedEx.expectMessage("usage: java null\n"+
+                                         "Argument: Monkey does not exist");
             String args[] = {"--Monkey"};
             p.parse(args);
         }
@@ -482,7 +483,8 @@ public class ArgumentTests {
     @Test
         public void testDashException() {
             expectedEx.expect(IllegalArgumentException.class);
-				expectedEx.expectMessage("the argument does not exist");
+				expectedEx.expectMessage("usage: java null\n"+
+                                         "Shorthand Argument: M does not exist");
             String args[] = {"-M"};
              p.parse(args);
         }
