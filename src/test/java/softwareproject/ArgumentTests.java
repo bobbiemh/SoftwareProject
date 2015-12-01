@@ -148,8 +148,8 @@ public class ArgumentTests {
 	        }
     @Test
         public void incorrectArgType(){
-			//expectedEx.expect(NumberFormatException.class);
-				//expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something");
+			expectedEx.expect(NumberFormatException.class);
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid INT value: something");
             p.programInfo("VolumeCalculator","");
             p.addPos("length", "", Argument.Type.INT);
             p.addPos("width", "", Argument.Type.INT);
@@ -157,6 +157,7 @@ public class ArgumentTests {
                        
             String[] args = {"0", "something", "0"};
             p.parse(args);
+            p.getValue("width");
         }
         
     /*@Test        OBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETE
@@ -174,7 +175,7 @@ public class ArgumentTests {
     @Test
         public void incorrectArgTypeFloat(){
 			expectedEx.expect(NumberFormatException.class);
-				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid float value: something");
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid FLOAT value: something");
             p.programInfo("VolumeCalculator","");
             p.addPos("length", "", Argument.Type.FLOAT);
             p.addPos("width", "", Argument.Type.FLOAT);

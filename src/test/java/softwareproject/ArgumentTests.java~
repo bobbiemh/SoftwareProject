@@ -149,7 +149,7 @@ public class ArgumentTests {
     @Test
         public void incorrectArgType(){
 			expectedEx.expect(NumberFormatException.class);
-				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid int value: something");
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid INT value: something");
             p.programInfo("VolumeCalculator","");
             p.addPos("length", "", Argument.Type.INT);
             p.addPos("width", "", Argument.Type.INT);
@@ -157,6 +157,7 @@ public class ArgumentTests {
                        
             String[] args = {"0", "something", "0"};
             p.parse(args);
+            p.getValue("width");
         }
         
     /*@Test        OBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETE
@@ -174,7 +175,7 @@ public class ArgumentTests {
     @Test
         public void incorrectArgTypeFloat(){
 			expectedEx.expect(NumberFormatException.class);
-				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid float value: something");
+				expectedEx.expectMessage("usage: java VolumeCalculator length width height\nVolumeCalculator.java: error: argument width: invalid FLOAT value: something");
             p.programInfo("VolumeCalculator","");
             p.addPos("length", "", Argument.Type.FLOAT);
             p.addPos("width", "", Argument.Type.FLOAT);
@@ -426,5 +427,33 @@ public class ArgumentTests {
 		    assertEquals(a.getValue(), 5);
 		    a = p2.getArg("gorilla");
 		    assertEquals(a.getValue(), 5.5f);
+        }
+        
+    @Test
+        public void testShorthand() {
+            a.setShortHand("s");
+            String tempS = a.getShortHand();
+            assertEquals(tempS, "s");
+        }
+        
+    // @Test
+        // public void testValue() {
+            // a.setValue("7");
+            // int temp = a.getValue();
+            // assertEquals(temp, 7);
+        // }
+        
+    @Test
+        public void testDescription() {
+            a.setDescription("this is a description");
+            String tempD = a.getDescription();
+            assertEquals(tempD, "this is a description");
+        }
+        
+    @Test
+        public void testType() {
+            a.setType(Argument.Type.STRING);
+            Argument.Type tempT = a.getType();
+            assertEquals(tempT, Argument.Type.STRING);
         }
 }

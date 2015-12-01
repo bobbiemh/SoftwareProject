@@ -152,7 +152,7 @@ public class ParseArgs{
                     String descript = temp.getDescription();
                     Element child3 = doc.createElement("description");
                     child3.appendChild(doc.createTextNode(descript));
-                    
+             
                     pos.appendChild(child1);
                     pos.appendChild(child2);
                     pos.appendChild(child3);
@@ -272,7 +272,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException("the argument does not exist");
+                    throw new IllegalArgumentException("Argument " + arg.substring(2) + " does not exist");
             }
             else if(arg.startsWith("-")){
                 if(arg.equals("-h")){
@@ -297,19 +297,30 @@ public class ParseArgs{
             }
             
             Argument temp = getArg(key);
-            temp.setValue(arg);
-            map.put(key, temp);
+            Argument.Type type = temp.getType();
+            try{
+                if(type == Argument.Type.INT){
+                    Integer.parseInt(arg);
+                }
+                else if(type == Argument.Type.FLOAT){
+                    Float.valueOf(arg);
+                }
+                temp.setValue(arg);
+                map.put(key, temp);
+           }
+           catch(NumberFormatException e){
+                throw new NumberFormatException(getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid " + type + " value: " + arg); 
+           }
         }
         if(!messageTrue)
         {
             if(posCount < positionalKeys.size()){
-                throw new IllegalArgumentException("oh no");
+                String message = getUsage() + "\n" + programName + ".java: error: not enough positional arguments: missing:\n";
+                for(int a = posCount; a < positionalKeys.size(); a++) 
+                    message = message + " " + getPositionalKey(a);
+                throw new IllegalArgumentException(message);
             }            
         } 
-    }
-        
-    private String convertToString(String arg){
-        return arg;
     }
     
     /**
