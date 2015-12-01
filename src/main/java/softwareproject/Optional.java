@@ -45,14 +45,6 @@ public class Optional extends Argument{
         return shorthand;
     }
     
-    public void setRequired(boolean required){
-        this.required = required;
-    }
-    
-    public boolean getRequired() {
-        return required;
-    }
-    
     public void setDefault(Object defaultValue){
         value = defaultValue;
     }

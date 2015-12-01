@@ -36,7 +36,4 @@ public class Positional extends Argument {
     public String getDescription(){
         return description;
     }  
-    public boolean getRequired(){
-        return true;
-    }
 }
