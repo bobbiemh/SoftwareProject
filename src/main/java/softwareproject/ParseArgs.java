@@ -297,18 +297,7 @@ public class ParseArgs{
             }
             
             Argument temp = getArg(key);
-            Argument.Type type = temp.getType();
-            /*if(type == Argument.Type.INT){
-                temp.setValue(convertToInt(arg, key));
-            }
-            else if(type == Argument.Type.FLOAT){
-                temp.setValue(convertToFloat(arg, key));
-            }
-            else if(type == Argument.Type.BOOLEAN){                
-                temp.setValue(true);
-            }
-            else*/
-                temp.setValue(arg);
+            temp.setValue(arg);
             map.put(key, temp);
         }
         if(!messageTrue)
@@ -317,48 +306,6 @@ public class ParseArgs{
                 throw new IllegalArgumentException("oh no");
             }            
         } 
-    }
-        
-    private String convertToString(String arg){
-        return arg;
-    }
-    
-    private int convertToInt(String arg, String key){
-        try{
-            int num = Integer.parseInt(arg);
-            return num;
-        } 
-        catch(NumberFormatException e){
-            String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid int value: " + arg;
-            throw new NumberFormatException(exceptionMessage);
-        }
-    }
-    
-    private boolean convertToBoolean(String arg, String key){
-            if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("t"))
-            {
-                return true;
-            }
-            else if (arg.equalsIgnoreCase("false") || arg.equalsIgnoreCase("f"))
-            {
-                return false;
-            }
-            else
-            {                
-                String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid boolean value: " + arg;
-                throw new NumberFormatException(exceptionMessage);
-            }
-    }
-    
-    private float convertToFloat(String arg, String key){
-        try{
-            float f = Float.valueOf(arg);
-            return f;
-        }
-        catch(NumberFormatException e){
-            String exceptionMessage = getUsage() + "\n" + programName + ".java: error: argument " + key + ": invalid float value: " + arg;
-            throw new NumberFormatException(exceptionMessage);
-        }
     }
     
     /**
