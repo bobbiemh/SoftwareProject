@@ -34,8 +34,12 @@ public class ArgumentTests {
 			p.parse(args);
 			assertEquals(p.numberOfTotalKeys(), 3);
         }
-        @Test(expected = IllegalArgumentException.class)
+        @Test
 		public void TooFewArgs(){
+			expectedEx.expect(IllegalArgumentException.class);
+				expectedEx.expectMessage("usage: java null length width height\n"+
+                                         "null.java: error: not enough positional arguments: missing:\n"+
+                                         " height");
 			p.addPos("length", "", Argument.Type.STRING);
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
