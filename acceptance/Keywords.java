@@ -43,7 +43,7 @@ public class Keywords {
         p.addPos("width", "", Argument.Type.STRING);
         p.addPos("height", "", Argument.Type.STRING);        
         p.addOpt("type", "box", Argument.Type.STRING);
-        p.addOpt("digit", 4, Argument.Type.INT);
+        p.addOpt("digit", "4", Argument.Type.INT);
         p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         
         p.setShortHand("type", "-t");

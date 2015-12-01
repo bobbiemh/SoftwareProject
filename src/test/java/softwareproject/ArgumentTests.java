@@ -436,12 +436,19 @@ public class ArgumentTests {
             assertEquals(tempS, "s");
         }
         
-    // @Test
-        // public void testValue() {
-            // a.setValue("7");
-            // int temp = a.getValue();
-            // assertEquals(temp, 7);
-        // }
+    @Test
+        public void testValue() {
+            a.setValue("7");
+            String temp = a.getValue();
+            assertEquals(temp, "7");
+        }
+        
+    @Test
+        public void testDefault() {
+            a.setDefault("7");
+            String temp = a.getValue();
+            assertEquals(temp, "7");
+        }
         
     @Test
         public void testDescription() {
@@ -455,5 +462,28 @@ public class ArgumentTests {
             a.setType(Argument.Type.STRING);
             Argument.Type tempT = a.getType();
             assertEquals(tempT, Argument.Type.STRING);
+        }
+        
+    @Test
+        public void testProgramName() {
+            p.programInfo("Program", "This is a program.");
+            String name = p.getProgramName();
+            assertEquals(name, "Program");
+        }
+        
+    @Test
+        public void testDashDashException() {
+            expectedEx.expect(IllegalArgumentException.class);
+				expectedEx.expectMessage("the argument does not exist");
+            String args[] = {"--Monkey"};
+            p.parse(args);
+        }
+        
+    @Test
+        public void testDashException() {
+            expectedEx.expect(IllegalArgumentException.class);
+				expectedEx.expectMessage("the argument does not exist");
+            String args[] = {"-M"};
+             p.parse(args);
         }
 }
