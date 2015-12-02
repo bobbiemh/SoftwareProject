@@ -265,7 +265,7 @@ public class ParseArgs{
             if(arg.startsWith("--")){
                 if(arg.equals("--help")){
                     messageTrue = true;
-                    throw new IllegalArgumentException(getHelpMessage());
+                    throw new HelpMessageException(getHelpMessage());
                 }
                 else if(map.containsKey(arg.substring(2))){
                     key = arg.substring(2);
