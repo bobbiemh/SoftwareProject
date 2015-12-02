@@ -272,7 +272,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException(getUsage() + "\nArgument: " + arg.substring(2) + " does not exist");
+                    throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Argument: \"" + arg.substring(2) + "\" does not exist");
             }
             else if(arg.startsWith("-")){
                 if(arg.equals("-h")){
@@ -284,16 +284,15 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException(getUsage() + "\nShorthand Argument: " + arg.substring(1) + " does not exist");
+                    throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Shorthand Argument: \"" + arg.substring(1) + "\" does not correspond to any Argument");
             }
+            else if(posCount >= positionalKeys.size()){
+                posCount++;
+                throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Unrecognized Argument: " + arg);
+                }
             else{
-                if(posCount >= positionalKeys.size()){
-                    throw new IllegalArgumentException("too many args " + Integer.toString(posCount) + " " + Integer.toString(positionalKeys.size()));
-                }
-                else{
-                    key = positionalKeys.get(posCount);
-                    posCount++;
-                }
+                key = positionalKeys.get(posCount);
+                posCount++;
             }
             
             Argument temp = getArg(key);
@@ -304,6 +303,20 @@ public class ParseArgs{
                 }
                 else if(type == Argument.Type.FLOAT){
                     Float.valueOf(arg);
+                }
+                else if(type == Argument.Type.BOOLEAN){
+                    if (arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("t"))
+                    {
+                        arg = "true";
+                    }
+                    else if (arg.equalsIgnoreCase("false") || arg.equalsIgnoreCase("f"))
+                    {
+                        arg = "false";
+                    }
+                    else
+                    {
+                    throw new NumberFormatException();
+                    }
                 }
                 temp.setValue(arg);
                 map.put(key, temp);

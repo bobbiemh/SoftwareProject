@@ -48,8 +48,11 @@ public class ArgumentTests {
 			p.parse(args);
 		}
 		
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 		public void TooManyArgs(){
+		    expectedEx.expect(IllegalArgumentException.class);
+		        expectedEx.expectMessage("usage: java null length width height\n"+
+                                         "null.java: error: Unrecognized Argument: 3");
 			p.addPos("length", "", Argument.Type.STRING);
 			p.addPos("width", "", Argument.Type.STRING);
 			p.addPos("height", "", Argument.Type.STRING);
@@ -111,6 +114,15 @@ public class ArgumentTests {
 			a = p.getArg("TodayIsWednesday");
             assertEquals(a.getValue(), true);
         }
+        
+        @Test
+        public void testArgumentBooleanFalse() {
+            p.addPos("TodayIsWednesday", "", Argument.Type.BOOLEAN);
+            String[] args = {"false"};
+            p.parse(args);
+			a = p.getArg("TodayIsWednesday");
+            assertEquals(a.getValue(), false);
+        }
 
     @Test
         public void testArgumentDefaultString() {
@@ -164,17 +176,17 @@ public class ArgumentTests {
             p.getValue("width");
         }
         
-    /*@Test        OBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETEOBSOLETE
+    @Test
         public void incorrectArgTypeBoolean(){ 
             expectedEx.expect(NumberFormatException.class);
-                expectedEx.expectMessage("usage: java BooleanTool todayIsFriday\nBooleanTool.java: error: argument todayIsFriday: invalid boolean value: something");
+                expectedEx.expectMessage("usage: java BooleanTool todayIsFriday\nBooleanTool.java: error: argument todayIsFriday: invalid BOOLEAN value: something");
             p.programInfo("BooleanTool", "");
             p.addPos("todayIsFriday", "", Argument.Type.BOOLEAN);
             
             String[] args = {"something"};
             p.parse(args);
         }
-        */
+        
         
     @Test
         public void incorrectArgTypeFloat(){
@@ -479,7 +491,7 @@ public class ArgumentTests {
         public void testDashDashException() {
             expectedEx.expect(IllegalArgumentException.class);
 				expectedEx.expectMessage("usage: java null\n"+
-                                         "Argument: Monkey does not exist");
+                                         "null.java: error: Argument: \"Monkey\" does not exist");
             String args[] = {"--Monkey"};
             p.parse(args);
         }
@@ -488,7 +500,7 @@ public class ArgumentTests {
         public void testDashException() {
             expectedEx.expect(IllegalArgumentException.class);
 				expectedEx.expectMessage("usage: java null\n"+
-                                         "Shorthand Argument: M does not exist");
+                                         "null.java: error: Shorthand Argument: \"M\" does not correspond to any Argument");
             String args[] = {"-M"};
              p.parse(args);
         }
