@@ -36,7 +36,7 @@ public class ArgumentTests {
         }
         @Test
 		public void TooFewArgs(){
-			expectedEx.expect(IllegalArgumentException.class);
+			expectedEx.expect(HelpMessageException.class);
 				expectedEx.expectMessage("usage: java null length width height\n"+
                                          "null.java: error: not enough positional arguments: missing:\n"+
                                          " height");
@@ -50,7 +50,7 @@ public class ArgumentTests {
 		
 	@Test
 		public void TooManyArgs(){
-		    expectedEx.expect(IllegalArgumentException.class);
+		    expectedEx.expect(HelpMessageException.class);
 		        expectedEx.expectMessage("usage: java null length width height\n"+
                                          "null.java: error: Unrecognized Argument: 3");
 			p.addPos("length", "", Argument.Type.STRING);
@@ -140,7 +140,7 @@ public class ArgumentTests {
 	        assertEquals(a.getDescription(), "height the height of the box");
 	    }
         
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = HelpMessageException.class)
 		public void helpMessageWorking(){
 			String[] args = {"--help"};
 			p.parse(args);
@@ -148,7 +148,7 @@ public class ArgumentTests {
 		}
 	@Test
 	    public void helpMessageCorrect(){
-	        expectedEx.expect(IllegalArgumentException.class);
+	        expectedEx.expect(HelpMessageException.class);
                 expectedEx.expectMessage("usage: java volumeCalculator length width height\n"+
 	                                     "Calculate the volume of a box.\n"+
 	                                     "Positional arguments:\n"+
@@ -345,7 +345,7 @@ public class ArgumentTests {
         }
     @Test
         public void dashDashHelpAndDashH() {
-            expectedEx.expect(IllegalArgumentException.class);
+            expectedEx.expect(HelpMessageException.class);
 				expectedEx.expectMessage("usage: java volumeCalculator\n"+
 	                                     "Calculate the volume of a box\n" + "Positional arguments:");
             p.addOpt("digit", 4, Argument.Type.INT);
@@ -357,7 +357,7 @@ public class ArgumentTests {
         }
     @Test
         public void noOtherArgCanBeNamedH() {
-            expectedEx.expect(IllegalArgumentException.class);
+            expectedEx.expect(HelpMessageException.class);
 				expectedEx.expectMessage("-h is used for only help");
             p.addOpt("happy", "feeling", Argument.Type.STRING);
             String[] args = {"-h"};
@@ -389,7 +389,7 @@ public class ArgumentTests {
         }
     @Test
         public void testXMLHelp() {
-        expectedEx.expect(IllegalArgumentException.class);
+        expectedEx.expect(HelpMessageException.class);
                 expectedEx.expectMessage("usage: java VolumeCalculator length width height\n"+
 	                                     "Calculate the volume of a box.\n"+
 	                                     "Positional arguments:\n"+
@@ -489,7 +489,7 @@ public class ArgumentTests {
         
     @Test
         public void testDashDashException() {
-            expectedEx.expect(IllegalArgumentException.class);
+            expectedEx.expect(HelpMessageException.class);
 				expectedEx.expectMessage("usage: java null\n"+
                                          "null.java: error: Argument: \"Monkey\" does not exist");
             String args[] = {"--Monkey"};
@@ -498,7 +498,7 @@ public class ArgumentTests {
         
     @Test
         public void testDashException() {
-            expectedEx.expect(IllegalArgumentException.class);
+            expectedEx.expect(HelpMessageException.class);
 				expectedEx.expectMessage("usage: java null\n"+
                                          "null.java: error: Shorthand Argument: \"M\" does not correspond to any Argument");
             String args[] = {"-M"};
