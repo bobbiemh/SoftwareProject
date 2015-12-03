@@ -204,7 +204,7 @@ public class ParseArgs{
             
         }
         catch(ParserConfigurationException | TransformerException e) {
-            throw new IllegalArgumentException("You done goof");
+            throw new HelpMessageException("You done goof");
         }
     }
     
@@ -217,7 +217,7 @@ public class ParseArgs{
     */
     public void setShortHand(String key, String shorthand){
         if(shorthand == "h")
-            throw new IllegalArgumentException("-h is used for only help");
+            throw new HelpMessageException("-h is used for only help");
         shorthand = "-" + shorthand;
         Argument temp = getArg(key);
         temp.setShortHand(shorthand);
@@ -272,23 +272,23 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Argument: \"" + arg.substring(2) + "\" does not exist");
+                    throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Argument: \"" + arg.substring(2) + "\" does not exist");
             }
             else if(arg.startsWith("-")){
                 if(arg.equals("-h")){
                     messageTrue = true;
-                    throw new IllegalArgumentException(getHelpMessage());
+                    throw new HelpMessageException(getHelpMessage());
                 }
                 else if(shmap.containsKey(arg)){
                     key = shmap.get(arg);
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Shorthand Argument: \"" + arg.substring(1) + "\" does not correspond to any Argument");
+                    throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Shorthand Argument: \"" + arg.substring(1) + "\" does not correspond to any Argument");
             }
             else if(posCount >= positionalKeys.size()){
                 posCount++;
-                throw new IllegalArgumentException(getUsage() + "\n" + programName + ".java: error: Unrecognized Argument: " + arg);
+                throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Unrecognized Argument: " + arg);
                 }
             else{
                 key = positionalKeys.get(posCount);
@@ -331,7 +331,7 @@ public class ParseArgs{
                 String message = getUsage() + "\n" + programName + ".java: error: not enough positional arguments: missing:\n";
                 for(int a = posCount; a < positionalKeys.size(); a++) 
                     message = message + " " + getPositionalKey(a);
-                throw new IllegalArgumentException(message);
+                throw new HelpMessageException(message);
             }            
         } 
     }
