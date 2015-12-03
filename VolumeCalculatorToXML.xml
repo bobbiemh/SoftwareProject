@@ -2,12 +2,12 @@
 <Argument>
 <Positional>
 <name>length</name>
-<type>STRING</type>
+<type>INT</type>
 <description/>
 </Positional>
 <Positional>
 <name>width</name>
-<type>STRING</type>
+<type>INT</type>
 <description/>
 </Positional>
 <Positional>

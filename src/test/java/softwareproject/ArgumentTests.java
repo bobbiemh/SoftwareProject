@@ -50,7 +50,7 @@ public class ArgumentTests {
 		
 	@Test
 		public void TooManyArgs(){
-		    expectedEx.expect(HelpMessageException.class);
+		    expectedEx.expect(TooManyArgumentsException.class);
 		        expectedEx.expectMessage("usage: java null length width height\n"+
                                          "null.java: error: Unrecognized Argument: 3");
 			p.addPos("length", "", Argument.Type.STRING);

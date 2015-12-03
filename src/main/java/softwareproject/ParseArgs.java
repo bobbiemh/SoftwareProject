@@ -288,7 +288,7 @@ public class ParseArgs{
             }
             else if(posCount >= positionalKeys.size()){
                 posCount++;
-                throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Unrecognized Argument: " + arg);
+                throw new TooManyArgumentsException(getUsage() + "\n" + programName + ".java: error: Unrecognized Argument: " + arg);
                 }
             else{
                 key = positionalKeys.get(posCount);
@@ -315,7 +315,7 @@ public class ParseArgs{
                     }
                     else
                     {
-                    throw new NumberFormatException();
+                        throw new NumberFormatException();
                     }
                 }
                 temp.setValue(arg);
