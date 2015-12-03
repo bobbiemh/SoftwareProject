@@ -66,7 +66,7 @@ public class Keywords {
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         try{
             p.parse(args);
-        }catch(IllegalArgumentException e){}
+        }catch(HelpMessageException e){}
     }
     
 	public void StartProgramWithArguments(String[] args){
@@ -84,7 +84,7 @@ public class Keywords {
 		p.programInfo("VolumeCalculator", "Calculate the volume of a box.");
         try{
             p.parse(args);
-        }catch(IllegalArgumentException e){}
+        }catch(HelpMessageException | TooManyArgumentsException e){}
 	}
 	
 	public void StartAbsurdProgramWithArguments(String[] args){
