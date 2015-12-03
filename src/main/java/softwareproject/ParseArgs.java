@@ -204,7 +204,7 @@ public class ParseArgs{
             
         }
         catch(ParserConfigurationException | TransformerException e) {
-            throw new IllegalArgumentException("You done goof");
+            System.err.println(getUsage() + "\n" + programName + ".java SaveToXML() error: File " + file + " was not found");
         }
     }
     
