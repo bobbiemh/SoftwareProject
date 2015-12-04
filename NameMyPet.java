@@ -21,14 +21,8 @@ public class NameMyPet {
         
         p.parse(args);
         
-        //try{
-        
-        String file = "C:\\Users\\Shay\\Documents\\GitHub\\SoftwareProject\\NameMyPet.xml";
+        String file = "NameMyPet.xml";
         p.readXML(file);
-        
-        /*} catch(ParserConfigurationException e){
-                throw new HelpMessageException(Integer.toString(p.numberOfPositionalKeys()));
-            }*/
         
         if(p.getValue("Sarah").equals("Bob")) {
             System.out.println("That's a terrible name!");
