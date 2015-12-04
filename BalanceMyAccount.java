@@ -8,7 +8,7 @@ public class BalanceMyAccount {
         ParseArgs p = new ParseArgs();
         
         p.programInfo("balanceMyAccount", "Balances your account.");
-        p.addPos("startingCheckingAccount", "the name of the dog", Argument.Type.INT);
+        p.addPos("startingCheckingAccount", "the amount in the checking account", Argument.Type.INT);
         
         p.addOpt("deposit", "the amount of deposit", Argument.Type.INT);
         p.setShortHand("deposit", "d");

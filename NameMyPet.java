@@ -21,16 +21,16 @@ public class NameMyPet {
         
         p.parse(args);
         
-        try{
+        //try{
         
         String file = "C:\\Users\\Shay\\Documents\\GitHub\\SoftwareProject\\NameMyPet.xml";
         p.readXML(file);
         
-        } catch(IOException | SAXException | ParserConfigurationException e){
-                throw new IllegalArgumentException(Integer.toString(p.numberOfPositionalKeys()));
-            }
+        /*} catch(ParserConfigurationException e){
+                throw new HelpMessageException(Integer.toString(p.numberOfPositionalKeys()));
+            }*/
         
-        if(p.getValue("nameDog").equals("Bob")) {
+        if(p.getValue("Sarah").equals("Bob")) {
             System.out.println("That's a terrible name!");
         } else System.out.print("That's a great name!");
     }

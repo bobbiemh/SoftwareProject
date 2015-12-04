@@ -1,29 +1,29 @@
 <arguments>
     <positional>
         <name>Sarah</name>
-        <type>Argument.Type.STRING</type>
+        <type>STRING</type>
         <position>1</position>
     </positional>
     <positional>
         <name>Susan</name>
-        <type>Argument.Type.STRING</type>
+        <type>STRING</type>
         <position>2</position>
     </positional>
     <positional>
         <name>JBird</name>
-        <type>Argument.Type.STRING</type>
+        <type>STRING</type>
         <position>3</position>
     </positional>
     <optional>
         <name>color</name>
         <shortname>c</shortname>
-        <type>Argument.Type.STRING</type>
+        <type>STRING</type>
         <default>brown</default>
     </optional>
     <optional>
         <name>size</name>
         <shortname>s</shortname>
-        <type>Argument.Type.STRING</type>
+        <type>STRING</type>
         <default>small</default>
     </optional>
 </arguments>
