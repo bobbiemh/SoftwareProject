@@ -36,7 +36,7 @@ public class ArgumentTests {
         }
         @Test
 		public void TooFewArgs(){
-			expectedEx.expect(HelpMessageException.class);
+			expectedEx.expect(TooLittleArgumentsException.class);
 				expectedEx.expectMessage("usage: java null length width height\n"+
                                          "null.java: error: not enough positional arguments: missing:\n"+
                                          " height");
@@ -489,7 +489,7 @@ public class ArgumentTests {
         
     @Test
         public void testDashDashException() {
-            expectedEx.expect(HelpMessageException.class);
+            expectedEx.expect(WrongArgumentException.class);
 				expectedEx.expectMessage("usage: java null\n"+
                                          "null.java: error: Argument: \"Monkey\" does not exist");
             String args[] = {"--Monkey"};
@@ -498,7 +498,7 @@ public class ArgumentTests {
         
     @Test
         public void testDashException() {
-            expectedEx.expect(HelpMessageException.class);
+            expectedEx.expect(WrongArgumentException.class);
 				expectedEx.expectMessage("usage: java null\n"+
                                          "null.java: error: Shorthand Argument: \"M\" does not correspond to any Argument");
             String args[] = {"-M"};

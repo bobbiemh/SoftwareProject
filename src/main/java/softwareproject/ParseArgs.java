@@ -272,7 +272,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Argument: \"" + arg.substring(2) + "\" does not exist");
+                    throw new WrongArgumentException(getUsage() + "\n" + programName + ".java: error: Argument: \"" + arg.substring(2) + "\" does not exist");
             }
             else if(arg.startsWith("-")){
                 if(arg.equals("-h")){
@@ -284,7 +284,7 @@ public class ParseArgs{
                     arg = argsQueue.remove();
                 }
                 else
-                    throw new HelpMessageException(getUsage() + "\n" + programName + ".java: error: Shorthand Argument: \"" + arg.substring(1) + "\" does not correspond to any Argument");
+                    throw new WrongArgumentException(getUsage() + "\n" + programName + ".java: error: Shorthand Argument: \"" + arg.substring(1) + "\" does not correspond to any Argument");
             }
             else if(posCount >= positionalKeys.size()){
                 posCount++;
@@ -331,7 +331,7 @@ public class ParseArgs{
                 String message = getUsage() + "\n" + programName + ".java: error: not enough positional arguments: missing:\n";
                 for(int a = posCount; a < positionalKeys.size(); a++) 
                     message = message + " " + getPositionalKey(a);
-                throw new HelpMessageException(message);
+                throw new TooLittleArgumentsException(message);
             }            
         } 
     }
