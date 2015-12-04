@@ -27,7 +27,7 @@ public class Keywords {
 		lengthOfArgs = allArgs.size();
         try{
             p.parse(args);
-        }catch(IllegalArgumentException e){}
+        }catch(TooManyArgumentsException e){}
 	}
     
     public void StartVolumeCalculatorDashArguments(String[] args){
