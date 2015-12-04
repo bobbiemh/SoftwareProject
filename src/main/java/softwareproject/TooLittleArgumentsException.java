@@ -16,21 +16,25 @@ public class TooLittleArgumentsException extends RuntimeException {
     }
     
     /**
-    *Used to throw a message when there are too few arguments.
+    *Used to throw a message when there are too few arguments.    
+    * @param   message the help message to be thrown
     */
     public TooLittleArgumentsException (String message) {
         super (message);
     }
     
     /**
-    *Used to throw a message when there are too few arguments.
+    *Used to throw a message when there are too few arguments.    
+    * @param   message the help message to be thrown
+    * @param   cause the cause of the exception
     */
     public TooLittleArgumentsException (String message, Throwable cause) {
         super (message, cause);
     }
     
     /**
-    *Used to throw a message when there are too few arguments.
+    *Used to throw a message when there are too few arguments.    
+    * @param   cause the cause of the exception
     */
     public TooLittleArgumentsException (Throwable cause) {
         super (cause);

@@ -1,7 +1,7 @@
 package softwareproject;
 
     /**
-     * The Argument class extends the Argument class. 
+     * The Optional class extends the Argument class. 
      *
      * @author CS XXY Team
      * @version Fall 2015

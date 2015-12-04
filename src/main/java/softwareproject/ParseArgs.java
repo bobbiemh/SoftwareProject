@@ -125,6 +125,8 @@ public class ParseArgs{
     /**
     *saveToXML creates a new .xml file that can be read back in. 
     *This is used to create new positional or optional arguments.
+    *
+    * @param   file the file to be saved
     */
     public void saveToXML(String file){
         try{

@@ -17,13 +17,16 @@ public class HelpMessageException extends RuntimeException {
     
     /**
     *Used to throw help message.
+    * @param   message the help message to be thrown
     */
     public HelpMessageException (String message) {
         super (message);
     }
     
     /**
-    *Used to throw help message.
+    *Used to throw help message. 
+    * @param   message the help message to be thrown
+    * @param   cause the cause of the exception
     */
     public HelpMessageException (String message, Throwable cause) {
         super (message, cause);
@@ -31,6 +34,7 @@ public class HelpMessageException extends RuntimeException {
     
     /**
     *Used to throw help message.
+    * @param   cause the cause of the exception
     */
     public HelpMessageException (Throwable cause) {
         super (cause);
