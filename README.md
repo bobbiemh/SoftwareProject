@@ -35,11 +35,11 @@ This project manages arguments from the command line and stores them.
    * The user can do this by calling the readXML function. The function only takes one argument, the file's name.
  * ParseArgs Class:
    * This class is the only one the user should have to interact with. This class allows the user to create a program with the arguments they desire. Through this class, they can do the following:
-     * set the program name and description
-     * create arguments
-     * user can call the readXML function through a ParseArgs variable
-     * sorts and stores all arguments
-     * can create an XML file to store the arguments in
+      * set the program name and description
+      * create arguments
+      * user can call the readXML function through a ParseArgs variable
+      * sorts and stores all arguments
+      * can create an XML file to store the arguments in
    * The main funciton of this class is parse(). This function sorts through all the arguments the user adds and stores them.
 * Exceptions
    * There are 4 custom exceptions:
