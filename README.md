@@ -41,11 +41,11 @@ This project manages arguments from the command line and stores them.
      * sorts and stores all arguments
      * can create an XML file to store the arguments in
    * The main funciton of this class is parse(). This function sorts through all the arguments the user adds and stores them.
- * Exceptions
+* Exceptions
    * There are 4 custom exceptions:
      * HelpMessageException: prints out how the descriptions and arguments the user has set and how to use them.
      * TooLittleArgumentsException: when adding a new argument, this exception will be thrown if the user forgot a value needed
      * TooManyArgumentsException: when adding a new argument, this exception will be thrown if the user gives to many values
      * WrongArgumentException: this exception is thrown if the user gives type "boolean" and value "No"
- * JavaDoc API
+* JavaDoc API
    * This project has it's own API if needed.
