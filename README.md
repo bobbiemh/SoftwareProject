@@ -15,6 +15,12 @@
 ## Project Description
 This project manages arguments from the command line and stores them.
 
+## Skills Acquired
+* Java language
+* Agile processes such as scrum
+* Unit testing
+* Acceptance testing
+
 ## Features
 * Help Command:
   * The help command can be accessed by using the argument "--help" or "-h" in the command line. When used, the program throws a message about you can or cannot do.
